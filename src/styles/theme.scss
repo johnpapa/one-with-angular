@@ -11,18 +11,10 @@
 // hue.
 $primary:       mat-palette($mat-blue, 800);
 $accent:        mat-palette($mat-pink, A200, A100, A400);
-// $accent:        mat-palette($mat-blue-grey, A200, A100, A400);
 $warn:          mat-palette($mat-deep-orange);
 $light-theme:   mat-light-theme($primary, $accent, $warn);
-
-$dark-primary:  mat-palette($mat-blue, 700, 500, 900);
-$dark-accent:   mat-palette($mat-blue-grey, A200, A100, A400);
-$dark-warn:     mat-palette($mat-pink, 700, 500, 900);
-// $dark-warn:     mat-palette($mat-deep-purple);
-$dark-theme:    mat-dark-theme($dark-primary, $dark-accent, $dark-warn);
 
 // Include theme styles for core and each component used in your app.
 // Alternatively, you can import and @include the theme mixins for each component
 // that you are using.
-// @include angular-material-theme($light-theme);
 @include angular-material-theme($light-theme);

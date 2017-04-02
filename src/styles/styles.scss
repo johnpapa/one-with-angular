@@ -27,3 +27,28 @@ pre {
   font-size: 16px;
   line-height: 2em;
 }
+
+// Rebels and Planets Lists
+[md-header] {
+  @include primary-color;
+}
+ro-rebel-detail {
+  float: left;
+  margin: 6em 0 0 2em;
+}
+.selected {
+  @include selected-style;
+}
+md-list {
+  float: left;
+  margin: 0 0 2em 0;
+  width: 12em;
+  border-right: 1px solid #CCC;
+}
+md-list md-list-item.selected:hover {
+  @include selected-hover-style;
+}
+md-list md-list-item:hover {
+  left: .1em;
+  @include hover-style;
+}
