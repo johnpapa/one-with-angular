@@ -13,6 +13,17 @@ html, body {
   background-position: center center;
   padding: 1em 2em;
 }
+.rebel-icon {
+  display: flex;
+  margin-bottom: 2em;
+  & > i {
+    background-image: url("../assets/rebel.png");
+    background-repeat: no-repeat;
+    background-position: center center;
+    padding: 32px;
+    background-size: contain;
+  }
+}
 md-checkbox {
   display: block;
 }
