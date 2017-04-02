@@ -19,8 +19,15 @@
       "testTsconfig": "tsconfig.spec.json",
       "prefix": "ro",
       "styles": [
-        "styles.sass"
+        "styles/theme.scss",
+        "styles/mixin.scss",
+        "styles/styles.scss"
       ],
+      "stylePreprocessorOptions": {
+        "includePaths": [
+          "styles"
+        ]
+      },
       "scripts": [],
       "environmentSource": "environments/environment.ts",
       "environments": {
@@ -51,7 +58,7 @@
     }
   },
   "defaults": {
-    "styleExt": "sass",
+    "styleExt": "scss",
     "component": {}
   }
 }

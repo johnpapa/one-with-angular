@@ -1,0 +1,12 @@
+<md-list>
+  <h1 md-header>{{title}}</h1>
+  <md-list-item *ngFor="let rebel of rebels"
+    [class.selected]="rebel===selectedRebel"
+    (click)="selectRebel(rebel)">
+    <p md-line>
+      <span>{{rebel.id}}. {{rebel.name}}</span>
+    </p>
+  </md-list-item>
+</md-list>
+
+<ro-rebel-detail [rebel]="selectedRebel"></ro-rebel-detail>

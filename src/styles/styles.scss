@@ -1,0 +1,29 @@
+@import 'mixin';
+
+html, body {
+  font-family: 'Roboto', sans-serif;
+  margin: 0px;
+}
+.content {
+  margin: 1em;
+}
+.ng-title-icon > i {
+  background-image: url("../assets/ng.png");
+  background-repeat: no-repeat;
+  background-position: center center;
+  padding: 1em 2em;
+}
+md-checkbox {
+  display: block;
+}
+
+.router-link-active {
+  @include primary-background-contrast-color;
+}
+
+pre {
+  background-color:  map-get($accent, 100);
+  padding: 1em;
+  font-size: 16px;
+  line-height: 2em;
+}

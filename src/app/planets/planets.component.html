@@ -1,0 +1,10 @@
+<md-list>
+  <h1 md-header>{{title}}</h1>
+  <md-list-item *ngFor="let planet of planets"
+    [class.selected]="planet===selectedPlanet"
+    (click)="selectPlanet(planet)">
+    <p md-line>
+      <span>{{planet.id}}. {{planet.name}}</span>
+    </p>
+  </md-list-item>
+</md-list>
