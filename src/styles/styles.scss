@@ -27,11 +27,9 @@ html, body {
 md-checkbox {
   display: block;
 }
-
 .router-link-active {
   @include primary-background-contrast-color;
 }
-
 pre {
   background-color:  map-get($accent, 100);
   padding: 1em;
@@ -45,7 +43,8 @@ pre {
 }
 ro-rebel-detail {
   float: left;
-  margin: 6em 0 0 2em;
+  margin: 0.5em 0 0 2em;
+  width: 17em;
 }
 .selected {
   @include selected-style;
@@ -62,4 +61,7 @@ md-list md-list-item.selected:hover {
 md-list md-list-item:hover {
   left: .1em;
   @include hover-style;
+}
+md-select, md-input-container {
+  width: 100%;
 }
