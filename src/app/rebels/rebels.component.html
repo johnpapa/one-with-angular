@@ -1,5 +1,5 @@
 <md-list>
-  <h1 md-header>{{title}}</h1>
+  <h2 md-header>{{title}}</h2>
   <md-list-item *ngFor="let rebel of rebels"
     [class.selected]="rebel===selectedRebel"
     (click)="selectRebel(rebel)">
