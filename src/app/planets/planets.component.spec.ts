@@ -1,6 +1,13 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
 
 import { PlanetsComponent } from './planets.component';
+import { DataService } from '../data.service';
+
+class DataServiceStub {
+  getRebels() { return []; }
+  getPlanets() { return []; }
+}
 
 describe('PlanetsComponent', () => {
   let component: PlanetsComponent;
@@ -8,7 +15,9 @@ describe('PlanetsComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ PlanetsComponent ]
+      declarations: [ PlanetsComponent ],
+      providers: [{ provide: DataService, useClass: DataServiceStub }],
+      schemas: [NO_ERRORS_SCHEMA]
     })
     .compileComponents();
   }));
