@@ -18,14 +18,11 @@ html, body {
   margin-bottom: 2em;
   & > i {
     background-image: url("../assets/rebel.png");
-    background-repeat: no-repeat;
-    background-position: center center;
+    // background-repeat: no-repeat;
+    // background-position: center center;
     padding: 32px;
     background-size: contain;
   }
-}
-md-checkbox {
-  display: block;
 }
 .router-link-active {
   @include primary-background-contrast-color;
@@ -54,6 +51,7 @@ md-list {
   margin: 0 0 2em 0;
   width: 12em;
   border-right: 1px solid #CCC;
+  cursor: pointer;
 }
 md-list md-list-item.selected:hover {
   @include selected-hover-style;
