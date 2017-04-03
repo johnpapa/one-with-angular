@@ -42,7 +42,7 @@ export class DataService {
     return this.sortBy(planets, 'name');
   }
 
-  sortBy(data: any[], property: string) {
+  private sortBy(data: any[], property: string) {
     return data.sort((a: any, b: any) => {
       if (a[property] < b[property]) { return -1; }
       if (a[property] > b[property]) { return 1; }
