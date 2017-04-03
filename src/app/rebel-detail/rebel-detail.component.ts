@@ -18,7 +18,8 @@ export class RebelDetailComponent implements OnInit {
 
   ngOnInit() {
     this.dataService.getPlanets()
-      .then(planets => this.planets = planets);
+      // .then(planets => this.planets = planets);
+      .subscribe(planets => this.planets = planets);
   }
 
 }

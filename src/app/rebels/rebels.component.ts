@@ -17,7 +17,8 @@ export class RebelsComponent implements OnInit {
 
   ngOnInit() {
     this.dataService.getRebels()
-      .then(rebels => this.rebels = rebels);
+      .subscribe(rebels => this.rebels = rebels);
+      // .then(rebels => this.rebels = rebels);
   }
 
   selectRebel(rebel: Rebel) {
