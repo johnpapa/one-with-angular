@@ -16,7 +16,8 @@ export class RebelsComponent implements OnInit {
   constructor(private dataService: DataService) { }
 
   ngOnInit() {
-    this.rebels = this.dataService.getRebels();
+    this.dataService.getRebels()
+      .then(rebels => this.rebels = rebels);
   }
 
   selectRebel(rebel: Rebel) {

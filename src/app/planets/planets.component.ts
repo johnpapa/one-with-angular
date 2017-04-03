@@ -15,7 +15,8 @@ export class PlanetsComponent implements OnInit {
   constructor(private dataService: DataService) { }
 
   ngOnInit() {
-    this.planets = this.dataService.getPlanets();
+    this.dataService.getPlanets()
+      .then(planets => this.planets = planets);
   }
 
   selectPlanet(planet: Planet) {

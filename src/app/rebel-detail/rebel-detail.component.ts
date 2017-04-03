@@ -17,7 +17,8 @@ export class RebelDetailComponent implements OnInit {
   constructor(private dataService: DataService) { }
 
   ngOnInit() {
-    this.planets = this.dataService.getPlanets();
+    this.dataService.getPlanets()
+      .then(planets => this.planets = planets);
   }
 
 }

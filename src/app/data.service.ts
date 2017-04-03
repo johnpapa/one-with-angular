@@ -34,11 +34,11 @@ const planets: Planet[] = [
 export class DataService {
   constructor() { }
 
-  getRebels() {
+  async getRebels() {
     return this.sortBy(rebels, 'name');
   }
 
-  getPlanets() {
+  async getPlanets() {
     return this.sortBy(planets, 'name');
   }
 
