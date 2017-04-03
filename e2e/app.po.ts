@@ -6,6 +6,6 @@ export class OneWithAngularPage {
   }
 
   getParagraphText() {
-    return element(by.css('ro-root h1')).getText();
+    return element(by.css('ro-root .title')).getText();
   }
 }
