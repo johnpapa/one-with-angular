@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MaterialModule } from '@angular/material';
+import { MdListModule } from '@angular/material';
 
 import { PlanetsRoutingModule } from './planets-routing.module';
 import { PlanetsComponent } from './planets.component';
@@ -9,7 +9,7 @@ import { PlanetsComponent } from './planets.component';
   imports: [
     CommonModule,
     PlanetsRoutingModule,
-    MaterialModule
+    MdListModule
   ],
   declarations: [PlanetsComponent]
 })

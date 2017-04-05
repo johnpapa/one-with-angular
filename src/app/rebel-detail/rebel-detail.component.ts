@@ -21,5 +21,4 @@ export class RebelDetailComponent implements OnInit {
       // .then(planets => this.planets = planets);
       .subscribe(planets => this.planets = planets);
   }
-
 }
