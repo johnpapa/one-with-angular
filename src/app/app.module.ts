@@ -11,22 +11,25 @@ import {
   MdSelectModule,
   MdToolbarModule,
 } from '@angular/material';
+import { Framing } from '@framing/ng-core';
 
 import { AppComponent } from './app.component';
-import { AppRoutingModule } from './app-routing.module';
 import { NavComponent } from './nav/nav.component';
-import { RebelsComponent } from './rebels/rebels.component';
 import { DataService } from './data.service';
-import { RebelDetailComponent } from './rebel-detail/rebel-detail.component';
+import { RebelsModule } from './rebels/rebels.module';
 
-@NgModule({
-  declarations: [
-    AppComponent,
+export const ngModuleConfig = Framing((framing) => framing
+  .root()
+  .children([
+    { path: '', pathMatch: 'full', redirectTo: 'rebels', },
+    { path: 'rebels', loadChildren: () => RebelsModule },
+    { path: 'planets', loadChildren: 'app/planets/planets.module#PlanetsModule' },
+    { path: '**', pathMatch: 'full', redirectTo: 'rebels' },
+  ])
+  .declarations([
     NavComponent,
-    RebelsComponent,
-    RebelDetailComponent
-  ],
-  imports: [
+  ])
+  .imports([
     BrowserModule,
     BrowserAnimationsModule,
     FormsModule,
@@ -37,10 +40,10 @@ import { RebelDetailComponent } from './rebel-detail/rebel-detail.component';
     MdListModule,
     MdSelectModule,
     MdToolbarModule,
-    // My Code
-    AppRoutingModule
-  ],
-  providers: [DataService],
-  bootstrap: [AppComponent]
-})
+  ])
+  .provider(DataService)
+  .componentAndDeclare(AppComponent),
+);
+
+@NgModule(ngModuleConfig)
 export class AppModule { }

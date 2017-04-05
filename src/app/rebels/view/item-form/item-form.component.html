@@ -1,0 +1,12 @@
+<p>
+  <md-input-container>
+    <input mdInput placeholder="Rebel Name" [(ngModel)]="itemController.model.selectedItem.name">
+  </md-input-container>
+</p>
+<p>
+  <md-select placeholder="Home World" [(ngModel)]="itemController.model.selectedItem.homeWorldId">
+    <md-option *ngFor="let planet of itemController.planets" [value]="planet.id">
+      {{ planet.name }}
+    </md-option>
+  </md-select>
+</p>

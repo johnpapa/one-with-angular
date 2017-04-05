@@ -1,0 +1,20 @@
+<div class="item-detail">
+  <h2 md-header>{{itemController.model.title}} Details</h2>
+  <div class="item-icon"><i></i></div>
+  <div *ngIf="itemController.model.selectedItem;else noItem" style="display: flex; flex-direction: column">
+      <div>
+        <ng-container [ngComponentOutlet]="itemController.view.itemFormComponent"></ng-container>
+      </div>
+
+      <p>
+        <md-checkbox [(ngModel)]="itemController.model.revealModel">Reveal Model</md-checkbox>
+      </p>
+
+      <pre *ngIf="itemController.model.revealModel">{{itemController.model.selectedItem | json}}</pre>
+
+  </div>
+
+  <ng-template #noItem>
+    <div>No {{itemController.model.title}} has been selected</div>
+  </ng-template>
+</div>
