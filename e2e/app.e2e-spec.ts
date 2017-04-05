@@ -7,8 +7,8 @@ describe('one-with-angular App', () => {
     page = new OneWithAngularPage();
   });
 
-  it('should display message saying app works', () => {
+  it('should display title of the app', () => {
     page.navigateTo();
-    expect(page.getParagraphText()).toEqual('ro works!');
+    expect(page.getParagraphText()).toEqual('One with Angular');
   });
 });
