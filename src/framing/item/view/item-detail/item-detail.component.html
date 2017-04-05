@@ -1,7 +1,7 @@
-<div class="rebel-detail">
-  <h2 md-header>Rebel Details</h2>
-  <div class="rebel-icon"><i></i></div>
-  <div *ngIf="rebel;else noRebel">
+<div class="item-detail">
+  <h2 md-header>{{itemController.model.title}} Details</h2>
+  <div class="item-icon"><i></i></div>
+  <div *ngIf="itemController.model.selectedItem;else noItem">
       <p>
         <md-input-container>
           <input mdInput placeholder="Rebel Name" [(ngModel)]="rebel.name">
@@ -15,14 +15,14 @@
       </md-select>
       </p>
       <p>
-      <md-checkbox [(ngModel)]="revealModel">Reveal Model</md-checkbox>
+      <md-checkbox [(ngModel)]="itemController.model.revealModel">Reveal Model</md-checkbox>
       </p>
 
-      <pre *ngIf="revealModel">{{rebel | json}}</pre>
+      <pre *ngIf="itemController.model.revealModel">{{rebel | json}}</pre>
 
   </div>
 
-  <ng-template #noRebel>
-    <div>No Rebel has been selected</div>
+  <ng-template #noItem>
+    <div>No {{itemController.model.title}} has been selected</div>
   </ng-template>
 </div>
