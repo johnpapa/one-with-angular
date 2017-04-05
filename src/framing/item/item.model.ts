@@ -3,4 +3,5 @@ export interface ItemModel {
   items?: any[];
   selectedItem?: any;
   revealModel?: boolean;
+  apiMethod?: string;
 }

@@ -7,15 +7,18 @@ import { PlanetsViewModule } from './view/planets-view.module';
 
 import { ItemFormComponent } from './view/item-form/item-form.component';
 
-@NgModule(Framing((framing) => framing
+export const ngModuleConfig = Framing((framing) => framing
   .import(PlanetsViewModule)
   .frame(new ItemFramer()
     .model({
-      title: 'Planets',
+      title: 'Planet',
+      apiMethod: 'getPlanets',
     })
     .view({
       itemFormComponent: ItemFormComponent,
     }),
   ),
-))
+);
+
+@NgModule(ngModuleConfig)
 export class PlanetsModule { }

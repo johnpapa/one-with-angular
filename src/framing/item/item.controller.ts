@@ -8,17 +8,16 @@ import { DataService } from '../../app/data.service';
 
 @Injectable()
 export class ItemController extends Controller<ItemModel, ItemView> {
-
   constructor(
     public dataService: DataService,
   ) { super(); }
 
-  selectItem(item: any) {
+  public selectItem(item: any) {
     this.model.selectedItem = item;
   };
 
-  onControllerInit(): void {
-    this.dataService.getRebels()
+  public onControllerInit(): void {
+    this.dataService[this.model.apiMethod]()
       .subscribe(items => this.model.items = items);
   }
 }

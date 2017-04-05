@@ -34,10 +34,8 @@ export class ItemFramer extends Framer<ItemModel, ItemView> {
 
   public frame(framing: FramingNgModule): void {
     framing
-      .imports([
-        MaterialModule,
-        ItemViewModule,
-      ])
-      .route();
+      .import(ItemViewModule)
+      .route()
+      .component(this.theView.itemsComponent);
   }
 }

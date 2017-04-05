@@ -18,7 +18,7 @@ import { NavComponent } from './nav/nav.component';
 import { DataService } from './data.service';
 import { RebelsModule } from './rebels/rebels.module';
 
-@NgModule(Framing((framing) => framing
+export const ngModuleConfig = Framing((framing) => framing
   .root()
   .children([
     { path: '', pathMatch: 'full', redirectTo: 'rebels', },
@@ -43,5 +43,7 @@ import { RebelsModule } from './rebels/rebels.module';
   ])
   .provider(DataService)
   .componentAndDeclare(AppComponent),
-))
+);
+
+@NgModule(ngModuleConfig)
 export class AppModule { }

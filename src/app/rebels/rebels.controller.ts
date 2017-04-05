@@ -13,7 +13,7 @@ export class RebelsController extends ItemController {
     dataService: DataService,
   ) { super(dataService); }
 
-  onControllerInit() {
+  public onControllerInit() {
     super.onControllerInit();
 
     this.dataService.getPlanets()

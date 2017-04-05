@@ -6,16 +6,19 @@ import { RebelsController } from './rebels.controller';
 import { RebelsViewModule } from './view/rebels-view.module';
 import { ItemFormComponent } from './view/item-form/item-form.component';
 
-@NgModule(Framing((framing) => framing
+export const ngModuleConfig = Framing((framing) => framing
   .import(RebelsViewModule)
   .frame(new ItemFramer()
     .model({
-      title: 'Rebels',
+      title: 'Rebel',
+      apiMethod: 'getRebels',
     })
     .view({
       itemFormComponent: ItemFormComponent,
     })
     .controller(RebelsController),
   ),
-))
+);
+
+@NgModule(ngModuleConfig)
 export class RebelsModule {}

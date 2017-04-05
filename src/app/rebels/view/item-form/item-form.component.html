@@ -5,7 +5,7 @@
 </p>
 <p>
   <md-select placeholder="Home World" [(ngModel)]="itemController.model.selectedItem.homeWorldId">
-    <md-option *ngFor="let planet of planets" [value]="planet.id">
+    <md-option *ngFor="let planet of itemController.planets" [value]="planet.id">
       {{ planet.name }}
     </md-option>
   </md-select>
