@@ -18,6 +18,7 @@ import { NavComponent } from './nav/nav.component';
 import { RebelsComponent } from './rebels/rebels.component';
 import { DataService } from './data.service';
 import { RebelDetailComponent } from './rebel-detail/rebel-detail.component';
+import { ConfigService } from './config.service';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,7 @@ import { RebelDetailComponent } from './rebel-detail/rebel-detail.component';
     // My Code
     AppRoutingModule
   ],
-  providers: [DataService],
+  providers: [DataService, ConfigService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

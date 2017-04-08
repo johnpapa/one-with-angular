@@ -4,6 +4,7 @@ import 'rxjs/add/operator/map';
 
 import { Rebel } from './rebel';
 import { Planet } from './planet';
+import { ConfigService } from "app/config.service";
 
 // const rebels: Rebel[] = [
 //   new Rebel(10, 'Jyn Erso', 1),
@@ -34,16 +35,16 @@ import { Planet } from './planet';
 
 @Injectable()
 export class DataService {
-  constructor(public http: Http) { }
+  constructor(private http: Http, private configService: ConfigService) { }
 
   getRebels() {
-    return this.http.get('https://onewithangularapp.azurewebsites.net/api/rebels')
+    return this.http.get(`${this.configService}rebels`)
       .map((response: Response) => response.json())
       .map(rebels => this.sortBy(rebels, 'name'));
   }
 
   getPlanets() {
-    return this.http.get('https://onewithangularapp.azurewebsites.net/api/planets')
+    return this.http.get(`${this.configService}planets`)
       .map((response: Response) => response.json())
       .map(planets => this.sortBy(planets, 'name'));
   }
