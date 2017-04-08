@@ -4,7 +4,7 @@ import 'rxjs/add/operator/map';
 
 import { Rebel } from './rebel';
 import { Planet } from './planet';
-import { ConfigService } from "app/config.service";
+import { ConfigService } from './config.service';
 
 // const rebels: Rebel[] = [
 //   new Rebel(10, 'Jyn Erso', 1),
