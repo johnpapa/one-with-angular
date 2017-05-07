@@ -1,13 +1,13 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { PeopleComponent } from './people/people.component';
+import { CharactersComponent } from './characters/characters.component';
 
 const routes: Routes = [
-  { path: '', pathMatch: 'full', redirectTo: 'people', },
-  { path: 'people', component: PeopleComponent },
+  { path: '', pathMatch: 'full', redirectTo: 'characters', },
+  { path: 'characters', component: CharactersComponent },
   { path: 'planets', loadChildren: 'app/planets/planets.module#PlanetsModule' },
-  { path: '**', pathMatch: 'full', redirectTo: 'people' },
+  { path: '**', pathMatch: 'full', redirectTo: 'characters' },
 ];
 
 @NgModule({

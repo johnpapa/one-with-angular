@@ -32,11 +32,11 @@ pre {
   line-height: 2em;
 }
 
-// People and Planets
+// Characters and Planets
 [md-header] {
   @include primary-color;
 }
-ro-people-detail {
+ro-character-detail {
   float: left;
   margin: 0.5em 0 0 2em;
   // width: 17em;

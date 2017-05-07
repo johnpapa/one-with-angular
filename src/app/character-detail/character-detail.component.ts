@@ -1,16 +1,16 @@
 import { Component, OnChanges, Input } from '@angular/core';
 
-import { Person } from '../person';
+import { Character } from '../character';
 import { Planet } from '../planet';
 import { DataService } from '../data.service';
 
 @Component({
-  selector: 'ro-people-detail',
-  templateUrl: './people-detail.component.html',
-  styleUrls: ['./people-detail.component.scss']
+  selector: 'ro-character-detail',
+  templateUrl: './character-detail.component.html',
+  styleUrls: ['./character-detail.component.scss']
 })
-export class PeopleDetailComponent implements OnChanges {
-  @Input() person: Person;
+export class CharactersDetailComponent implements OnChanges {
+  @Input() character: Character;
   homeWorld: Planet;
   planets: Planet[];
   revealModel = false;
@@ -26,12 +26,12 @@ export class PeopleDetailComponent implements OnChanges {
   }
 
   syncHomeWorld() {
-    if (this.person) {
+    if (this.character) {
       const homeWorld = this.planets.find((planet => {
-        return this.person.homeWorldId === planet.id;
+        return this.character.homeWorldId === planet.id;
       }));
       // this.homeWorld = homeWorld;
-      this.person.homeWorld = homeWorld;
+      this.character.homeWorld = homeWorld;
     }
   }
 }

@@ -1,21 +1,21 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 
-import { PeopleComponent } from './people.component';
+import { CharactersComponent } from './characters.component';
 import { DataService } from '../data.service';
 
 class DataServiceStub {
-  getPeople() { return []; }
+  getCharacters() { return []; }
   getPlanets() { return []; }
 }
 
-describe('PeopleComponent', () => {
-  let component: PeopleComponent;
-  let fixture: ComponentFixture<PeopleComponent>;
+describe('CharactersComponent', () => {
+  let component: CharactersComponent;
+  let fixture: ComponentFixture<CharactersComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ PeopleComponent ],
+      declarations: [ CharactersComponent ],
       providers: [{ provide: DataService, useClass: DataServiceStub }],
       schemas: [NO_ERRORS_SCHEMA]
     })
@@ -23,7 +23,7 @@ describe('PeopleComponent', () => {
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(PeopleComponent);
+    fixture = TestBed.createComponent(CharactersComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -15,17 +15,17 @@ import {
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { NavComponent } from './nav/nav.component';
-import { PeopleComponent } from './people/people.component';
+import { CharactersComponent } from './characters/characters.component';
 import { DataService } from './data.service';
-import { PeopleDetailComponent } from './people-detail/people-detail.component';
+import { CharactersDetailComponent } from './character-detail/character-detail.component';
 import { ConfigService } from './config.service';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavComponent,
-    PeopleComponent,
-    PeopleDetailComponent
+    CharactersComponent,
+    CharactersDetailComponent
   ],
   imports: [
     BrowserModule,

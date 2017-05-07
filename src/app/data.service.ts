@@ -4,7 +4,7 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/forkJoin';
 import 'rxjs/add/operator/map';
 
-import { Person } from './person';
+import { Character } from './character';
 import { Planet } from './planet';
 import { ConfigService } from './config.service';
 
@@ -12,26 +12,26 @@ import { ConfigService } from './config.service';
 export class DataService {
   constructor(private http: Http, private configService: ConfigService) { }
 
-  getPeople() {
-    return <Observable<Person[]>>this.http.get(`${this.configService.apiUrl}people`)
+  getCharacters() {
+    return <Observable<Character[]>>this.http.get(`${this.configService.apiUrl}people`)
       .map((response: Response) => response.json().results)
-      .map(people => this.sortBy(people, 'name'));
+      .map(characters => this.sortBy(characters, 'name'));
   }
 
   // TODO: Tinkering
-  // getPerson(id: number) {
-  //   const peopleObservable = <Observable<Person[]>>this.http.get(`${this.configService.apiUrl}people/${id}`)
+  // getCharacter(id: number) {
+  //   const charactersObservable = <Observable<Character[]>>this.http.get(`${this.configService.apiUrl}people/${id}`)
   //     .map((response: Response) => response.json().results)
-  //     .map(people => this.sortBy(people, 'name'));
+  //     .map(characters => this.sortBy(characters, 'name'));
 
   //   const planetsObservable = this.getPlanets();
 
-  //   return Observable.forkJoin(peopleObservable, planetsObservable)
+  //   return Observable.forkJoin(charactersObservable, planetsObservable)
   //     .subscribe(results => {
-  //       const person = results[0][0];
+  //       const character = results[0][0];
   //       const homeWorlds = results[1];
-  //       const homeWorld = homeWorlds.find((hw => person.homeWorldId === hw.id));
-  //       person.homeWorld = homeWorld; // this is this Person's homeWorld
+  //       const homeWorld = homeWorlds.find((hw => character.homeWorldId === hw.id));
+  //       character.homeWorld = homeWorld; // this is this Character's homeWorld
   //     });
   // }
 

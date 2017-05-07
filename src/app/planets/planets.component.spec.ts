@@ -5,7 +5,7 @@ import { PlanetsComponent } from './planets.component';
 import { DataService } from '../data.service';
 
 class DataServiceStub {
-  getPeople() { return []; }
+  getCharacters() { return []; }
   getPlanets() { return []; }
 }
 
