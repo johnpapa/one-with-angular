@@ -1,5 +1,8 @@
-@import '~@angular/material/core/theming/all-theme';
-@include mat-core();
+@import '~@angular/material/_theming.scss';
+
+// @import '~@angular/material/core/theming/all-theme';
+// @include mat-core();
+
 $primary:       mat-palette($mat-blue, 800);
 $accent:        mat-palette($mat-pink, A200, A100, A400);
 $warn:          mat-palette($mat-deep-orange);
