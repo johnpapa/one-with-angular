@@ -39,7 +39,7 @@ pre {
 ro-rebel-detail {
   float: left;
   margin: 0.5em 0 0 2em;
-  width: 17em;
+  // width: 17em;
 }
 .selected {
   @include selected-style;
