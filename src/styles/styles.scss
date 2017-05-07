@@ -36,7 +36,7 @@ pre {
 [md-header] {
   @include primary-color;
 }
-ro-character-detail {
+ro-character-detail, ro-planet-detail {
   float: left;
   margin: 0.5em 0 0 2em;
   // width: 17em;

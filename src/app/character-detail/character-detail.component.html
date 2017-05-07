@@ -18,9 +18,7 @@
       <md-checkbox [(ngModel)]="revealModel">Reveal Model</md-checkbox>
     </p>
 
-    <pre *ngIf="revealModel">
-      {{character | json}}{{homeWorld | json}}
-    </pre>
+    <pre *ngIf="revealModel">{{character | json}}{{homeWorld | json}}</pre>
 
   </div>
 

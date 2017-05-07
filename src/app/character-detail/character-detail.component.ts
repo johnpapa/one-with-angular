@@ -9,7 +9,7 @@ import { DataService } from '../data.service';
   templateUrl: './character-detail.component.html',
   styleUrls: ['./character-detail.component.scss']
 })
-export class CharactersDetailComponent implements OnChanges {
+export class CharacterDetailComponent implements OnChanges {
   @Input() character: Character;
   homeWorld: Planet;
   planets: Planet[];
@@ -27,10 +27,7 @@ export class CharactersDetailComponent implements OnChanges {
 
   syncHomeWorld() {
     if (this.character) {
-      const homeWorld = this.planets.find((planet => {
-        return this.character.homeWorldId === planet.id;
-      }));
-      // this.homeWorld = homeWorld;
+      const homeWorld = this.planets.find((planet => this.character.homeWorldId === planet.id));
       this.character.homeWorld = homeWorld;
     }
   }

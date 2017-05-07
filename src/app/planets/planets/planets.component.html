@@ -8,3 +8,7 @@
     </p>
   </md-list-item>
 </md-list>
+
+<div *ngIf="selectedPlanet">
+  <ro-planet-detail [planet]="selectedPlanet"></ro-planet-detail>
+</div>

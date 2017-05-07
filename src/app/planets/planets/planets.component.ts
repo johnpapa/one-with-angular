@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Planet } from '../planet';
-import { DataService } from '../data.service';
+import { Planet } from '../../planet';
+import { DataService } from '../../data.service';
 
 @Component({
   selector: 'ro-planets',

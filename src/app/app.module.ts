@@ -17,7 +17,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { NavComponent } from './nav/nav.component';
 import { CharactersComponent } from './characters/characters.component';
 import { DataService } from './data.service';
-import { CharactersDetailComponent } from './character-detail/character-detail.component';
+import { CharacterDetailComponent } from './character-detail/character-detail.component';
 import { ConfigService } from './config.service';
 
 @NgModule({
@@ -25,7 +25,7 @@ import { ConfigService } from './config.service';
     AppComponent,
     NavComponent,
     CharactersComponent,
-    CharactersDetailComponent
+    CharacterDetailComponent
   ],
   imports: [
     BrowserModule,
