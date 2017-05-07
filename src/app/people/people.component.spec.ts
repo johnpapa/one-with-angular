@@ -1,29 +1,29 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 
-import { RebelDetailComponent } from './rebel-detail.component';
+import { PeopleComponent } from './people.component';
 import { DataService } from '../data.service';
 
 class DataServiceStub {
-  getRebels() { return []; }
+  getPeople() { return []; }
   getPlanets() { return []; }
 }
 
-describe('RebelDetailComponent', () => {
-  let component: RebelDetailComponent;
-  let fixture: ComponentFixture<RebelDetailComponent>;
+describe('PeopleComponent', () => {
+  let component: PeopleComponent;
+  let fixture: ComponentFixture<PeopleComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ RebelDetailComponent ],
+      declarations: [ PeopleComponent ],
       providers: [{ provide: DataService, useClass: DataServiceStub }],
       schemas: [NO_ERRORS_SCHEMA]
     })
-      .compileComponents();
+    .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(RebelDetailComponent);
+    fixture = TestBed.createComponent(PeopleComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

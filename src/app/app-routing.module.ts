@@ -1,13 +1,13 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { RebelsComponent } from './rebels/rebels.component';
+import { PeopleComponent } from './people/people.component';
 
 const routes: Routes = [
-  { path: '', pathMatch: 'full', redirectTo: 'rebels', },
-  { path: 'rebels', component: RebelsComponent },
+  { path: '', pathMatch: 'full', redirectTo: 'people', },
+  { path: 'people', component: PeopleComponent },
   { path: 'planets', loadChildren: 'app/planets/planets.module#PlanetsModule' },
-  { path: '**', pathMatch: 'full', redirectTo: 'rebels' },
+  { path: '**', pathMatch: 'full', redirectTo: 'people' },
 ];
 
 @NgModule({

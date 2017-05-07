@@ -1,0 +1,30 @@
+<div class="people-detail">
+  <h2 md-header>Details</h2>
+  <div class="rebel-icon"><i></i></div>
+  <div *ngIf="person;else noPeople">
+    <p>
+      <md-input-container>
+        <input mdInput placeholder="Name" [(ngModel)]="person.name">
+      </md-input-container>
+    </p>
+    <p>
+      <md-select placeholder="Home World" [(ngModel)]="person.homeWorldId" (change)="syncHomeWorld()">
+        <md-option *ngFor="let planet of planets" [value]="planet.id">
+          {{ planet.name }}
+        </md-option>
+      </md-select>
+    </p>
+    <p>
+      <md-checkbox [(ngModel)]="revealModel">Reveal Model</md-checkbox>
+    </p>
+
+    <pre *ngIf="revealModel">
+      {{person | json}}{{homeWorld | json}}
+    </pre>
+
+  </div>
+
+  <ng-template #noPerson>
+    <div>No person has been selected</div>
+  </ng-template>
+</div>

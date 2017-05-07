@@ -32,11 +32,11 @@ pre {
   line-height: 2em;
 }
 
-// Rebels and Planets Lists
+// People and Planets
 [md-header] {
   @include primary-color;
 }
-ro-rebel-detail {
+ro-people-detail {
   float: left;
   margin: 0.5em 0 0 2em;
   // width: 17em;
@@ -50,6 +50,8 @@ md-list {
   width: 12em;
   border-right: 1px solid #CCC;
   cursor: pointer;
+  height: 600px;
+  overflow: scroll;
 }
 md-list md-list-item.selected:hover {
   @include selected-hover-style;
@@ -60,4 +62,9 @@ md-list md-list-item:hover {
 }
 md-select, md-input-container {
   width: 100%;
+}
+
+
+md-list-item.mat-list-item span {
+    font-size: 14px;
 }

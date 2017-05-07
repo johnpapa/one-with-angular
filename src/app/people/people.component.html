@@ -1,0 +1,14 @@
+<md-list>
+  <h2 md-header>{{title}}</h2>
+  <md-list-item *ngFor="let person of people"
+    [class.selected]="person===selectedPerson"
+    (click)="selectPerson(person)">
+    <p md-line>
+      <span>{{person.name}}</span>
+    </p>
+  </md-list-item>
+</md-list>
+
+<div *ngIf="selectedPerson">
+  <ro-people-detail [person]="selectedPerson"></ro-people-detail>
+</div>
