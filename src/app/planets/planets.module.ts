@@ -5,6 +5,7 @@ import {
   MdCheckboxModule,
   MdInputModule,
   MdListModule,
+  MdProgressSpinnerModule,
 } from '@angular/material';
 
 import { PlanetsRoutingModule } from './planets-routing.module';
@@ -19,6 +20,7 @@ import { PlanetDetailComponent } from './planet-detail/planet-detail.component';
     MdListModule,
     MdCheckboxModule,
     MdInputModule,
+    MdProgressSpinnerModule,
   ],
   declarations: [PlanetsComponent, PlanetDetailComponent]
 })

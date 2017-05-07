@@ -8,6 +8,7 @@ import {
   MdCheckboxModule,
   MdInputModule,
   MdListModule,
+  MdProgressSpinnerModule,
   MdSelectModule,
   MdToolbarModule,
 } from '@angular/material';
@@ -36,6 +37,7 @@ import { ConfigService } from './config.service';
     MdCheckboxModule,
     MdInputModule,
     MdListModule,
+    MdProgressSpinnerModule,
     MdSelectModule,
     MdToolbarModule,
     // My Code

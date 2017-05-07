@@ -1,12 +1,18 @@
 <md-list>
   <h2 md-header>{{title}}</h2>
-  <md-list-item *ngFor="let character of characters"
-    [class.selected]="character===selectedCharacter"
-    (click)="selectCharacter(character)">
-    <p md-line>
-      <span>{{character.name}}</span>
-    </p>
-  </md-list-item>
+  <div *ngIf="characters;else noCharacters">
+    <md-list-item *ngFor="let character of characters"
+      [class.selected]="character===selectedCharacter"
+      (click)="selectCharacter(character)">
+      <p md-line>
+        <span>{{character.name}}</span>
+      </p>
+    </md-list-item>
+  </div>
+  <ng-template #noCharacters>
+    <md-progress-spinner class="spinner" attr.color="primary" mode="indeterminate">
+    </md-progress-spinner>
+  </ng-template>
 </md-list>
 
 <div *ngIf="selectedCharacter">

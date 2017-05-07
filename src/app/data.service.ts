@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Http, Response } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/forkJoin';
+import 'rxjs/add/operator/delay';
 import 'rxjs/add/operator/map';
 
 import { Character } from './character';
@@ -14,6 +15,7 @@ export class DataService {
 
   getCharacters() {
     return <Observable<Character[]>>this.http.get(`${this.configService.apiUrl}people`)
+      .delay(this.configService.delay)
       .map((response: Response) => response.json().results)
       .map(characters => this.sortBy(characters, 'name'));
   }
@@ -37,6 +39,7 @@ export class DataService {
 
   getPlanets() {
     return <Observable<Planet[]>>this.http.get(`${this.configService.apiUrl}planets`)
+      .delay(this.configService.delay)
       .map((response: Response) => response.json().results)
       .map(planets => this.sortBy(planets, 'name'));
   }
