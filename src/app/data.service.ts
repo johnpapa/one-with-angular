@@ -38,13 +38,13 @@ export class DataService {
   constructor(private http: Http, private configService: ConfigService) { }
 
   getRebels() {
-    return this.http.get(`${this.configService}rebels`)
+    return this.http.get(`${this.configService.apiUrl}rebels`)
       .map((response: Response) => response.json())
       .map(rebels => this.sortBy(rebels, 'name'));
   }
 
   getPlanets() {
-    return this.http.get(`${this.configService}planets`)
+    return this.http.get(`${this.configService.apiUrl}planets`)
       .map((response: Response) => response.json())
       .map(planets => this.sortBy(planets, 'name'));
   }
