@@ -16,14 +16,15 @@ export class DashboardComponent implements OnInit {
   showXAxis = true;
   showYAxis = true;
   gradient = false;
-  showLegend = true;
-  showXAxisLabel = true;
+  showLegend = false;
+  showXAxisLabel = false;
   xAxisLabel = 'Planets';
   showYAxisLabel = true;
   yAxisLabel = 'Characters';
 
   colorScheme = {
-    domain: ['#5AA454', '#A10A28', '#C7B42C', '#AAAAAA']
+    // domain: ['#bbdefb', '#90caf9', '#64b5f6', '#42a5f5', '#2196f3', '#1e88e5', '#1976d2', '#1565c0']
+    domain: ['#90caf9', '#42a5f5', '#1e88e5', '#1565c0']
   };
 
   onSelect(event) {

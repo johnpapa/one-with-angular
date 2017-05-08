@@ -50,6 +50,14 @@ pre {
 [md-header] {
   @include primary-color;
 }
+// .a { @include primary-color-100; }
+// .b { @include primary-color-200; }
+// .c { @include primary-color-300; }
+// .d { @include primary-color-400; }
+// .e { @include primary-color-500; }
+// .f { @include primary-color-600; }
+// .g { @include primary-color-700; }
+// .h { @include primary-color-800; }
 ro-character-detail, ro-planet-detail {
   float: left;
   margin: 0.5em 0 0 2em;

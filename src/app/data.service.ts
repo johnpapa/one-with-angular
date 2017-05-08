@@ -22,6 +22,7 @@ export class DataService {
   }
 
   getPlanetSummary() {
+  // return Observable.forkJoin(charactersObservable, planetsObservable)
     return combineLatest(this.getCharacters(), this.getPlanets(), this.scheduler)
       .map(summary => summary.filter((item) => item.value > 1 && item.name !== 'unknown'))
       .do(() => console.log('combined them'))
