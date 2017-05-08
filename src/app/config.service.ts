@@ -4,7 +4,7 @@ import { Injectable } from '@angular/core';
 export class ConfigService {
   apiUrl = 'http://www.starwars-api.com/api/';
   // apiUrl = 'https://onewithangularapp.azurewebsites.net/api/';
-  delay = 2000;
+  delay = 500;
 
   constructor() { }
 }

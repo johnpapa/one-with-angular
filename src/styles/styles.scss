@@ -13,13 +13,27 @@ html, body {
   background-position: center center;
   padding: 1em 2em;
 }
-.rebel-icon {
+.character-icon, .rebel-icon, .jedi-icon, .imperial-icon {
   display: flex;
   margin-bottom: 2em;
   & > i {
-    background-image: url("../assets/rebel.png");
     padding: 32px;
     background-size: contain;
+  }
+}
+.rebel-icon {
+  & > i {
+    background-image: url("../assets/rebel.png");
+  }
+}
+.jedi-icon {
+  & > i {
+    background-image: url("../assets/jedi.png");
+  }
+}
+.imperial-icon {
+  & > i {
+    background-image: url("../assets/imperial.png");
   }
 }
 .router-link-active {

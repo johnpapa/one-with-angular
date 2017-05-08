@@ -17,7 +17,6 @@ export class PlanetsComponent implements OnInit {
   ngOnInit() {
     this.dataService.getPlanets()
       .subscribe(planets => this.planets = planets);
-      // .then(planets => this.planets = planets);
   }
 
   selectPlanet(planet: Planet) {

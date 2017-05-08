@@ -17,6 +17,10 @@ export class CharacterDetailComponent implements OnChanges {
 
   constructor(private dataService: DataService) { }
 
+  get icon() {
+    return `${this.character.allegiance}-icon`;
+  }
+
   ngOnChanges() {
     this.dataService.getPlanets()
       .subscribe(planets => {

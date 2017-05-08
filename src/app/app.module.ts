@@ -12,6 +12,7 @@ import {
   MdSelectModule,
   MdToolbarModule,
 } from '@angular/material';
+import { NgxChartsModule } from '@swimlane/ngx-charts';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
@@ -20,13 +21,15 @@ import { CharactersComponent } from './characters/characters.component';
 import { DataService } from './data.service';
 import { CharacterDetailComponent } from './character-detail/character-detail.component';
 import { ConfigService } from './config.service';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavComponent,
     CharactersComponent,
-    CharacterDetailComponent
+    CharacterDetailComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,
@@ -40,6 +43,7 @@ import { ConfigService } from './config.service';
     MdProgressSpinnerModule,
     MdSelectModule,
     MdToolbarModule,
+    NgxChartsModule,
     // My Code
     AppRoutingModule
   ],

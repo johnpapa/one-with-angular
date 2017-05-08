@@ -1,6 +1,6 @@
 <div class="character-detail">
   <h2 md-header>Details</h2>
-  <div class="rebel-icon"><i></i></div>
+  <div class="character-icon" [ngClass]="icon"><i></i></div>
   <div *ngIf="character;else noCharacters">
     <p>
       <md-input-container>
