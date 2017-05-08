@@ -18,9 +18,9 @@ export class DashboardComponent implements OnInit {
   gradient = false;
   showLegend = true;
   showXAxisLabel = true;
-  xAxisLabel = 'Planet';
+  xAxisLabel = 'Planets';
   showYAxisLabel = true;
-  yAxisLabel = 'Population';
+  yAxisLabel = 'Characters';
 
   colorScheme = {
     domain: ['#5AA454', '#A10A28', '#C7B42C', '#AAAAAA']
