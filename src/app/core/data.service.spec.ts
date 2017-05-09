@@ -33,7 +33,7 @@ describe('DataService', () => {
   }));
 
 
-  it('should return an Observable<Array<Video>>',
+  it('should return an Observable<string[]>',
     inject([DataService, XHRBackend], (dataService, mockBackend) => {
       const mockResponse = {
         results: [
