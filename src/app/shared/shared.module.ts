@@ -12,38 +12,30 @@ import {
   MdTabsModule,
   MdToolbarModule,
 } from '@angular/material';
-import { BarChartModule, PieChartModule} from '@swimlane/ngx-charts';
+import { BarChartModule, PieChartModule } from '@swimlane/ngx-charts';
+
+const modules = [
+  CommonModule,
+  FormsModule,
+  HttpModule,
+  MdButtonModule,
+  MdCheckboxModule,
+  MdInputModule,
+  MdListModule,
+  MdProgressSpinnerModule,
+  MdSelectModule,
+  MdTabsModule,
+  MdToolbarModule,
+  BarChartModule,
+  PieChartModule,
+];
 
 @NgModule({
   imports: [
-    CommonModule,
-    FormsModule,
-    HttpModule,
-    MdButtonModule,
-    MdCheckboxModule,
-    MdInputModule,
-    MdListModule,
-    MdProgressSpinnerModule,
-    MdSelectModule,
-    MdTabsModule,
-    MdToolbarModule,
-    BarChartModule,
-    PieChartModule,
+    modules
   ],
   exports: [
-    CommonModule,
-    FormsModule,
-    HttpModule,
-    MdButtonModule,
-    MdCheckboxModule,
-    MdInputModule,
-    MdListModule,
-    MdProgressSpinnerModule,
-    MdSelectModule,
-    MdTabsModule,
-    MdToolbarModule,
-    BarChartModule,
-    PieChartModule,
+    modules
   ],
   declarations: []
 })
