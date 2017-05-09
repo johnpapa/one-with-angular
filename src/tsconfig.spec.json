@@ -11,10 +11,10 @@
     ]
   },
   "files": [
-    "test.ts",
-    "test-helpers.ts"
+    "test.ts"
   ],
   "include": [
+    "testing/**/*.ts",
     "**/*.spec.ts",
     "**/*.d.ts"
   ]

@@ -6,8 +6,7 @@ import { of } from 'rxjs/observable/of';
 
 import { PlanetsComponent } from './planets.component';
 import { DataService } from '../../core/data.service';
-import { DataServiceStub, MdSnackBarStub } from '../../../test-helpers';
-import { Planet } from '../../core/models/planet';
+import { DataServiceStub, MdSnackBarStub } from '../../../testing';
 
 describe('PlanetsComponent', () => {
   let component: PlanetsComponent;
@@ -28,15 +27,6 @@ describe('PlanetsComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(PlanetsComponent);
     component = fixture.componentInstance;
-
-    const dataService = TestBed.get(DataService);
-    const planets = [
-      new Planet(1, 'planet1'),
-      new Planet(2, 'planet2'),
-      new Planet(3, 'planet3'),
-    ];
-
-    dataService.getPlanets.and.returnValue(of(planets));
 
     fixture.detectChanges();
   });

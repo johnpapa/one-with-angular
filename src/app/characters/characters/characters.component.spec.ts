@@ -6,8 +6,7 @@ import { of } from 'rxjs/observable/of';
 
 import { CharactersComponent } from './characters.component';
 import { DataService } from '../../core/data.service';
-import { DataServiceStub, MdSnackBarStub } from '../../../test-helpers';
-import { Character } from '../../core/models/character';
+import { DataServiceStub, MdSnackBarStub } from '../../../testing';
 
 describe('CharactersComponent', () => {
   let component: CharactersComponent;
@@ -30,16 +29,6 @@ describe('CharactersComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(CharactersComponent);
     component = fixture.componentInstance;
-
-    const dataService = TestBed.get(DataService);
-    const characters = [
-      new Character(1, 'char1', 1),
-      new Character(2, 'char2', 1),
-      new Character(3, 'char3', 1),
-    ];
-
-    dataService.getCharacters.and.returnValue(of(characters));
-
     fixture.detectChanges();
   });
 
