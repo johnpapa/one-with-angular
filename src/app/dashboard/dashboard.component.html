@@ -19,6 +19,18 @@
     </md-tab>
     <md-tab label="Planets">
       <div *ngIf="planetSummary;else loading">
+        <ngx-charts-pie-chart class="chart-fit"
+          [results]="planetSummary"
+          [view]="planetChart.view"
+          [scheme]="planetChart.colorScheme"
+          [gradient]="planetChart.gradient"
+
+          [legend]="allegianceChart.showLegend"
+          [explodeSlices]="allegianceChart.explodeSlices"
+          [labels]="allegianceChart.showLabels"
+          [doughnut]="allegianceChart.doughnut"
+          >
+        </ngx-charts-pie-chart>
         <ngx-charts-bar-vertical class="chart-fit"
           [results]="planetSummary"
           [view]="planetChart.view"

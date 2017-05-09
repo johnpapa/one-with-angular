@@ -12,6 +12,7 @@ export class ChartOptions {
   public explodeSlices: boolean;
   public labels: boolean;
   public doughnut: boolean;
+  public showLabels: boolean;
 
   constructor() {
     // Defaults
@@ -26,7 +27,8 @@ export class ChartOptions {
     // Pie options
     this.explodeSlices = false;
     this.labels = true;
-    this.doughnut = true;
+    this.doughnut = false;
+    this.showLabels = true;
 
     this.colorScheme = {
       domain: [
