@@ -3,11 +3,7 @@ import { NO_ERRORS_SCHEMA } from '@angular/core';
 
 import { CharactersComponent } from './characters.component';
 import { DataService } from '../../core/data.service';
-
-class DataServiceStub {
-  getCharacters() { return []; }
-  getPlanets() { return []; }
-}
+import { DataServiceStub } from '../../../test-helpers';
 
 describe('CharactersComponent', () => {
   let component: CharactersComponent;

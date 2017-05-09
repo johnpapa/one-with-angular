@@ -12,7 +12,7 @@ import { throwIfAlreadyLoaded } from './module-import-guard';
   imports: [
     CommonModule, // we use *ngFor
     RouterModule, // we use router-outlet and routerLink
-    SharedModule, // we useangular material
+    SharedModule, // we use angular material
   ],
   exports: [
     NavComponent, //

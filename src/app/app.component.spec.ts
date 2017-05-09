@@ -1,15 +1,38 @@
 import { TestBed, async } from '@angular/core/testing';
-import { NO_ERRORS_SCHEMA } from '@angular/core';
+import { Component, NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
+import { Router, RouterModule, Routes } from '@angular/router';
+import { RouterTestingModule } from '@angular/router/testing';
 
 import { AppComponent } from './app.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
+
+export const routes: Routes = [
+  { path: '', pathMatch: 'full', redirectTo: 'dashboard', },
+  { path: 'dashboard', component: DashboardComponent },
+  { path: '**', pathMatch: 'full', redirectTo: 'dashboard' },
+];
+
+@Component({
+  template: '<div>lazy-loaded</div>'
+})
+class LazyComponent { }
+
+@NgModule({
+  imports: [RouterModule.forChild([{ path: '', component: LazyComponent }])],
+  declarations: [LazyComponent]
+})
+class LazyModule { }
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
+      imports: [RouterTestingModule.withRoutes(routes)],
       declarations: [
-        AppComponent
+        AppComponent,
+        DashboardComponent,
       ],
-      schemas: [NO_ERRORS_SCHEMA]
+      schemas: [NO_ERRORS_SCHEMA],
+      providers: [],
     }).compileComponents();
   }));
 
