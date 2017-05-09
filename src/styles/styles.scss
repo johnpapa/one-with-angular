@@ -92,6 +92,13 @@ md-list-item.mat-list-item span {
   max-height: 100%;
 }
 
+.progress {
+  display: flex;
+  align-content: center;
+  align-items: center;
+  margin: 2em 0em;
+}
+
 // .primary-a { @include primary-color-100; }
 // .primary-b { @include primary-color-200; }
 // .primary-c { @include primary-color-300; }
