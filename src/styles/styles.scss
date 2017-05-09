@@ -11,7 +11,10 @@ html, body {
   background-image: url("../assets/ng.png");
   background-repeat: no-repeat;
   background-position: center center;
-  padding: 1em 2em;
+  padding: 1.2em;
+}
+.title {
+  margin-right: 1em;
 }
 .character-icon, .rebel-icon, .jedi-icon, .imperial-icon {
   display: flex;
