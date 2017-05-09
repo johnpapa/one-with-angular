@@ -16,12 +16,14 @@ describe('DataService', () => {
     TestBed.configureTestingModule({
       imports: [HttpModule],
       providers: [
-        {
-          provide: ConfigService, useValue: {
-            apiUrl: 'http://example.com/api/',
-            delay: 0
-          }
-        },
+        ConfigService,
+        // {
+        //   provide: ConfigService,
+        //   useValue: {
+        //     apiUrl: 'http://example.com/api/',
+        //     delay: 0
+        //   }
+        // },
         DataService,
         { provide: XHRBackend, useClass: MockBackend }
       ]
