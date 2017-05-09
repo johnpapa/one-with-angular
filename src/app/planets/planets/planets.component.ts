@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MdSnackBar, MdSnackBarConfig } from '@angular/material';
 
 import { Planet } from '../../core/models/planet';
 import { DataService } from '../../core/data.service';
@@ -13,11 +14,18 @@ export class PlanetsComponent implements OnInit {
   planets: Planet[];
   selectedPlanet: Planet;
 
-  constructor(private dataService: DataService) { }
+  constructor(public snackBar: MdSnackBar, private dataService: DataService) { }
 
   ngOnInit() {
+    const config = new MdSnackBarConfig();
+    config.duration = 2500;
+
     this.dataService.getPlanets()
-      .subscribe(planets => this.planets = planets);
+      .subscribe(
+        planets => this.planets = planets,
+        () => this.snackBar.open('Planets failed!', 'ERROR', config),
+        () => this.snackBar.open('Planets Loaded!', 'HTTP', config)
+      );
   }
 
   selectPlanet(planet: Planet) {

@@ -11,6 +11,7 @@ import {
   MdSelectModule,
   MdTabsModule,
   MdToolbarModule,
+  MdSnackBarModule,
 } from '@angular/material';
 import { BarChartModule, PieChartModule } from '@swimlane/ngx-charts';
 
@@ -24,6 +25,7 @@ const modules = [
   MdListModule,
   MdProgressSpinnerModule,
   MdSelectModule,
+  MdSnackBarModule,
   MdTabsModule,
   MdToolbarModule,
   BarChartModule,
@@ -37,6 +39,6 @@ const modules = [
   exports: [
     modules
   ],
-  declarations: []
+  declarations: [],
 })
 export class SharedModule { }

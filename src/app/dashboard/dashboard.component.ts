@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs/Observable';
+import { MdSnackBar, MdSnackBarConfig } from '@angular/material';
 
 import { DataService } from '../core/data.service';
 import { ChartOptions } from '../core/models/chart-options';
@@ -15,7 +17,7 @@ export class DashboardComponent implements OnInit {
   planetSummary: SummaryData[];
   allegianceSummary: SummaryData[];
 
-  constructor(private dataService: DataService) { }
+  constructor(public snackBar: MdSnackBar, private dataService: DataService) { }
 
   setChartOptions() {
     this.planetChart.xAxisLabel = 'Planets';
@@ -27,10 +29,17 @@ export class DashboardComponent implements OnInit {
   ngOnInit() {
     this.setChartOptions();
 
-    this.dataService.getPlanetSummary()
-      .subscribe(summary => this.planetSummary = summary);
+    const config = new MdSnackBarConfig();
+    config.duration = 2500;
 
-    this.dataService.getAllegianceSummary()
-      .subscribe(summary =>  this.allegianceSummary = summary);
+    Observable.forkJoin(this.dataService.getPlanetSummary(), this.dataService.getAllegianceSummary())
+      .subscribe(
+        (summaries) => {
+          this.planetSummary = summaries[0];
+          this.allegianceSummary = summaries[1];
+        },
+        () => this.snackBar.open('Dashboard failed!', 'ERROR', config),
+        () => this.snackBar.open('Dashboard Loaded!', 'HTTP', config)
+      );
   }
 }
