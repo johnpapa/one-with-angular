@@ -1,6 +1,6 @@
-<md-list>
-  <h2 md-header>{{title}}</h2>
-  <div *ngIf="characters;else noCharacters">
+<div *ngIf="characters;else noCharacters">
+  <md-list>
+    <h2 md-header>{{title}}</h2>
     <md-list-item *ngFor="let character of characters"
       [class.selected]="character===selectedCharacter"
       (click)="selectCharacter(character)">
@@ -8,12 +8,14 @@
         <span>{{character.name}}</span>
       </p>
     </md-list-item>
-  </div>
-  <ng-template #noCharacters>
-    <md-progress-bar class="progress" color="accent" mode="indeterminate"></md-progress-bar>
-  </ng-template>
-</md-list>
+  </md-list>
 
-<div *ngIf="selectedCharacter">
-  <ro-character-detail [character]="selectedCharacter"></ro-character-detail>
+  <div *ngIf="selectedCharacter">
+    <ro-character-detail [character]="selectedCharacter"></ro-character-detail>
+  </div>
 </div>
+
+<ng-template #noCharacters>
+  <md-progress-bar class="progress" color="accent" mode="indeterminate"></md-progress-bar>
+</ng-template>
+

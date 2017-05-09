@@ -3,13 +3,10 @@ import { Component, NO_ERRORS_SCHEMA, DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { MdSnackBar } from '@angular/material';
 import { AdvancedPieChartComponent, BarComponent } from '@swimlane/ngx-charts';
-import { of } from 'rxjs/observable/of';
-import * as mocks from '../../testing/mock-data';
 
 import { DashboardComponent } from './dashboard.component';
 import { DataService } from '../core/data.service';
-import { DataServiceStub } from '../../testing/data.service';
-import { MdSnackBarStub } from '../../testing/snackbar.service';
+import * as testing from '../../testing';
 
 @Component({
   selector: 'ngx-charts-advanced-pie-chart',
@@ -26,8 +23,8 @@ describe('DashboardComponent', () => {
       declarations: [DashboardComponent, FakeNGXChartsAdvancedPieComponent],
       schemas: [NO_ERRORS_SCHEMA],
       providers: [
-        { provide: DataService, useClass: DataServiceStub },
-        { provide: MdSnackBar, useClass: MdSnackBarStub }
+        { provide: DataService, useClass: testing.DataServiceStub },
+        { provide: MdSnackBar, useClass: testing.MdSnackBarStub }
       ],
     })
       .compileComponents();
@@ -71,11 +68,11 @@ describe('DashboardComponent', () => {
     });
 
     it('should have planets in the planet summary', () => {
-      expect(component.planetSummary.length).toBe(mocks.planetSummary.length);
+      expect(component.planetSummary.length).toBe(testing.planetSummary.length);
     });
 
     it('should have allegiances in the allegiances summary', () => {
-      expect(component.allegianceSummary.length).toBe(mocks.allegianceSummary.length);
+      expect(component.allegianceSummary.length).toBe(testing.allegianceSummary.length);
     });
 
     it('should have allegiance pie chart', () => {

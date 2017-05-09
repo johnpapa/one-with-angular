@@ -1,6 +1,6 @@
-<md-list>
-  <h2 md-header>{{title}}</h2>
-  <div *ngIf="planets;else noPlanets">
+<div *ngIf="planets;else noPlanets">
+  <md-list>
+    <h2 md-header>{{title}}</h2>
     <md-list-item *ngFor="let planet of planets"
       [class.selected]="planet===selectedPlanet"
       (click)="selectPlanet(planet)">
@@ -8,13 +8,14 @@
         <span>{{planet.name}}</span>
       </p>
     </md-list-item>
-  </div>
-  <ng-template #noPlanets>
-    <md-progress-bar class="progress" color="accent" mode="indeterminate"></md-progress-bar>
-  </ng-template>
-</md-list>
-<div></div>
+  </md-list>
 
-<div *ngIf="selectedPlanet">
-  <ro-planet-detail [planet]="selectedPlanet"></ro-planet-detail>
+  <div *ngIf="selectedPlanet">
+    <ro-planet-detail [planet]="selectedPlanet"></ro-planet-detail>
+  </div>
 </div>
+
+<ng-template #noPlanets>
+  <md-progress-bar class="progress" color="accent" mode="indeterminate"></md-progress-bar>
+</ng-template>
+
