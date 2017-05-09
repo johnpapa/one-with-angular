@@ -99,6 +99,10 @@ md-list-item.mat-list-item span {
   margin: 2em 0em;
 }
 
+snack-bar-container,  .snack {
+  @include selected-style;
+}
+
 // .primary-a { @include primary-color-100; }
 // .primary-b { @include primary-color-200; }
 // .primary-c { @include primary-color-300; }

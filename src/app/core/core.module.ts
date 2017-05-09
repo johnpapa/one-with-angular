@@ -15,7 +15,7 @@ import { throwIfAlreadyLoaded } from './module-import-guard';
     SharedModule, // we use angular material
   ],
   exports: [
-    NavComponent, //
+    NavComponent,
   ],
   declarations: [
     NavComponent,
