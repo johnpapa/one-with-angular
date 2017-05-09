@@ -1,4 +1,4 @@
-# OneWithAngular
+# One With Angular
 Find the [Azure Functions Serverless API for this app located here](https://github.com/johnpapa/one-with-angular-api).
 
 ```
