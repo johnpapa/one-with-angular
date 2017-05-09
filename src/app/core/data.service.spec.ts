@@ -51,10 +51,10 @@ describe('DataService', () => {
 
       dataService.getAllegiances().subscribe((allegiances) => {
         expect(allegiances.length).toBe(3);
-        // TODO: Find out why NavComponent tests fail if we uncomment this
-        // expect(allegiances[0].name).toEqual('jedi');
-        // expect(allegiances[1].name).toEqual('sith');
-        // expect(allegiances[2].name).toEqual('rebel');
+        expect(allegiances).toContain('jedi');
+        expect(allegiances).toContain('sith');
+        expect(allegiances).toContain('rebel');
+        expect(allegiances).not.toContain('droid');
       });
     }));
 });
