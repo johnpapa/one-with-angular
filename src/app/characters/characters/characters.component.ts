@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
-import { Character } from '../character';
-import { DataService } from '../data.service';
+import { Character } from '../../core/models/character';
+import { DataService } from '../../core/data.service';
 
 @Component({
   selector: 'ro-characters',

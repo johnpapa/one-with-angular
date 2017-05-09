@@ -1,8 +1,8 @@
 import { Component, OnChanges, Input } from '@angular/core';
 
-import { Character } from '../character';
-import { Planet } from '../planet';
-import { DataService } from '../data.service';
+import { Character } from '../../core/models/character';
+import { Planet } from '../../core/models/planet';
+import { DataService } from '../../core/data.service';
 
 @Component({
   selector: 'ro-character-detail',

@@ -6,10 +6,10 @@ import 'rxjs/add/operator/delay';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/reduce';
 
-import { Character } from './character';
-import { Planet } from './planet';
+import { Character } from '../core/models/character';
+import { Planet } from './models/planet';
 import { ConfigService } from './config.service';
-import { SummaryData } from './core/models/summary-data';
+import { SummaryData } from './models/summary-data';
 
 @Injectable()
 export class DataService {

@@ -8,9 +8,9 @@ import {
   MdProgressSpinnerModule,
 } from '@angular/material';
 
-import { PlanetsRoutingModule } from './planets-routing.module';
-import { PlanetsComponent } from './planets/planets.component';
-import { PlanetDetailComponent } from './planet-detail/planet-detail.component';
+import { CharactersRoutingModule } from './characters-routing.module';
+import { CharactersComponent } from './characters/characters.component';
+import { CharacterDetailComponent } from './character-detail/character-detail.component';
 
 @NgModule({
   imports: [
@@ -20,8 +20,11 @@ import { PlanetDetailComponent } from './planet-detail/planet-detail.component';
     MdCheckboxModule,
     MdInputModule,
     MdProgressSpinnerModule,
-    PlanetsRoutingModule,
+    CharactersRoutingModule,
   ],
-  declarations: [PlanetsComponent, PlanetDetailComponent]
+  declarations: [
+    CharactersComponent,
+    CharacterDetailComponent,
+  ]
 })
-export class PlanetsModule { }
+export class CharactersModule { }

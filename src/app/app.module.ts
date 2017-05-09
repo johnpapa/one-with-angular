@@ -18,18 +18,14 @@ import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { NavComponent } from './nav/nav.component';
-import { CharactersComponent } from './characters/characters.component';
-import { DataService } from './data.service';
-import { CharacterDetailComponent } from './character-detail/character-detail.component';
-import { ConfigService } from './config.service';
+import { DataService } from './core/data.service';
+import { ConfigService } from './core/config.service';
 import { DashboardComponent } from './dashboard/dashboard.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavComponent,
-    CharactersComponent,
-    CharacterDetailComponent,
     DashboardComponent
   ],
   imports: [
