@@ -13,7 +13,7 @@ import {
   MdTabsModule,
   MdToolbarModule,
 } from '@angular/material';
-import { NgxChartsModule } from '@swimlane/ngx-charts';
+import { BarChartModule, PieChartModule} from '@swimlane/ngx-charts';
 
 @NgModule({
   imports: [
@@ -28,7 +28,8 @@ import { NgxChartsModule } from '@swimlane/ngx-charts';
     MdSelectModule,
     MdTabsModule,
     MdToolbarModule,
-    NgxChartsModule,
+    BarChartModule,
+    PieChartModule,
   ],
   exports: [
     CommonModule,
@@ -42,7 +43,8 @@ import { NgxChartsModule } from '@swimlane/ngx-charts';
     MdSelectModule,
     MdTabsModule,
     MdToolbarModule,
-    NgxChartsModule,
+    BarChartModule,
+    PieChartModule,
   ],
   declarations: []
 })
