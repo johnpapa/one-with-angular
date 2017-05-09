@@ -1,5 +1,4 @@
 <div>
-
   <ng-template #loading>
     <md-progress-bar class="progress" color="accent" mode="indeterminate"></md-progress-bar>
   </ng-template>
@@ -30,20 +29,6 @@
           [doughnut]="allegianceChart.doughnut"
           >
         </ngx-charts-pie-chart>
-        <ngx-charts-bar-vertical class="chart-fit"
-          [results]="planetSummary"
-          [view]="planetChart.view"
-          [scheme]="planetChart.colorScheme"
-          [gradient]="planetChart.gradient"
-          [xAxis]="planetChart.showXAxis"
-          [yAxis]="planetChart.showYAxis"
-          [showXAxisLabel]="planetChart.showXAxisLabel"
-          [showYAxisLabel]="planetChart.showYAxisLabel"
-          [xAxisLabel]="planetChart.xAxisLabel"
-          [yAxisLabel]="planetChart.yAxisLabel"
-          [legend]="planetChart.showLegend"
-          >
-        </ngx-charts-bar-vertical>
       </div>
     </md-tab>
     <!--<md-tab label="Colors">

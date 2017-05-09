@@ -13,7 +13,7 @@ import {
   MdToolbarModule,
   MdSnackBarModule
 } from '@angular/material';
-import { BarChartModule, PieChartModule } from '@swimlane/ngx-charts';
+import { PieChartModule } from '@swimlane/ngx-charts';
 
 const modules = [
   CommonModule,
@@ -29,17 +29,12 @@ const modules = [
   MdSnackBarModule,
   MdTabsModule,
   MdToolbarModule,
-  BarChartModule,
   PieChartModule,
 ];
 
 @NgModule({
-  imports: [
-    modules
-  ],
-  exports: [
-    modules
-  ],
+  imports: [ modules ],
+  exports: [ modules ],
   declarations: [],
 })
 export class SharedModule { }
