@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 
 import { DataService } from '../data.service';
+import { ChartOptions } from '../core/models/chart-options';
+import { SummaryData } from '../core/models/summary-data';
 
 @Component({
   selector: 'ro-dashboard',
@@ -8,37 +10,27 @@ import { DataService } from '../data.service';
   styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent implements OnInit {
-  // planetSummary2: { name: string, value: number }[] = [{ name: 'jedha', value: 22 }, {name: 'dagobah', value: 89}];
-  planetSummary: { name: string, value: number }[];
-
-  // options
-  view: any[] = [700, 400];
-  showXAxis = true;
-  showYAxis = true;
-  gradient = false;
-  showLegend = false;
-  showXAxisLabel = false;
-  xAxisLabel = 'Planets';
-  showYAxisLabel = true;
-  yAxisLabel = 'Characters';
-
-  colorScheme = {
-    // domain: ['#bbdefb', '#90caf9', '#64b5f6', '#42a5f5', '#2196f3', '#1e88e5', '#1976d2', '#1565c0']
-    domain: ['#90caf9', '#42a5f5', '#1e88e5', '#1565c0']
-  };
-
-  onSelect(event) {
-    console.log(event);
-  }
+  planetChart = new ChartOptions();
+  allegianceChart = new ChartOptions();
+  planetSummary: SummaryData[];
+  allegianceSummary: SummaryData[];
 
   constructor(private dataService: DataService) { }
 
-  ngOnInit() {
-    this.dataService.getPlanetSummary()
-      .subscribe(summary => {
-        this.planetSummary = summary; // summary.slice(0, 2);
-        console.log(this.planetSummary);
-      });
+  setChartOptions() {
+    this.planetChart.xAxisLabel = 'Planets';
+    this.planetChart.yAxisLabel = 'Characters';
+    this.allegianceChart.xAxisLabel = 'Allegiance';
+    this.allegianceChart.yAxisLabel = 'Characters';
   }
 
+  ngOnInit() {
+    this.setChartOptions();
+
+    this.dataService.getPlanetSummary()
+      .subscribe(summary => this.planetSummary = summary);
+
+    this.dataService.getAllegianceSummary()
+      .subscribe(summary =>  this.allegianceSummary = summary);
+  }
 }

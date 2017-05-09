@@ -50,14 +50,7 @@ pre {
 [md-header] {
   @include primary-color;
 }
-// .a { @include primary-color-100; }
-// .b { @include primary-color-200; }
-// .c { @include primary-color-300; }
-// .d { @include primary-color-400; }
-// .e { @include primary-color-500; }
-// .f { @include primary-color-600; }
-// .g { @include primary-color-700; }
-// .h { @include primary-color-800; }
+
 ro-character-detail, ro-planet-detail {
   float: left;
   margin: 0.5em 0 0 2em;
@@ -86,7 +79,29 @@ md-select, md-input-container {
   width: 100%;
 }
 
-
 md-list-item.mat-list-item span {
     font-size: 14px;
 }
+
+.chart-fit {
+  padding: 0.1em;
+  max-width: 100%;
+  max-height: 100%;
+}
+
+// .primary-a { @include primary-color-100; }
+// .primary-b { @include primary-color-200; }
+// .primary-c { @include primary-color-300; }
+// .primary-d { @include primary-color-400; }
+// .primary-e { @include primary-color-500; }
+// .primary-f { @include primary-color-600; }
+// .primary-g { @include primary-color-700; }
+// .primary-h { @include primary-color-800; }
+// .accent-a { @include accent-color-100; }
+// .accent-b { @include accent-color-200; }
+// .accent-c { @include accent-color-300; }
+// .accent-d { @include accent-color-400; }
+// .accent-e { @include accent-color-500; }
+// .accent-f { @include accent-color-600; }
+// .accent-g { @include accent-color-700; }
+// .accent-h { @include accent-color-800; }

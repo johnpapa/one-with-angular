@@ -1,26 +1,58 @@
 <div>
-  <!--<div class="a">100</div>
-  <div class="b">200</div>
-  <div class="c">300</div>
-  <div class="d">400</div>
-  <div class="e">500</div>
-  <div class="f">600</div>
-  <div class="g">700</div>
-  <div class="h">800</div>-->
-  <div *ngIf="planetSummary">
-    <ngx-charts-bar-vertical
-      [view]="view"
-      [scheme]="colorScheme"
-      [results]="planetSummary"
-      [gradient]="gradient"
-      [xAxis]="showXAxis"
-      [yAxis]="showYAxis"
-      [legend]="showLegend"
-      [showXAxisLabel]="showXAxisLabel"
-      [showYAxisLabel]="showYAxisLabel"
-      [xAxisLabel]="xAxisLabel"
-      [yAxisLabel]="yAxisLabel"
-      (select)="onSelect($event)">
-    </ngx-charts-bar-vertical>
-  </div>
+
+  <ng-template #loading>
+    <md-progress-spinner class="spinner" attr.color="primary" mode="indeterminate">
+    </md-progress-spinner>
+  </ng-template>
+
+  <md-tab-group>
+    <md-tab label="Allegiances">
+      <div *ngIf="allegianceSummary;else loading">
+        <ngx-charts-advanced-pie-chart class="chart-fit"
+          [results]="allegianceSummary"
+          [view]="allegianceChart.view"
+          [scheme]="allegianceChart.colorScheme"
+          [gradient]="allegianceChart.gradient"
+          >
+        </ngx-charts-advanced-pie-chart>
+      </div>
+    </md-tab>
+    <md-tab label="Planets">
+      <div *ngIf="planetSummary;else loading">
+        <ngx-charts-bar-vertical class="chart-fit"
+          [results]="planetSummary"
+          [view]="planetChart.view"
+          [scheme]="planetChart.colorScheme"
+          [gradient]="planetChart.gradient"
+          [xAxis]="planetChart.showXAxis"
+          [yAxis]="planetChart.showYAxis"
+          [showXAxisLabel]="planetChart.showXAxisLabel"
+          [showYAxisLabel]="planetChart.showYAxisLabel"
+          [xAxisLabel]="planetChart.xAxisLabel"
+          [yAxisLabel]="planetChart.yAxisLabel"
+          [legend]="planetChart.showLegend"
+          >
+        </ngx-charts-bar-vertical>
+      </div>
+    </md-tab>
+    <!--<md-tab label="Colors">
+      <div class="primary-a">100</div>
+      <div class="primary-b">200</div>
+      <div class="primary-c">300</div>
+      <div class="primary-d">400</div>
+      <div class="primary-e">500</div>
+      <div class="primary-f">600</div>
+      <div class="primary-g">700</div>
+      <div class="primary-h">800</div>
+
+      <div class="accent-a">100</div>
+      <div class="accent-b">200</div>
+      <div class="accent-c">300</div>
+      <div class="accent-d">400</div>
+      <div class="accent-e">500</div>
+      <div class="accent-f">600</div>
+      <div class="accent-g">700</div>
+      <div class="accent-h">800</div>
+    </md-tab>-->
+  </md-tab-group>
 </div>

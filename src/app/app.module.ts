@@ -10,6 +10,7 @@ import {
   MdListModule,
   MdProgressSpinnerModule,
   MdSelectModule,
+  MdTabsModule,
   MdToolbarModule,
 } from '@angular/material';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
@@ -42,6 +43,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     MdListModule,
     MdProgressSpinnerModule,
     MdSelectModule,
+    MdTabsModule,
     MdToolbarModule,
     NgxChartsModule,
     // My Code
