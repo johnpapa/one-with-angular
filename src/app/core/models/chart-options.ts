@@ -30,14 +30,14 @@ export class ChartOptions {
 
     this.colorScheme = {
       domain: [
-        '#90caf9',
-        '#f48fb1',
-        '#42a5f5',
-        '#ec407a',
-        '#1e88e5',
-        '#d81b60',
+        '#ad1457',
         '#1565c0',
-        '#ad1457'
+        '#d81b60',
+        '#1e88e5',
+        '#ec407a',
+        '#42a5f5',
+        '#f48fb1',
+        '#90caf9',
       ]
     };
   }
