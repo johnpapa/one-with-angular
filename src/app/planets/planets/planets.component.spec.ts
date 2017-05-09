@@ -4,7 +4,7 @@ import { By } from '@angular/platform-browser';
 import { MdSnackBar } from '@angular/material';
 
 import { PlanetsComponent } from './planets.component';
-import { DataService } from '../../core/data.service';
+import { DataService } from '../../core';
 import { DataServiceStub, MdSnackBarStub } from '../../../testing';
 
 describe('PlanetsComponent', () => {

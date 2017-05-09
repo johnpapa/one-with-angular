@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MdSnackBar, MdSnackBarConfig } from '@angular/material';
 
-import { Planet } from '../../core/models/planet';
-import { DataService } from '../../core/data.service';
+import { Planet, DataService } from '../../core';
 
 @Component({
   selector: 'ro-planets',

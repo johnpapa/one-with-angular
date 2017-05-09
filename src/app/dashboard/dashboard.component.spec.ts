@@ -5,7 +5,7 @@ import { MdSnackBar } from '@angular/material';
 import { AdvancedPieChartComponent, BarComponent } from '@swimlane/ngx-charts';
 
 import { DashboardComponent } from './dashboard.component';
-import { DataService } from '../core/data.service';
+import { DataService } from '../core';
 import * as testing from '../../testing';
 
 @Component({

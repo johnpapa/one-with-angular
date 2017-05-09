@@ -2,7 +2,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 
 import { PlanetDetailComponent } from './planet-detail.component';
-import { DataService } from '../../core/data.service';
+import { DataService } from '../../core';
 
 class DataServiceStub {
   getPlanet() { return []; }

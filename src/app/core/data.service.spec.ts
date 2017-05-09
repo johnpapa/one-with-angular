@@ -8,7 +8,7 @@ import {
 } from '@angular/http';
 import { MockBackend } from '@angular/http/testing';
 
-import { ConfigService } from '../core/config.service';
+import { ConfigService } from './config.service';
 import { DataService } from './data.service';
 
 describe('DataService', () => {

@@ -2,7 +2,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 
 import { CharacterDetailComponent } from './character-detail.component';
-import { DataService } from '../../core/data.service';
+import { DataService } from '../../core';
 
 class DataServiceStub {
   getCharacters() { return []; }

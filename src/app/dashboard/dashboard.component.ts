@@ -2,9 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { MdSnackBar, MdSnackBarConfig } from '@angular/material';
 
-import { DataService } from '../core/data.service';
-import { ChartOptions } from '../core/models/chart-options';
-import { SummaryData } from '../core/models/summary-data';
+import { DataService, ChartOptions, SummaryData } from '../core';
 
 @Component({
   selector: 'ro-dashboard',

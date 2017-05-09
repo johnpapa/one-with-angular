@@ -1,7 +1,6 @@
 import { Component, Input } from '@angular/core';
 
-import { Planet } from '../../core/models/planet';
-import { DataService } from '../../core/data.service';
+import { Planet, DataService } from '../../core';
 
 @Component({
   selector: 'ro-planet-detail',

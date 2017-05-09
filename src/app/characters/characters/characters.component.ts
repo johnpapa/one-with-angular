@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MdSnackBar, MdSnackBarConfig } from '@angular/material';
 
-import { Character } from '../../core/models/character';
-import { DataService } from '../../core/data.service';
+import { Character, DataService } from '../../core';
 
 @Component({
   selector: 'ro-characters',
