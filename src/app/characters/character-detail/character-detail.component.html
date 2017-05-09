@@ -1,7 +1,7 @@
 <div class="character-detail">
   <h2 md-header>Details</h2>
   <div class="character-icon" [ngClass]="icon"><i></i></div>
-  <div *ngIf="character;else noCharacters">
+  <div *ngIf="character;else noCharacter">
     <p>
       <md-input-container>
         <input mdInput placeholder="Name" [(ngModel)]="character.name">
