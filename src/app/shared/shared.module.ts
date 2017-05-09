@@ -11,7 +11,7 @@ import {
   MdSelectModule,
   MdTabsModule,
   MdToolbarModule,
-  MdSnackBarModule,
+  MdSnackBarModule
 } from '@angular/material';
 import { BarChartModule, PieChartModule } from '@swimlane/ngx-charts';
 

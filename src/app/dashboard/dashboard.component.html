@@ -6,7 +6,7 @@
   </ng-template>
 
   <md-tab-group>
-    <md-tab label="Allegiances">
+    <md-tab [label]="allegianceChart.xAxisLabel">
       <div *ngIf="allegianceSummary;else loading">
         <ngx-charts-advanced-pie-chart class="chart-fit"
           [results]="allegianceSummary"
@@ -17,7 +17,7 @@
         </ngx-charts-advanced-pie-chart>
       </div>
     </md-tab>
-    <md-tab label="Planets">
+    <md-tab [label]="planetChart.xAxisLabel">
       <div *ngIf="planetSummary;else loading">
         <ngx-charts-pie-chart class="chart-fit"
           [results]="planetSummary"
