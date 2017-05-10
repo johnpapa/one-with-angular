@@ -63,5 +63,20 @@ describe('PlanetsComponent', () => {
     it('should open the snack bar', () => {
       expect(component.snackBar.open).toHaveBeenCalledTimes(1);
     });
+
+    it('should set selected planet when clicked', () => {
+      const planet = testing.planets[0];
+      de = fixture.debugElement.query(By.css('md-list-item'));
+      el = de.nativeElement;
+      el.click();
+      expect(component.selectedPlanet).toBe(planet);
+    });
+
+    it('should not set selected planet when not clicked', () => {
+      const planet = testing.planets[0];
+      de = fixture.debugElement.query(By.css('md-list-item'));
+      el = de.nativeElement;
+      expect(component.selectedPlanet).not.toBe(planet);
+    });
   });
 });

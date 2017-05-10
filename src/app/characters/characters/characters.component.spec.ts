@@ -63,5 +63,20 @@ describe('CharactersComponent', () => {
     it('should open the snack bar', () => {
       expect(component.snackBar.open).toHaveBeenCalledTimes(1);
     });
+
+    it('should set selected character when clicked', () => {
+      const character = testing.characters[0];
+      de = fixture.debugElement.query(By.css('md-list-item'));
+      el = de.nativeElement;
+      el.click();
+      expect(component.selectedCharacter).toBe(character);
+    });
+
+    it('should not set selected character when not clicked', () => {
+      const character = testing.characters[0];
+      de = fixture.debugElement.query(By.css('md-list-item'));
+      el = de.nativeElement;
+      expect(component.selectedCharacter).not.toBe(character);
+    });
   });
 });

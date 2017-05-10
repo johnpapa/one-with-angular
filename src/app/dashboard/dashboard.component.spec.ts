@@ -17,6 +17,8 @@ export class FakeNGXChartsAdvancedPieComponent { }
 describe('DashboardComponent', () => {
   let component: DashboardComponent;
   let fixture: ComponentFixture<DashboardComponent>;
+  let de: DebugElement;
+  let el: HTMLElement;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
