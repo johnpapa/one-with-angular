@@ -39,6 +39,7 @@ export class CharacterDetailComponent implements OnChanges {
         this.syncHomeWorld();
         this.ready = true;
       }
+      // TODO: fix errors this raises
       // ,
       // () => this.snackBar.open('Getting Planets and Allegiances failed', 'ERROR', this.configService.snackConfig),
       // () => this.snackBar.open('Getting Planets and Allegiances succeeded', 'HTTP', this.configService.snackConfig)
