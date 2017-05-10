@@ -39,6 +39,10 @@ describe('PlanetsComponent', () => {
     it('should not have planets', () => {
       expect(component.planets).toBeUndefined();
     });
+
+    it('should not open the snack bar', () => {
+      expect(component.snackBar.open).not.toHaveBeenCalled();
+    });
   });
 
   describe('after detectChanges', () => {
@@ -54,6 +58,10 @@ describe('PlanetsComponent', () => {
 
     it('should have planets', () => {
       expect(component.planets.length).toBe(testing.planets.length);
+    });
+
+    it('should open the snack bar', () => {
+      expect(component.snackBar.open).toHaveBeenCalledTimes(1);
     });
   });
 });

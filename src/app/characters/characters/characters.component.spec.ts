@@ -39,6 +39,10 @@ describe('CharactersComponent', () => {
     it('should not have characters', () => {
       expect(component.characters).toBeUndefined();
     });
+
+    it('should not open the snack bar', () => {
+      expect(component.snackBar.open).not.toHaveBeenCalled();
+    });
   });
 
   describe('after detectChanges', () => {
@@ -54,6 +58,10 @@ describe('CharactersComponent', () => {
 
     it('should have characters', () => {
       expect(component.characters.length).toBe(testing.characters.length);
+    });
+
+    it('should open the snack bar', () => {
+      expect(component.snackBar.open).toHaveBeenCalledTimes(1);
     });
   });
 });
