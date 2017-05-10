@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { MdSnackBar, MdSnackBarConfig } from '@angular/material';
 
-import { DataService, ChartOptions, SummaryData } from '../core';
+import { DataService, ChartOptions, ConfigService, SummaryData } from '../core';
 
 @Component({
   selector: 'ro-dashboard',
@@ -15,7 +15,10 @@ export class DashboardComponent implements OnInit {
   planetSummary: SummaryData[];
   allegianceSummary: SummaryData[];
 
-  constructor(public snackBar: MdSnackBar, private dataService: DataService) { }
+  constructor(
+    public snackBar: MdSnackBar,
+    private configService: ConfigService,
+    private dataService: DataService) { }
 
   setChartOptions() {
     this.planetChart.xAxisLabel = 'Planets';
@@ -27,17 +30,14 @@ export class DashboardComponent implements OnInit {
   ngOnInit() {
     this.setChartOptions();
 
-    const config = new MdSnackBarConfig();
-    config.duration = 2500;
-
     Observable.forkJoin(this.dataService.getPlanetSummary(), this.dataService.getAllegianceSummary())
       .subscribe(
         (summaries) => {
           this.planetSummary = summaries[0];
           this.allegianceSummary = summaries[1];
         },
-        () => this.snackBar.open('Dashboard failed!', 'ERROR', config),
-        () => this.snackBar.open('Dashboard Loaded!', 'HTTP', config)
+        () => this.snackBar.open('Dashboard failed', 'ERROR', this.configService.snackConfig),
+        () => this.snackBar.open('Dashboard loaded', 'HTTP', this.configService.snackConfig)
       );
   }
 }

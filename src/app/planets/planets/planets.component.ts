@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MdSnackBar, MdSnackBarConfig } from '@angular/material';
 
-import { Planet, DataService } from '../../core';
+import { Planet, ConfigService, DataService } from '../../core';
 
 @Component({
   selector: 'ro-planets',
@@ -13,7 +13,9 @@ export class PlanetsComponent implements OnInit {
   planets: Planet[];
   selectedPlanet: Planet;
 
-  constructor(public snackBar: MdSnackBar, private dataService: DataService) { }
+  constructor(public snackBar: MdSnackBar,
+    private configService: ConfigService,
+    private dataService: DataService) { }
 
   ngOnInit() {
     const config = new MdSnackBarConfig();
@@ -22,8 +24,8 @@ export class PlanetsComponent implements OnInit {
     this.dataService.getPlanets()
       .subscribe(
         planets => this.planets = planets,
-        () => this.snackBar.open('Planets failed!', 'ERROR', config),
-        () => this.snackBar.open('Planets Loaded!', 'HTTP', config)
+        () => this.snackBar.open('Planets failed!', 'ERROR', this.configService.snackConfig),
+        () => this.snackBar.open('Planets Loaded!', 'HTTP', this.configService.snackConfig)
       );
   }
 
