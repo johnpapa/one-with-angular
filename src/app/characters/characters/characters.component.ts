@@ -26,7 +26,7 @@ export class CharactersComponent implements OnInit {
       );
   }
 
-  selectCharacter(characters: Character) {
-    this.selectedCharacter = characters;
+  selectCharacter(character: Character) {
+    this.selectedCharacter = character;
   };
 }

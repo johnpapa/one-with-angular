@@ -1,7 +1,7 @@
 <div class="planet-detail">
   <h2 md-header>Details</h2>
   <div><i></i></div>
-  <div *ngIf="planet;else noPlanet">
+  <!--<div *ngIf="planet;else noPlanet">-->
     <p>
       <md-input-container>
         <input mdInput placeholder="Name" [(ngModel)]="planet.name">
@@ -13,9 +13,9 @@
 
     <pre *ngIf="revealModel">{{planet | json}}</pre>
 
-  </div>
+  <!--</div>-->
 
-  <ng-template #noPlanet>
+  <!--<ng-template #noPlanet>
     <div>No planet has been selected</div>
-  </ng-template>
+  </ng-template>-->
 </div>

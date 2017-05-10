@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 
-import { Planet, DataService } from '../../core';
+import { Planet } from '../../core';
 
 @Component({
   selector: 'ro-planet-detail',
@@ -10,6 +10,4 @@ import { Planet, DataService } from '../../core';
 export class PlanetDetailComponent {
   @Input() planet: Planet;
   revealModel = false;
-
-  constructor(private dataService: DataService) { }
 }
