@@ -29,23 +29,21 @@ export class DataService {
       .map(allegiances => this.sort(allegiances));
   }
 
-  getPlanetSummary() {
-    return Observable.forkJoin(this.getCharacters(), this.getPlanets(), this.projectCharactersOverPlanets)
-      .map(summary => summary.filter((item) => item.value > 1 && item.name !== 'unknown'))
-      .delay(500);
-  }
-
-  getAllegianceSummary() {
-    return Observable.forkJoin(this.getCharacters(), this.getAllegiances(), this.projectCharactersOverAllegiances)
-      .map(summary => summary.filter((item) => item.value > 0))
-      .delay(500);
-  }
-
   getPlanets() {
     return <Observable<Planet[]>>this.http.get(`${this.configService.apiUrl}planets`)
       .delay(this.configService.delay)
       .map((response: Response) => response.json().results)
       .map(planets => this.sortBy(planets, 'name'));
+  }
+
+  getPlanetSummary() {
+    return Observable.forkJoin(this.getCharacters(), this.getPlanets(), this.projectCharactersOverPlanets)
+      .map(summary => summary.filter((item) => item.value > 1 && item.name !== 'unknown'));
+  }
+
+  getAllegianceSummary() {
+    return Observable.forkJoin(this.getCharacters(), this.getAllegiances(), this.projectCharactersOverAllegiances)
+      .map(summary => summary.filter((item) => item.value > 0));
   }
 
   private projectCharactersOverAllegiances(characters, allegiances) {
