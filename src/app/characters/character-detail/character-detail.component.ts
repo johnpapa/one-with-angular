@@ -25,12 +25,24 @@ export class CharacterDetailComponent implements OnChanges {
   ) {
   }
 
+  ngOnChanges() {
+    this.getPlanets();
+  }
+
   getPlanets() {
-    this.dataService.getPlanets()
-      .subscribe(planets => {
-        this.planets = planets;
+    this.ready = false;
+    Observable.forkJoin(this.dataService.getPlanets(), this.dataService.getAllegiances())
+      .subscribe(
+      (summaries) => {
+        this.planets = summaries[0];
+        this.allegiances = summaries[1];
         this.syncHomeWorld();
-      });
+        this.ready = true;
+      }
+      // ,
+      // () => this.snackBar.open('Getting Planets and Allegiances failed', 'ERROR', this.configService.snackConfig),
+      // () => this.snackBar.open('Getting Planets and Allegiances succeeded', 'HTTP', this.configService.snackConfig)
+      );
   }
 
   get icon() {
@@ -39,10 +51,6 @@ export class CharacterDetailComponent implements OnChanges {
       iconName = `${this.character.allegiance.replace(' ', '-')}-icon`;
     }
     return iconName;
-  }
-
-  ngOnChanges() {
-    this.getPlanets();
   }
 
   syncHomeWorld() {

@@ -1,5 +1,9 @@
 <div class="character-detail">
   <h2 md-header>Details</h2>
+  <div>
+    <a md-raised-button (click)="getPlanets()">Refresh</a>
+    <a md-raised-button (click)="this.planets = null">Clear</a>
+  </div>
   <div class="character-icon" [ngClass]="icon"><i></i></div>
     <p>
       <md-input-container>
