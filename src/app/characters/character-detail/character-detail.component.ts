@@ -16,8 +16,11 @@ export class CharacterDetailComponent implements OnChanges {
   constructor(private dataService: DataService) { }
 
   get icon() {
-    const allegiance = this.character.allegiance.replace(' ', '-');
-    return this.character ? `${allegiance}-icon` : '';
+    let iconName = '';
+    if (this.character && this.character.allegiance) {
+      iconName = `${this.character.allegiance.replace(' ', '-')}-icon`;
+    }
+    return iconName;
   }
 
   ngOnChanges() {
