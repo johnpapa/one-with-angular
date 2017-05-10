@@ -26,10 +26,10 @@ export class CharacterDetailComponent implements OnChanges {
   }
 
   ngOnChanges() {
-    this.getPlanets();
+    this.getData();
   }
 
-  getPlanets() {
+  getData() {
     this.ready = false;
     Observable.forkJoin(this.dataService.getPlanets(), this.dataService.getAllegiances())
       .subscribe(

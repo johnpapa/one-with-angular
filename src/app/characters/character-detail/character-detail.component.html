@@ -1,9 +1,5 @@
 <div class="character-detail">
   <h2 md-header>Details</h2>
-  <div>
-    <a md-raised-button (click)="getPlanets()">Refresh</a>
-    <a md-raised-button (click)="this.planets = null">Clear</a>
-  </div>
   <div class="character-icon" [ngClass]="icon"><i></i></div>
     <p>
       <md-input-container>
@@ -31,5 +27,9 @@
       <md-checkbox [(ngModel)]="revealModel">Reveal Model</md-checkbox>
     </p>
 
-    <pre *ngIf="revealModel">{{character | json}}{{homeWorld | json}}</pre>
+  <div *ngIf="revealModel">
+    <a md-raised-button (click)="getData()">Refresh Lists</a>
+    <a md-raised-button (click)="this.planets = this.allegiances = null">Clear Lists</a>
+    <pre>{{character | json}}{{homeWorld | json}}</pre>
+  </div>
 </div>
