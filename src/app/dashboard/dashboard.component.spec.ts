@@ -5,7 +5,7 @@ import { MdSnackBar } from '@angular/material';
 import { AdvancedPieChartComponent, BarComponent } from '@swimlane/ngx-charts';
 
 import { DashboardComponent } from './dashboard.component';
-import { DataService } from '../core';
+import { ConfigService, DataService } from '../core';
 import * as testing from '../../testing';
 
 @Component({
@@ -23,6 +23,7 @@ describe('DashboardComponent', () => {
       declarations: [DashboardComponent, FakeNGXChartsAdvancedPieComponent],
       schemas: [NO_ERRORS_SCHEMA],
       providers: [
+        ConfigService,
         { provide: DataService, useClass: testing.DataServiceStub },
         { provide: MdSnackBar, useClass: testing.MdSnackBarStub }
       ],
@@ -60,6 +61,10 @@ describe('DashboardComponent', () => {
       const de = fixture.debugElement.query(By.directive(BarComponent));
       expect(de).toBeFalsy();
     });
+
+    it('should not open the snack bar', () => {
+      expect(component.snackBar.open).not.toHaveBeenCalled();
+    });
   });
 
   describe('after detectChanges', () => {
@@ -83,6 +88,10 @@ describe('DashboardComponent', () => {
     it('should have planets bar chart', () => {
       const de = fixture.debugElement.query(By.directive(BarComponent));
       expect(de).toBeDefined();
+    });
+
+    it('should open the snack bar', () => {
+      expect(component.snackBar.open).toHaveBeenCalledTimes(1);
     });
   });
 

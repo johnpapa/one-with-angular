@@ -4,7 +4,7 @@ import { By } from '@angular/platform-browser';
 import { MdSnackBar } from '@angular/material';
 
 import { PlanetsComponent } from './planets.component';
-import { DataService } from '../../core';
+import { ConfigService, DataService } from '../../core';
 import * as testing from '../../../testing';
 
 describe('PlanetsComponent', () => {
@@ -17,6 +17,7 @@ describe('PlanetsComponent', () => {
     TestBed.configureTestingModule({
       declarations: [ PlanetsComponent ],
       providers: [
+        ConfigService,
         { provide: DataService, useClass: testing.DataServiceStub },
         { provide: MdSnackBar, useClass: testing.MdSnackBarStub }
       ],
