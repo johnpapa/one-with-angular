@@ -15,6 +15,14 @@ export class CharacterDetailComponent implements OnChanges {
 
   constructor(private dataService: DataService) { }
 
+  getPlanets() {
+    this.dataService.getPlanets()
+      .subscribe(planets => {
+        this.planets = planets;
+        this.syncHomeWorld();
+      });
+  }
+
   get icon() {
     let iconName = '';
     if (this.character && this.character.allegiance) {
@@ -24,11 +32,7 @@ export class CharacterDetailComponent implements OnChanges {
   }
 
   ngOnChanges() {
-    this.dataService.getPlanets()
-      .subscribe(planets => {
-        this.planets = planets;
-        this.syncHomeWorld();
-      });
+    this.getPlanets();
   }
 
   syncHomeWorld() {

@@ -4,6 +4,7 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/forkJoin';
 import 'rxjs/add/operator/delay';
 import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/publishReplay';
 import 'rxjs/add/operator/reduce';
 
 import { Character } from '../core/models/character';
@@ -13,6 +14,9 @@ import { SummaryData } from './models/summary-data';
 
 @Injectable()
 export class DataService {
+  private planets: Observable<Planet[]> = null;
+  private allegiances: Observable<string[]> = null;
+
   constructor(private http: Http, private configService: ConfigService) { }
 
   getCharacters() {
@@ -23,17 +27,27 @@ export class DataService {
   }
 
   getAllegiances() {
-    return <Observable<string[]>>this.http.get(`${this.configService.apiUrl}allegiances`)
-      .delay(this.configService.delay)
-      .map((response: Response) => response.json().results)
-      .map(allegiances => this.sort(allegiances));
+    if (!this.allegiances) {
+      this.allegiances = <Observable<string[]>>this.http.get(`${this.configService.apiUrl}allegiances`)
+        .delay(this.configService.delay)
+        .map((response: Response) => response.json().results)
+        .map(allegiances => this.sort(allegiances))
+        .publishReplay(1)
+        .refCount();
+    }
+    return this.allegiances;
   }
 
   getPlanets() {
-    return <Observable<Planet[]>>this.http.get(`${this.configService.apiUrl}planets`)
-      .delay(this.configService.delay)
-      .map((response: Response) => response.json().results)
-      .map(planets => this.sortBy(planets, 'name'));
+    if (!this.planets) {
+      this.planets = <Observable<Planet[]>>this.http.get(`${this.configService.apiUrl}planets`)
+        .delay(this.configService.delay)
+        .map((response: Response) => response.json().results)
+        .map(planets => this.sortBy(planets, 'name'))
+        .publishReplay(1)
+        .refCount();
+    }
+    return this.planets;
   }
 
   getPlanetSummary() {
