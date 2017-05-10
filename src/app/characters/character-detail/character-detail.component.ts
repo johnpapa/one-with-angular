@@ -1,6 +1,9 @@
 import { Component, OnChanges, Input } from '@angular/core';
+import { FormControl } from '@angular/forms';
+import { MdSnackBar } from '@angular/material';
+import { Observable } from 'rxjs/Observable';
 
-import { Character, DataService, Planet } from '../../core';
+import { Character, ConfigService, DataService, Planet } from '../../core';
 
 @Component({
   selector: 'ro-character-detail',
@@ -11,9 +14,16 @@ export class CharacterDetailComponent implements OnChanges {
   @Input() character: Character;
   homeWorld: Planet;
   planets: Planet[];
+  ready = false;
+  allegiances: string[];
   revealModel = false;
 
-  constructor(private dataService: DataService) { }
+  constructor(
+    private dataService: DataService,
+    public snackBar: MdSnackBar,
+    private configService: ConfigService
+  ) {
+  }
 
   get icon() {
     let iconName = '';
@@ -24,11 +34,18 @@ export class CharacterDetailComponent implements OnChanges {
   }
 
   ngOnChanges() {
-    this.dataService.getPlanets()
-      .subscribe(planets => {
-        this.planets = planets;
+    this.ready = false;
+    Observable.forkJoin(this.dataService.getPlanets(), this.dataService.getAllegiances())
+      .subscribe(
+      (summaries) => {
+        this.planets = summaries[0];
+        this.allegiances = summaries[1];
         this.syncHomeWorld();
-      });
+        this.ready = true;
+      },
+      () => this.snackBar.open('Getting Planets and Allegiances failed', 'ERROR', this.configService.snackConfig),
+      () => this.snackBar.open('Getting Planets and Allegiances succeeded', 'HTTP', this.configService.snackConfig)
+      );
   }
 
   syncHomeWorld() {

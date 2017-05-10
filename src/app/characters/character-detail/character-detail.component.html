@@ -1,14 +1,23 @@
 <div class="character-detail">
   <h2 md-header>Details</h2>
   <div class="character-icon" [ngClass]="icon"><i></i></div>
-  <!--<div *ngIf="character;else noCharacter">-->
     <p>
       <md-input-container>
-        <input mdInput placeholder="Name" [(ngModel)]="character.name">
+        <input mdInput placeholder="Name" [(ngModel)]="character.name" [disabled]="!ready">
       </md-input-container>
     </p>
     <p>
-      <md-select placeholder="Home World" [(ngModel)]="character.homeWorldId" (change)="syncHomeWorld()">
+      <md-select placeholder="Allegiance"
+        [(ngModel)]="character.allegiance" [disabled]="!ready">
+        <md-option *ngFor="let allegiance of allegiances" [value]="allegiance">
+          {{ allegiance }}
+        </md-option>
+      </md-select>
+    </p>
+    <p>
+      <md-select placeholder="Home World"
+        [(ngModel)]="character.homeWorldId" [disabled]="!ready"
+        (change)="syncHomeWorld()" >
         <md-option *ngFor="let planet of planets" [value]="planet.id">
           {{ planet.name }}
         </md-option>
@@ -19,10 +28,4 @@
     </p>
 
     <pre *ngIf="revealModel">{{character | json}}{{homeWorld | json}}</pre>
-
-  <!--</div>-->
-
-  <!--<ng-template #noCharacter>
-    <div>No character has been selected</div>
-  </ng-template>-->
 </div>
