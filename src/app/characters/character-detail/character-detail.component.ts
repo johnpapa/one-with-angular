@@ -1,6 +1,9 @@
 import { Component, OnChanges, Input } from '@angular/core';
+import { FormControl } from '@angular/forms';
+import { MdSnackBar } from '@angular/material';
+import { Observable } from 'rxjs/Observable';
 
-import { Character, DataService, Planet } from '../../core';
+import { Character, ConfigService, DataService, Planet } from '../../core';
 
 @Component({
   selector: 'ro-character-detail',
@@ -11,9 +14,16 @@ export class CharacterDetailComponent implements OnChanges {
   @Input() character: Character;
   homeWorld: Planet;
   planets: Planet[];
+  ready = false;
+  allegiances: string[];
   revealModel = false;
 
-  constructor(private dataService: DataService) { }
+  constructor(
+    private dataService: DataService,
+    public snackBar: MdSnackBar,
+    private configService: ConfigService
+  ) {
+  }
 
   getPlanets() {
     this.dataService.getPlanets()

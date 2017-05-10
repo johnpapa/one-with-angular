@@ -18,7 +18,7 @@ describe('DashboardComponent', () => {
   let component: DashboardComponent;
   let fixture: ComponentFixture<DashboardComponent>;
   let de: DebugElement;
-  let el: HTMLElement;
+  // let el: HTMLElement;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -54,13 +54,13 @@ describe('DashboardComponent', () => {
     });
 
     it('should not have allegiance pie chart', () => {
-      const de = fixture.debugElement.query(By.directive(AdvancedPieChartComponent));
+      de = fixture.debugElement.query(By.directive(AdvancedPieChartComponent));
       expect(de).toBeFalsy();
       // el = de.nativeElement;
     });
 
     it('should not have planets bar chart', () => {
-      const de = fixture.debugElement.query(By.directive(BarComponent));
+      de = fixture.debugElement.query(By.directive(BarComponent));
       expect(de).toBeFalsy();
     });
 
@@ -83,12 +83,12 @@ describe('DashboardComponent', () => {
     });
 
     it('should have allegiance pie chart', () => {
-      const de = fixture.debugElement.query(By.directive(AdvancedPieChartComponent));
+      de = fixture.debugElement.query(By.directive(AdvancedPieChartComponent));
       expect(de).toBeDefined();
     });
 
     it('should have planets bar chart', () => {
-      const de = fixture.debugElement.query(By.directive(BarComponent));
+      de = fixture.debugElement.query(By.directive(BarComponent));
       expect(de).toBeDefined();
     });
 
