@@ -18,9 +18,6 @@ export class CharactersComponent implements OnInit {
     private dataService: DataService) { }
 
   ngOnInit() {
-    const config = new MdSnackBarConfig();
-    config.duration = 2500;
-
     this.dataService.getCharacters()
       .subscribe(
         characters => this.characters = characters,

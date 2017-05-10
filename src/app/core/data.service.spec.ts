@@ -17,13 +17,6 @@ describe('DataService', () => {
       imports: [HttpModule],
       providers: [
         ConfigService,
-        // {
-        //   provide: ConfigService,
-        //   useValue: {
-        //     apiUrl: 'http://example.com/api/',
-        //     delay: 0
-        //   }
-        // },
         DataService,
         { provide: XHRBackend, useClass: MockBackend }
       ]

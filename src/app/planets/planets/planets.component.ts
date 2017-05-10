@@ -18,9 +18,6 @@ export class PlanetsComponent implements OnInit {
     private dataService: DataService) { }
 
   ngOnInit() {
-    const config = new MdSnackBarConfig();
-    config.duration = 2500;
-
     this.dataService.getPlanets()
       .subscribe(
         planets => this.planets = planets,
