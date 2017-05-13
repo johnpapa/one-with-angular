@@ -9,7 +9,7 @@
     <p>
       <md-select placeholder="Allegiance"
         [(ngModel)]="character.allegiance" [disabled]="!ready">
-        <md-option *ngFor="let allegiance of allegiances" [value]="allegiance">
+        <md-option *ngFor="let allegiance of allegiances | async" [value]="allegiance">
           {{ allegiance }}
         </md-option>
       </md-select>
@@ -18,7 +18,7 @@
       <md-select placeholder="Home World"
         [(ngModel)]="character.homeWorldId" [disabled]="!ready"
         (change)="syncHomeWorld()" >
-        <md-option *ngFor="let planet of planets" [value]="planet.id">
+        <md-option *ngFor="let planet of planets | async" [value]="planet.id">
           {{ planet.name }}
         </md-option>
       </md-select>

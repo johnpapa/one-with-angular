@@ -2,7 +2,10 @@ import { Component, OnChanges, Input } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { MdSnackBar } from '@angular/material';
 import { Observable } from 'rxjs/Observable';
+import { Store } from '@ngrx/store';
 
+import { CharactersState } from '../../core/reducers.service';
+import { ActionsService } from '../../core/actions.service';
 import { Character, ConfigService, DataService, Planet } from '../../core';
 
 @Component({
@@ -13,17 +16,20 @@ import { Character, ConfigService, DataService, Planet } from '../../core';
 export class CharacterDetailComponent implements OnChanges {
   @Input() character: Character;
   homeWorld: Planet;
-  planets: Planet[];
+  planets: Observable<Planet[]>;
+  // planets: Planet[];
   ready = false;
-  allegiances: string[];
+  allegiances: Observable<string[]>;
+  // allegiances: string[];
   revealModel = false;
 
   constructor(
-    private dataService: DataService,
     public snackBar: MdSnackBar,
-    private configService: ConfigService
-  ) {
-  }
+    private configService: ConfigService,
+    private dataService: DataService,
+    private actionsService: ActionsService,
+    private store: Store<CharactersState>
+  ) { }
 
   ngOnChanges() {
     this.getData();
@@ -31,14 +37,22 @@ export class CharacterDetailComponent implements OnChanges {
 
   getData() {
     this.ready = false;
-    Observable.forkJoin(this.dataService.getPlanets(), this.dataService.getAllegiances())
+
+    this.planets = this.store.select('planets');
+    this.allegiances = this.store.select('allegiances');
+
+    this.store.dispatch(this.actionsService.getPlanets());
+    this.store.dispatch(this.actionsService.getAllegiances());
+
+    Observable.forkJoin(this.planets, this.allegiances)
+      // Observable.forkJoin(this.dataService.getPlanets(), this.dataService.getAllegiances())
       .subscribe(
-      (summaries) => {
-        this.planets = summaries[0];
-        this.allegiances = summaries[1];
-        this.syncHomeWorld();
-        this.ready = true;
-      }
+        (summaries) => {
+          // this.planets = summaries[0];
+          // this.allegiances = summaries[1];
+          this.syncHomeWorld(summaries[0]);
+          this.ready = true;
+        }
       // TODO: fix errors this raises
       // ,
       // () => this.snackBar.open('Getting Planets and Allegiances failed', 'ERROR', this.configService.snackConfig),
@@ -54,9 +68,9 @@ export class CharacterDetailComponent implements OnChanges {
     return iconName;
   }
 
-  syncHomeWorld() {
+  syncHomeWorld(planets: Planet[]) {
     if (this.character) {
-      const homeWorld = this.planets.find((planet => this.character.homeWorldId === planet.id));
+      const homeWorld = planets.find((planet => this.character.homeWorldId === planet.id));
       this.character.homeWorld = homeWorld;
     }
   }
