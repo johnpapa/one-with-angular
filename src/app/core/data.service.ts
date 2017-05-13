@@ -31,9 +31,9 @@ export class DataService {
       this.allegiances = <Observable<string[]>>this.http.get(`${this.configService.apiUrl}allegiances`)
         .delay(this.configService.delay)
         .map((response: Response) => response.json().results)
-        .map(allegiances => this.sort(allegiances))
-        .publishReplay(1)
-        .refCount();
+        .map(allegiances => this.sort(allegiances));
+        // .publishReplay(1)
+        // .refCount();
     }
     return this.allegiances;
   }
@@ -43,9 +43,9 @@ export class DataService {
       this.planets = <Observable<Planet[]>>this.http.get(`${this.configService.apiUrl}planets`)
         .delay(this.configService.delay)
         .map((response: Response) => response.json().results)
-        .map(planets => this.sortBy(planets, 'name'))
-        .publishReplay(1)
-        .refCount();
+        .map(planets => this.sortBy(planets, 'name'));
+        // .publishReplay(1)
+        // .refCount();
     }
     return this.planets;
   }
