@@ -4,7 +4,6 @@ import { Routes, RouterModule } from '@angular/router';
 import { PlanetsComponent } from './planets.component';
 import { PlanetListComponent } from './planet-list/planet-list.component';
 import { PlanetDetailComponent } from './planet-detail/planet-detail.component';
-import { PlanetHomeComponent } from './planet-home/planet-home.component';
 
 const routes: Routes = [
   {
