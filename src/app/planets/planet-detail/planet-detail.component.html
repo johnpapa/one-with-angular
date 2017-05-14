@@ -1,13 +1,20 @@
-<div class="detail" *ngIf="planet">
+<div class="detail">
   <h2 md-header>Details</h2>
-  <div><i></i></div>
-  <p>
-    <md-input-container>
-      <input mdInput placeholder="Name" [(ngModel)]="planet.name">
-    </md-input-container>
-  </p>
-  <p>
-    <md-checkbox [(ngModel)]="revealModel">Reveal Model</md-checkbox>
-  </p>
-  <pre *ngIf="revealModel">{{planet | json}}</pre>
+
+  <ng-template #noPlanet>
+    <md-progress-spinner class="progress" color="accent" mode="indeterminate"></md-progress-spinner>
+  </ng-template>
+
+  <div class="detail" *ngIf="planet;else noPlanet">
+    <div><i></i></div>
+    <p>
+      <md-input-container>
+        <input mdInput placeholder="Name" [(ngModel)]="planet.name">
+      </md-input-container>
+    </p>
+    <p>
+      <md-checkbox [(ngModel)]="revealModel">Reveal Model</md-checkbox>
+    </p>
+    <pre *ngIf="revealModel">{{planet | json}}</pre>
+  </div>
 </div>

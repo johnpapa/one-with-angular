@@ -1,23 +1,27 @@
-<div class="detail" *ngIf="character">
+<div class="detail">
   <h2 md-header>Details</h2>
-  <div class="character-icon" [ngClass]="icon"><i></i></div>
+
+  <ng-template #noCharacter>
+    <md-progress-spinner class="progress" color="accent" mode="indeterminate"></md-progress-spinner>
+  </ng-template>
+
+  <div *ngIf="character;else noCharacter">
+
+    <div class="character-icon" [ngClass]="icon"><i></i></div>
     <p>
       <md-input-container>
         <input mdInput placeholder="Name" [(ngModel)]="character.name" [disabled]="!ready">
       </md-input-container>
     </p>
     <p>
-      <md-select placeholder="Allegiance"
-        [(ngModel)]="character.allegiance" [disabled]="!ready">
+      <md-select placeholder="Allegiance" [(ngModel)]="character.allegiance" [disabled]="!ready">
         <md-option *ngFor="let allegiance of allegiances" [value]="allegiance">
           {{ allegiance }}
         </md-option>
       </md-select>
     </p>
     <p>
-      <md-select placeholder="Home World"
-        [(ngModel)]="character.homeWorldId" [disabled]="!ready"
-        (change)="syncHomeWorld()" >
+      <md-select placeholder="Home World" [(ngModel)]="character.homeWorldId" [disabled]="!ready" (change)="syncHomeWorld()">
         <md-option *ngFor="let planet of planets" [value]="planet.id">
           {{ planet.name }}
         </md-option>
@@ -27,9 +31,10 @@
       <md-checkbox [(ngModel)]="revealModel">Reveal Model</md-checkbox>
     </p>
 
-  <div *ngIf="revealModel">
-    <a md-raised-button (click)="getData()">Refresh Lists</a>
-    <a md-raised-button (click)="this.planets = this.allegiances = null">Clear Lists</a>
-    <pre>{{character | json}}{{homeWorld | json}}</pre>
+    <div *ngIf="revealModel">
+      <a md-raised-button (click)="getData()">Refresh Lists</a>
+      <a md-raised-button (click)="this.planets = this.allegiances = null">Clear Lists</a>
+      <pre>{{character | json}}{{homeWorld | json}}</pre>
+    </div>
   </div>
 </div>
