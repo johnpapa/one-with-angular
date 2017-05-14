@@ -47,6 +47,7 @@ pre {
   padding: 1em;
   font-size: 16px;
   line-height: 2em;
+  width: 400px;
 }
 
 // Characters and Planets
@@ -54,7 +55,7 @@ pre {
   @include primary-color;
 }
 
-ro-character-detail, ro-planet-detail {
+.detail {
   float: left;
   margin: 0.5em 0 0 2em;
   // width: 17em;
