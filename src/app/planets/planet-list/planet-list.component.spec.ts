@@ -2,6 +2,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { NO_ERRORS_SCHEMA, DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { MdSnackBar } from '@angular/material';
+import { RouterTestingModule } from '@angular/router/testing';
 
 import { PlanetListComponent } from './planet-list.component';
 import { ConfigService, DataService } from '../../core';
@@ -15,6 +16,7 @@ describe('PlanetListComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
+      imports: [RouterTestingModule.withRoutes([])],
       declarations: [ PlanetListComponent ],
       providers: [
         ConfigService,

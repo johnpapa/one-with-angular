@@ -1,7 +1,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { NO_ERRORS_SCHEMA, DebugElement } from '@angular/core';
-import { By } from '@angular/platform-browser';
 import { MdSnackBar } from '@angular/material';
+import { By } from '@angular/platform-browser';
+import { RouterTestingModule } from '@angular/router/testing';
 
 import { CharacterListComponent } from './character-list.component';
 import { ConfigService, DataService } from '../../core';
@@ -15,6 +16,7 @@ describe('CharacterListComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
+      imports: [RouterTestingModule.withRoutes([])],
       declarations: [CharacterListComponent],
       providers: [
         ConfigService,
