@@ -8,7 +8,7 @@ const routes: Routes = [
   { path: 'dashboard', component: DashboardComponent },
   { path: 'characters', loadChildren: 'app/characters/characters.module#CharactersModule' },
   { path: 'planets', loadChildren: 'app/planets/planets.module#PlanetsModule' },
-  { path: '**', pathMatch: 'full', redirectTo: 'dashboard' },
+  // { path: '**', pathMatch: 'full', redirectTo: 'dashboard' },
 ];
 
 @NgModule({

@@ -2,8 +2,9 @@ import { NgModule } from '@angular/core';
 
 import { SharedModule } from '../shared/shared.module';
 import { PlanetsRoutingModule } from './planets-routing.module';
-import { PlanetsComponent } from './planets/planets.component';
+import { PlanetsComponent } from './planets.component';
 import { PlanetDetailComponent } from './planet-detail/planet-detail.component';
+import { PlanetListComponent } from './planet-list/planet-list.component';
 
 @NgModule({
   imports: [
@@ -12,7 +13,8 @@ import { PlanetDetailComponent } from './planet-detail/planet-detail.component';
   ],
   declarations: [
     PlanetsComponent,
-    PlanetDetailComponent
+    PlanetListComponent,
+    PlanetDetailComponent,
   ]
 })
 export class PlanetsModule { }

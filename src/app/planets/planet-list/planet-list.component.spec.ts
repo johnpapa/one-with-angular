@@ -3,19 +3,19 @@ import { NO_ERRORS_SCHEMA, DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { MdSnackBar } from '@angular/material';
 
-import { CharactersComponent } from './characters.component';
+import { PlanetListComponent } from './planet-list.component';
 import { ConfigService, DataService } from '../../core';
 import * as testing from '../../../testing';
 
-describe('CharactersComponent', () => {
-  let component: CharactersComponent;
-  let fixture: ComponentFixture<CharactersComponent>;
+describe('PlanetListComponent', () => {
+  let component: PlanetListComponent;
+  let fixture: ComponentFixture<PlanetListComponent>;
   let de: DebugElement;
   let el: HTMLElement;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [CharactersComponent],
+      declarations: [ PlanetListComponent ],
       providers: [
         ConfigService,
         { provide: DataService, useClass: testing.DataServiceStub },
@@ -23,11 +23,11 @@ describe('CharactersComponent', () => {
       ],
       schemas: [NO_ERRORS_SCHEMA]
     })
-      .compileComponents();
+    .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(CharactersComponent);
+    fixture = TestBed.createComponent(PlanetListComponent);
     component = fixture.componentInstance;
   });
 
@@ -36,8 +36,8 @@ describe('CharactersComponent', () => {
   });
 
   describe('before detectChanges', () => {
-    it('should not have characters', () => {
-      expect(component.characters).toBeUndefined();
+    it('should not have planets', () => {
+      expect(component.planets).toBeUndefined();
     });
 
     it('should not open the snack bar', () => {
@@ -50,33 +50,33 @@ describe('CharactersComponent', () => {
       fixture.detectChanges();
     });
 
-    it('should contain Characters heading', () => {
+    it('should contain Planets heading', () => {
       de = fixture.debugElement.query(By.css('h2'));
       el = de.nativeElement;
-      expect(el.textContent).toContain('Characters');
+      expect(el.textContent).toContain('Planets');
     });
 
-    it('should have characters', () => {
-      expect(component.characters.length).toBe(testing.characters.length);
+    it('should have planets', () => {
+      expect(component.planets.length).toBe(testing.planets.length);
     });
 
     it('should open the snack bar', () => {
       expect(component.snackBar.open).toHaveBeenCalledTimes(1);
     });
 
-    it('should set selected character when clicked', () => {
-      const character = testing.characters[0];
+    it('should set selected planet when clicked', () => {
+      const planet = testing.planets[0];
       de = fixture.debugElement.query(By.css('md-list-item'));
       el = de.nativeElement;
       el.click();
-      expect(component.selectedCharacter).toBe(character);
+      expect(component.selectedPlanet).toBe(planet);
     });
 
-    it('should not set selected character when not clicked', () => {
-      const character = testing.characters[0];
+    it('should not set selected planet when not clicked', () => {
+      const planet = testing.planets[0];
       de = fixture.debugElement.query(By.css('md-list-item'));
       el = de.nativeElement;
-      expect(component.selectedCharacter).not.toBe(character);
+      expect(component.selectedPlanet).not.toBe(planet);
     });
   });
 });

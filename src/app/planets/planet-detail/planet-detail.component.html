@@ -1,21 +1,13 @@
-<div class="planet-detail">
+<div class="detail" *ngIf="planet">
   <h2 md-header>Details</h2>
   <div><i></i></div>
-  <!--<div *ngIf="planet;else noPlanet">-->
-    <p>
-      <md-input-container>
-        <input mdInput placeholder="Name" [(ngModel)]="planet.name">
-      </md-input-container>
-    </p>
-    <p>
-      <md-checkbox [(ngModel)]="revealModel">Reveal Model</md-checkbox>
-    </p>
-
-    <pre *ngIf="revealModel">{{planet | json}}</pre>
-
-  <!--</div>-->
-
-  <!--<ng-template #noPlanet>
-    <div>No planet has been selected</div>
-  </ng-template>-->
+  <p>
+    <md-input-container>
+      <input mdInput placeholder="Name" [(ngModel)]="planet.name">
+    </md-input-container>
+  </p>
+  <p>
+    <md-checkbox [(ngModel)]="revealModel">Reveal Model</md-checkbox>
+  </p>
+  <pre *ngIf="revealModel">{{planet | json}}</pre>
 </div>

@@ -1,3 +1,7 @@
+<ng-template #noPlanets>
+  <md-progress-bar class="progress" color="accent" mode="indeterminate"></md-progress-bar>
+</ng-template>
+
 <div *ngIf="planets;else noPlanets">
   <md-list>
     <h2 md-header>{{title}}</h2>
@@ -9,13 +13,6 @@
       </p>
     </md-list-item>
   </md-list>
-
-  <div *ngIf="selectedPlanet">
-    <ro-planet-detail [planet]="selectedPlanet"></ro-planet-detail>
-  </div>
 </div>
 
-<ng-template #noPlanets>
-  <md-progress-bar class="progress" color="accent" mode="indeterminate"></md-progress-bar>
-</ng-template>
-
+<router-outlet></router-outlet>

@@ -1,5 +1,6 @@
-import { Component, OnChanges, Input, SimpleChanges } from '@angular/core';
+import { Component, OnInit, Input, SimpleChanges } from '@angular/core';
 import { FormControl } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
 import { MdSnackBar } from '@angular/material';
 import { Observable } from 'rxjs/Observable';
 
@@ -10,8 +11,8 @@ import { Character, ConfigService, DataService, Planet } from '../../core';
   templateUrl: './character-detail.component.html',
   styleUrls: ['./character-detail.component.scss']
 })
-export class CharacterDetailComponent implements OnChanges {
-  @Input() character: Character;
+export class CharacterDetailComponent implements OnInit {
+  character: Character;
   homeWorld: Planet;
   planets: Planet[];
   ready = false;
@@ -21,13 +22,23 @@ export class CharacterDetailComponent implements OnChanges {
   constructor(
     private dataService: DataService,
     private snackBar: MdSnackBar,
-    private configService: ConfigService
-  ) {
-  }
+    private configService: ConfigService,
+    private route: ActivatedRoute,
+  ) { }
 
-  ngOnChanges(simpleChanges: SimpleChanges) {
-    // this.changes = simpleChanges.character.currentValue !== simpleChanges.character.previousValue;
+  ngOnInit() {
     this.getData();
+
+    this.route.params.map(params => params['id'])
+      .mergeMap(id => id)
+      .subscribe(id => {
+        this.dataService.getCharacters().subscribe(
+          characters => {
+            const character = characters.find(c => c.id === +id);
+            this.character = character;
+          }
+        );
+      });
   }
 
   getData() {
@@ -38,9 +49,7 @@ export class CharacterDetailComponent implements OnChanges {
         this.allegiances = summaries[1];
         this.syncHomeWorld();
         this.ready = true;
-      }
-      // TODO: fix errors this raises
-      ,
+      },
       () => this.snackBar.open('Getting Planets and Allegiances failed', 'ERROR', this.configService.snackConfig),
       () => this.snackBar.open('Getting Planets and Allegiances succeeded', 'HTTP', this.configService.snackConfig)
       );
