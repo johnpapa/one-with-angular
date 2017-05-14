@@ -1,4 +1,4 @@
-import { Component, OnChanges, Input } from '@angular/core';
+import { Component, OnChanges, Input, SimpleChanges } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { MdSnackBar } from '@angular/material';
 import { Observable } from 'rxjs/Observable';
@@ -20,29 +20,29 @@ export class CharacterDetailComponent implements OnChanges {
 
   constructor(
     private dataService: DataService,
-    public snackBar: MdSnackBar,
+    private snackBar: MdSnackBar,
     private configService: ConfigService
   ) {
   }
 
-  ngOnChanges() {
+  ngOnChanges(simpleChanges: SimpleChanges) {
+    // this.changes = simpleChanges.character.currentValue !== simpleChanges.character.previousValue;
     this.getData();
   }
 
   getData() {
     this.ready = false;
     Observable.forkJoin(this.dataService.getPlanets(), this.dataService.getAllegiances())
-      .subscribe(
-      (summaries) => {
+      .subscribe((summaries) => {
         this.planets = summaries[0];
         this.allegiances = summaries[1];
         this.syncHomeWorld();
         this.ready = true;
       }
       // TODO: fix errors this raises
-      // ,
-      // () => this.snackBar.open('Getting Planets and Allegiances failed', 'ERROR', this.configService.snackConfig),
-      // () => this.snackBar.open('Getting Planets and Allegiances succeeded', 'HTTP', this.configService.snackConfig)
+      ,
+      () => this.snackBar.open('Getting Planets and Allegiances failed', 'ERROR', this.configService.snackConfig),
+      () => this.snackBar.open('Getting Planets and Allegiances succeeded', 'HTTP', this.configService.snackConfig)
       );
   }
 
