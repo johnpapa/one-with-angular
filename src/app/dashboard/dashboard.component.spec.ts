@@ -9,6 +9,7 @@ import { ConfigService, DataService } from '../core';
 import * as testing from '../../testing';
 
 @Component({
+  // tslint:disable-next-line:component-selector
   selector: 'ngx-charts-advanced-pie-chart',
   template: ''
 })
