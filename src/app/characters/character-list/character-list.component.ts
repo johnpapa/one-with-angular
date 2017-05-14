@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { MdSnackBar, MdSnackBarConfig } from '@angular/material';
+import 'rxjs/add/operator/mergeMap';
 
 import { Character, ConfigService, DataService } from '../../core';
 
