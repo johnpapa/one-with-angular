@@ -14,7 +14,6 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     BrowserModule,
     BrowserAnimationsModule,
     HttpModule,
-    // My Code
     AppRoutingModule,
     CoreModule,
     SharedModule,

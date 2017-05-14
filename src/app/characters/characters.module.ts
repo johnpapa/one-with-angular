@@ -2,8 +2,9 @@ import { NgModule } from '@angular/core';
 
 import { SharedModule } from '../shared/shared.module';
 import { CharactersRoutingModule } from './characters-routing.module';
-import { CharactersComponent } from './characters/characters.component';
 import { CharacterDetailComponent } from './character-detail/character-detail.component';
+import { CharacterListComponent } from './character-list/character-list.component';
+import { CharactersComponent } from './characters.component';
 
 @NgModule({
   imports: [
@@ -12,6 +13,7 @@ import { CharacterDetailComponent } from './character-detail/character-detail.co
   ],
   declarations: [
     CharactersComponent,
+    CharacterListComponent,
     CharacterDetailComponent,
   ]
 })

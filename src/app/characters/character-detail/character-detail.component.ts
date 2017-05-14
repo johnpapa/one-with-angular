@@ -1,5 +1,6 @@
-import { Component, OnChanges, Input } from '@angular/core';
+import { Component, OnInit, Input, SimpleChanges } from '@angular/core';
 import { FormControl } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
 import { MdSnackBar } from '@angular/material';
 import { Observable } from 'rxjs/Observable';
 import { Store } from '@ngrx/store';
@@ -13,8 +14,8 @@ import { Character, ConfigService, DataService, Planet } from '../../core';
   templateUrl: './character-detail.component.html',
   styleUrls: ['./character-detail.component.scss']
 })
-export class CharacterDetailComponent implements OnChanges {
-  @Input() character: Character;
+export class CharacterDetailComponent implements OnInit {
+  character: Character;
   homeWorld: Planet;
   planets: Observable<Planet[]>;
   // planets: Planet[];
@@ -28,11 +29,23 @@ export class CharacterDetailComponent implements OnChanges {
     private configService: ConfigService,
     private dataService: DataService,
     private actionsService: ActionsService,
-    private store: Store<CharactersState>
+    private store: Store<CharactersState>,
+    private route: ActivatedRoute,
   ) { }
 
-  ngOnChanges() {
+  ngOnInit() {
     this.getData();
+
+    this.route.params.map(params => params['id'])
+      .mergeMap(id => id)
+      .subscribe(id => {
+        this.dataService.getCharacters().subscribe(
+          characters => {
+            const character = characters.find(c => c.id === +id);
+            this.character = character;
+          }
+        );
+      });
   }
 
   getData() {
