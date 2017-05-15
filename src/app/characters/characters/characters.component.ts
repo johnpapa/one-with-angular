@@ -29,8 +29,8 @@ export class CharactersComponent implements OnInit {
     this.characters = this.store.select('characters');
 
     this.characters.subscribe(
-      () => this.snackBar.open('Characters failed!', 'ERROR', this.configService.snackConfig),
-      () => this.snackBar.open('Characters Loaded!', 'HTTP', this.configService.snackConfig)
+      () => this.snackBar.open('Characters Loaded!', 'HTTP', this.configService.snackConfig),
+      () => this.snackBar.open('Characters failed!', 'ERROR', this.configService.snackConfig)
     );
 
     this.store.dispatch(this.actionsService.getCharacters());

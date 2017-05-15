@@ -29,8 +29,8 @@ export class PlanetsComponent implements OnInit {
     this.planets = this.store.select('planets');
 
     this.planets.subscribe(
-        () => this.snackBar.open('Planets failed!', 'ERROR', this.configService.snackConfig),
-        () => this.snackBar.open('Planets Loaded!', 'HTTP', this.configService.snackConfig)
+        () => this.snackBar.open('Planets Loaded!', 'HTTP', this.configService.snackConfig),
+        () => this.snackBar.open('Planets failed!', 'ERROR', this.configService.snackConfig)
     );
 
     this.store.dispatch(this.actionsService.getPlanets());
