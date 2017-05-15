@@ -31,8 +31,8 @@ export class PlanetListComponent implements OnInit {
     this.planets = this.store.select('planets');
 
     this.planets.subscribe(
-        () => this.snackBar.open('Getting Planets data failed', 'ERROR', this.configService.snackConfig),
-        () => this.snackBar.open('Getting Planets data succeeded', 'HTTP', this.configService.snackConfig)
+      () => this.snackBar.open('Getting Planets data succeeded', 'HTTP', this.configService.snackConfig),
+      () => this.snackBar.open('Getting Planets data failed', 'ERROR', this.configService.snackConfig)
     );
 
     this.store.dispatch(this.actionsService.getCharacters());
