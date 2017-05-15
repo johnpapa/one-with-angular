@@ -63,9 +63,9 @@ export class CharacterDetailComponent implements OnInit {
       .subscribe((summaries) => {
         this.syncHomeWorld(summaries[0]);
         this.ready = true;
+        this.snackBar.open('Getting Planets and Allegiances succeeded', 'HTTP', this.configService.snackConfig);
       },
       () => this.snackBar.open('Getting Planets and Allegiances failed', 'ERROR', this.configService.snackConfig),
-      () => this.snackBar.open('Getting Planets and Allegiances succeeded', 'HTTP', this.configService.snackConfig)
       );
   }
 

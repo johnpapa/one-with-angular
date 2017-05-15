@@ -38,15 +38,15 @@ export class PlanetDetailComponent implements OnInit {
 
     this.route.params.map(params => parseInt(params['id'], 10))
       .subscribe(id => {
-        this.planets.subscribe(
-          planets => {
+        this.planets
+          .subscribe(planets => {
             const planet = planets.find(p => p.id === +id);
             this.planet = planet;
-          }
+            this.snackBar.open('Getting Planets and Allegiances succeeded', 'HTTP', this.configService.snackConfig);
+          },
+          () => this.snackBar.open('Getting Planets and Allegiances failed', 'ERROR', this.configService.snackConfig),
         );
       },
-      () => this.snackBar.open('Getting Planets and Allegiances failed', 'ERROR', this.configService.snackConfig),
-      () => this.snackBar.open('Getting Planets and Allegiances succeeded', 'HTTP', this.configService.snackConfig)
-      );
+    );
   }
 }
