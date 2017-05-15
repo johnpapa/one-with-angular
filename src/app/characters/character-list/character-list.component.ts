@@ -3,7 +3,6 @@ import { Router } from '@angular/router';
 import { MdSnackBar, MdSnackBarConfig } from '@angular/material';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/operator/mergeMap';
 
 import { Character, ConfigService, DataService } from '../../core';
 import { ActionsService } from '../../core/actions.service';
