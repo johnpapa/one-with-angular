@@ -4,6 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { MdSnackBar } from '@angular/material';
 import { Observable } from 'rxjs/Observable';
 import { Store } from '@ngrx/store';
+import 'rxjs/add/observable/combineLatest';
 
 import { CharactersState } from '../../core/reducers.service';
 import { ActionsService } from '../../core/actions.service';
@@ -18,11 +19,11 @@ export class CharacterDetailComponent implements OnInit {
   character: Character;
   homeWorld: Planet;
   planets: Observable<Planet[]>;
-  // planets: Planet[];
   ready = false;
   allegiances: Observable<string[]>;
-  // allegiances: string[];
   revealModel = false;
+
+  private characters: Observable<Character[]>;
 
   constructor(
     public snackBar: MdSnackBar,
@@ -35,17 +36,6 @@ export class CharacterDetailComponent implements OnInit {
 
   ngOnInit() {
     this.getData();
-
-    this.route.params.map(params => params['id'])
-      .mergeMap(id => id)
-      .subscribe(id => {
-        this.dataService.getCharacters().subscribe(
-          characters => {
-            const character = characters.find(c => c.id === +id);
-            this.character = character;
-          }
-        );
-      });
   }
 
   getData() {
@@ -53,23 +43,29 @@ export class CharacterDetailComponent implements OnInit {
 
     this.planets = this.store.select('planets');
     this.allegiances = this.store.select('allegiances');
+    this.characters = this.store.select('characters');
 
     this.store.dispatch(this.actionsService.getPlanets());
     this.store.dispatch(this.actionsService.getAllegiances());
+    this.store.dispatch(this.actionsService.getCharacters());
 
-    Observable.forkJoin(this.planets, this.allegiances)
-      // Observable.forkJoin(this.dataService.getPlanets(), this.dataService.getAllegiances())
-      .subscribe(
-        (summaries) => {
-          // this.planets = summaries[0];
-          // this.allegiances = summaries[1];
-          this.syncHomeWorld(summaries[0]);
-          this.ready = true;
-        }
-      // TODO: fix errors this raises
-      // ,
-      // () => this.snackBar.open('Getting Planets and Allegiances failed', 'ERROR', this.configService.snackConfig),
-      // () => this.snackBar.open('Getting Planets and Allegiances succeeded', 'HTTP', this.configService.snackConfig)
+    this.route.params.map(params => parseInt(params['id'], 10))
+      .subscribe(id => {
+        this.characters.subscribe(
+          characters => {
+            const character = characters.find(c => c.id === +id);
+            this.character = character;
+          }
+        );
+      });
+
+    Observable.combineLatest(this.planets, this.allegiances)
+      .subscribe((summaries) => {
+        this.syncHomeWorld(summaries[0]);
+        this.ready = true;
+      },
+      () => this.snackBar.open('Getting Planets and Allegiances failed', 'ERROR', this.configService.snackConfig),
+      () => this.snackBar.open('Getting Planets and Allegiances succeeded', 'HTTP', this.configService.snackConfig)
       );
   }
 
