@@ -25,7 +25,7 @@ export class PlanetDetailComponent implements OnInit {
       .subscribe(id => {
         this.dataService.getPlanets().subscribe(
           planets => {
-            const planet = planets.find(p => p.id === +id);
+            const planet = planets.find(p => p.id === id);
             this.planet = planet;
           }
         );
