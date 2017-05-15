@@ -2,7 +2,6 @@ import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { MdSnackBar } from '@angular/material';
 import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/operator/mergeMap';
 
 import { ConfigService, DataService, Planet } from '../../core';
 
@@ -22,8 +21,7 @@ export class PlanetDetailComponent implements OnInit {
     private route: ActivatedRoute) { }
 
   ngOnInit() {
-    this.route.params.map(params => params['id'])
-      .mergeMap(id => id)
+    this.route.params.map(params => parseInt(params['id'], 10))
       .subscribe(id => {
         this.dataService.getPlanets().subscribe(
           planets => {

@@ -29,12 +29,11 @@ export class CharacterDetailComponent implements OnInit {
   ngOnInit() {
     this.getData();
 
-    this.route.params.map(params => params['id'])
-      .mergeMap(id => id)
+    this.route.params.map(params => parseInt(params['id'], 10))
       .subscribe(id => {
         this.dataService.getCharacters().subscribe(
           characters => {
-            const character = characters.find(c => c.id === +id);
+            const character = characters.find(c => c.id === id);
             this.character = character;
           }
         );
