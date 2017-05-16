@@ -14,7 +14,7 @@ describe('PlanetDetailComponent', () => {
   let detailDebugEl: DebugElement;
   // let detailEl: HTMLElement;
 
-  beforeEach(async(() => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [RouterTestingModule.withRoutes([])],
       declarations: [PlanetDetailComponent],
@@ -24,11 +24,8 @@ describe('PlanetDetailComponent', () => {
         { provide: MdSnackBar, useClass: testing.MdSnackBarStub }
       ],
       schemas: [NO_ERRORS_SCHEMA]
-    })
-      .compileComponents();
-  }));
+    });
 
-  beforeEach(() => {
     fixture = TestBed.createComponent(PlanetDetailComponent);
     component = fixture.componentInstance;
     detailDebugEl = fixture.debugElement.query(By.css('.planet-detail input[placeholder=Name]'));

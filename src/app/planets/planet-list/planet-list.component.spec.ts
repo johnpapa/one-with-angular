@@ -14,21 +14,18 @@ describe('PlanetListComponent', () => {
   let de: DebugElement;
   let el: HTMLElement;
 
-  beforeEach(async(() => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [RouterTestingModule.withRoutes([])],
-      declarations: [ PlanetListComponent ],
+      declarations: [PlanetListComponent],
       providers: [
         ConfigService,
         { provide: DataService, useClass: testing.DataServiceStub },
         { provide: MdSnackBar, useClass: testing.MdSnackBarStub }
       ],
       schemas: [NO_ERRORS_SCHEMA]
-    })
-    .compileComponents();
-  }));
+    });
 
-  beforeEach(() => {
     fixture = TestBed.createComponent(PlanetListComponent);
     component = fixture.componentInstance;
   });

@@ -14,7 +14,7 @@ describe('CharactersDetailComponent', () => {
   let detailDebugEl: DebugElement;
   // let detailEl: HTMLElement;
 
-  beforeEach(async(() => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [RouterTestingModule.withRoutes([])],
       declarations: [CharacterDetailComponent],
@@ -24,11 +24,8 @@ describe('CharactersDetailComponent', () => {
         { provide: MdSnackBar, useClass: testing.MdSnackBarStub }
       ],
       schemas: [NO_ERRORS_SCHEMA]
-    })
-      .compileComponents();
-  }));
+    });
 
-  beforeEach(() => {
     fixture = TestBed.createComponent(CharacterDetailComponent);
     component = fixture.componentInstance;
     detailDebugEl = fixture.debugElement.query(By.css('.character-detail input[placeholder=Name]'));
