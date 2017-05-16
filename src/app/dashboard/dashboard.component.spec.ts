@@ -21,7 +21,7 @@ describe('DashboardComponent', () => {
   let de: DebugElement;
   // let el: HTMLElement;
 
-  beforeEach(async(() => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [DashboardComponent, FakeNGXChartsAdvancedPieComponent],
       schemas: [NO_ERRORS_SCHEMA],
@@ -30,11 +30,8 @@ describe('DashboardComponent', () => {
         { provide: DataService, useClass: testing.DataServiceStub },
         { provide: MdSnackBar, useClass: testing.MdSnackBarStub }
       ],
-    })
-      .compileComponents();
-  }));
+    });
 
-  beforeEach(() => {
     fixture = TestBed.createComponent(DashboardComponent);
     component = fixture.componentInstance;
 

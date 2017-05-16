@@ -7,15 +7,12 @@ describe('CharactersComponent', () => {
   let component: CharactersComponent;
   let fixture: ComponentFixture<CharactersComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [RouterTestingModule.withRoutes([])],
-      declarations: [ CharactersComponent ]
-    })
-    .compileComponents();
-  }));
+      declarations: [CharactersComponent]
+    });
 
-  beforeEach(() => {
     fixture = TestBed.createComponent(CharactersComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

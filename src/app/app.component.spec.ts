@@ -24,7 +24,7 @@ class LazyComponent { }
 class LazyModule { }
 
 describe('AppComponent', () => {
-  beforeEach(async(() => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [RouterTestingModule.withRoutes(routes)],
       declarations: [
@@ -34,7 +34,7 @@ describe('AppComponent', () => {
       schemas: [NO_ERRORS_SCHEMA],
       providers: [],
     }).compileComponents();
-  }));
+  });
 
   it('should create the app', async(() => {
     const fixture = TestBed.createComponent(AppComponent);
