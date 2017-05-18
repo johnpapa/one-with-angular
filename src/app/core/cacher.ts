@@ -11,7 +11,7 @@ export class CachedResponse<T> {
 }
 
 export class Cacher<T> {
-  static defaultExpirationWindow = 10000;
+  static defaultExpirationWindow = 30000;
   static verbose = true;
 
   observable: Observable<CachedResponse<T>>;
@@ -37,7 +37,7 @@ export class Cacher<T> {
             if (this.verbose) {
               pkg.fetching ?
                 console.log('Fetching (so we\'ll exit and wait) ...') :
-                console.log('Using cached data ...');
+                console.log('Using cached data ...', Date.now());
             }
             return;
           }
