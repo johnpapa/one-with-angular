@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { MdSnackBar, MdSnackBarConfig } from '@angular/material';
+import 'rxjs/add/observable/combineLatest';
 
 import { DataService, ChartOptions, ConfigService, SummaryData } from '../core';
 
@@ -30,11 +31,14 @@ export class DashboardComponent implements OnInit {
   ngOnInit() {
     this.setChartOptions();
 
-    Observable.forkJoin(this.dataService.getPlanetSummary(), this.dataService.getAllegianceSummary())
+    Observable.combineLatest(
+      this.dataService.getPlanetSummary(),
+      this.dataService.getAllegianceSummary()
+    )
       .subscribe(
-        (summaries) => {
-          this.planetSummary = summaries[0];
-          this.allegianceSummary = summaries[1];
+        ([planetSummary, allegianceSummary]) => {
+          this.planetSummary = planetSummary;
+          this.allegianceSummary = allegianceSummary;
           this.snackBar.open('Dashboard loaded', 'HTTP', this.configService.snackConfig);
         },
         () => this.snackBar.open('Dashboard failed', 'ERROR', this.configService.snackConfig)

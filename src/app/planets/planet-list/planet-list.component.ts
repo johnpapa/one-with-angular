@@ -23,8 +23,8 @@ export class PlanetListComponent implements OnInit {
 
   ngOnInit() {
     this.dataService.getPlanets()
-      .subscribe(planets => {
-        this.planets = planets;
+      .subscribe(pkg => {
+        this.planets = pkg.data;
         this.snackBar.open('Getting Planets data succeeded', 'HTTP', this.configService.snackConfig);
       },
       () => this.snackBar.open('Getting Planets data failed', 'ERROR', this.configService.snackConfig)

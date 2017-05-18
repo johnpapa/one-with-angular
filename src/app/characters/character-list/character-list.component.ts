@@ -23,8 +23,8 @@ export class CharacterListComponent implements OnInit {
 
   ngOnInit() {
     this.dataService.getCharacters()
-      .subscribe(characters => {
-        this.characters = characters;
+      .subscribe(pkg => {
+        this.characters = pkg.data;
         this.snackBar.open('Getting Characters data succeeded', 'HTTP', this.configService.snackConfig);
       },
       () => this.snackBar.open('Getting Characters data failed', 'ERROR', this.configService.snackConfig),
