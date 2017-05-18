@@ -45,7 +45,7 @@ export class DataService {
 
   getCharacters() {
     this.characterCacher.refresh();
-    return this.characterCacher.observable;
+    return this.characterCacher.observable.filter(p => !p.fetching);
   }
 
   getCharacterById(id: number) {
@@ -56,12 +56,12 @@ export class DataService {
 
   getAllegiances() {
     this.allegianceCacher.refresh();
-    return this.allegianceCacher.observable;
+    return this.allegianceCacher.observable.filter(p => !p.fetching);
   }
 
   getPlanets() {
     this.planetCacher.refresh();
-    return this.planetCacher.observable;
+    return this.planetCacher.observable.filter(p => !p.fetching);
   }
 
   getPlanetById(id: number) {
