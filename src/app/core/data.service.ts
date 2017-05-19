@@ -38,42 +38,43 @@ export class DataService {
       .map((response: Response) => response.json().results)
       .map(planets => this.sortBy(planets, 'name'));
 
-    this.characterCacher = Cacher.create<Character[]>(characterSource);
-    this.allegianceCacher = Cacher.create<string[]>(allegianceSource);
-    this.planetCacher = Cacher.create<Planet[]>(planetSource);
+    this.characterCacher = new Cacher<Character[]>(characterSource);
+    this.allegianceCacher = new Cacher<string[]>(allegianceSource);
+    this.planetCacher = new Cacher<Planet[]>(planetSource);
   }
 
-  getCharacters() {
-    this.characterCacher.refresh();
-    return this.characterCacher.observable.filter(p => !p.fetching);
+  getCharacters(force = false) {
+    return this.characterCacher.get(force)
+      .filter(cr => !cr.fetching)
+      .map(cr => cr.data);
   }
 
   getCharacterById(id: number) {
-    return this.getCharacters().filter(p => !p.fetching)
-      .map(pkg => pkg.data)
+    return this.getCharacters()
       .map(characters => characters.find(c => c.id === id));
   }
 
-  getAllegiances() {
-    this.allegianceCacher.refresh();
-    return this.allegianceCacher.observable.filter(p => !p.fetching);
+  getAllegiances(force = false) {
+    return this.allegianceCacher.get(force)
+      .filter(cr => !cr.fetching)
+      .map(cr => cr.data);
   }
 
-  getPlanets() {
-    this.planetCacher.refresh();
-    return this.planetCacher.observable.filter(p => !p.fetching);
+  getPlanets(force = false) {
+    return this.planetCacher.get(force)
+      .filter(cr => !cr.fetching)
+      .map(cr => cr.data);
   }
 
   getPlanetById(id: number) {
-    return this.getPlanets().filter(p => !p.fetching)
-      .map(pkg => pkg.data)
+    return this.getPlanets()
       .map(planets => planets.find(c => c.id === id));
   }
 
   getPlanetSummary() {
     return Observable.combineLatest(
-      this.getCharacters().filter(p => !p.fetching),
-      this.getPlanets().filter(p => !p.fetching),
+      this.getCharacters(),
+      this.getPlanets(),
       this.projectCharactersOverPlanets
     )
       .map(summary => summary.filter((item) => item.value > 1 && item.name !== 'unknown'));
@@ -81,16 +82,14 @@ export class DataService {
 
   getAllegianceSummary() {
     return Observable.combineLatest(
-      this.getCharacters().filter(p => !p.fetching),
-      this.getAllegiances().filter(p => !p.fetching),
+      this.getCharacters(),
+      this.getAllegiances(),
       this.projectCharactersOverAllegiances
     )
       .map(summary => summary.filter((item) => item.value > 0));
   }
 
-  private projectCharactersOverAllegiances(charactersPkg, allegiancesPkg) {
-    const characters = charactersPkg.data;
-    const allegiances = allegiancesPkg.data;
+  private projectCharactersOverAllegiances(characters, allegiances) {
     return allegiances.map(allegiance => (
       new SummaryData(
         allegiance, characters.reduce((acc, character) => acc += character.allegiance === allegiance ? 1 : 0, 0)
@@ -98,9 +97,7 @@ export class DataService {
     ));
   }
 
-  private projectCharactersOverPlanets(charactersPkg, planetsPkg) {
-    const characters = charactersPkg.data;
-    const planets = planetsPkg.data;
+  private projectCharactersOverPlanets(characters, planets) {
     return planets.map(planet => (
       new SummaryData(
         planet.name,

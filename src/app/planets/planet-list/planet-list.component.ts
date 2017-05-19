@@ -24,10 +24,10 @@ export class PlanetListComponent implements OnInit {
   ngOnInit() {
     // console.log(Date.now());
     this.dataService.getPlanets()
-      .subscribe(pkg => {
+      .subscribe(planets => {
         // console.log(Date.now());
-        this.planets = pkg.data;
-        this.snackBar.open('Getting Planets data succeeded', 'HTTP', this.configService.snackConfig);
+        this.planets = planets;
+        this.snackBar.open('Getting Planets data succeeded', 'SUCCESS', this.configService.snackConfig);
         // console.log(Date.now());
   },
       () => this.snackBar.open('Getting Planets data failed', 'ERROR', this.configService.snackConfig)

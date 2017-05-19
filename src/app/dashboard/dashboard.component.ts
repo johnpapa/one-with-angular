@@ -39,7 +39,7 @@ export class DashboardComponent implements OnInit {
         ([planetSummary, allegianceSummary]) => {
           this.planetSummary = planetSummary;
           this.allegianceSummary = allegianceSummary;
-          this.snackBar.open('Dashboard loaded', 'HTTP', this.configService.snackConfig);
+          this.snackBar.open('Dashboard loaded', 'SUCCESS', this.configService.snackConfig);
         },
         () => this.snackBar.open('Dashboard failed', 'ERROR', this.configService.snackConfig)
       );

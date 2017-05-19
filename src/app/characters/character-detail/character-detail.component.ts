@@ -39,14 +39,14 @@ export class CharacterDetailComponent implements OnInit {
   getData() {
     this.ready = false;
     Observable.combineLatest(this.dataService.getPlanets(), this.dataService.getAllegiances())
-      .subscribe(([planetsPkg, allegiancePkg]) => {
-        this.planets = planetsPkg.data;
-        this.allegiances = allegiancePkg.data;
+      .subscribe(([planets, allegiance]) => {
+        this.planets = planets;
+        this.allegiances = allegiance;
         this.syncHomeWorld();
         this.ready = true;
       },
       () => this.snackBar.open('Getting Planets and Allegiances failed', 'ERROR', this.configService.snackConfig),
-      () => this.snackBar.open('Getting Planets and Allegiances succeeded', 'HTTP', this.configService.snackConfig)
+      () => this.snackBar.open('Getting Planets and Allegiances succeeded', 'SUCCESS', this.configService.snackConfig)
       );
   }
 
