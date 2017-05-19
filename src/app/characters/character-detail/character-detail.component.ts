@@ -3,6 +3,7 @@ import { FormControl } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { MdSnackBar } from '@angular/material';
 import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/operator/switchMap';
 
 import { Character, ConfigService, DataService, Planet } from '../../core';
 
@@ -27,30 +28,25 @@ export class CharacterDetailComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.getData();
-
     this.route.params.map(params => parseInt(params['id'], 10))
-      .subscribe(id => {
-        this.dataService.getCharacters().subscribe(
-          characters => {
-            const character = characters.find(c => c.id === id);
-            this.character = character;
-          }
-        );
+      .switchMap(id => this.dataService.getCharacterById(id))
+      .subscribe(character => {
+        this.character = character;
+        this.getData();
       });
   }
 
   getData() {
     this.ready = false;
-    Observable.forkJoin(this.dataService.getPlanets(), this.dataService.getAllegiances())
-      .subscribe((summaries) => {
-        this.planets = summaries[0];
-        this.allegiances = summaries[1];
+    Observable.combineLatest(this.dataService.getPlanets(), this.dataService.getAllegiances())
+      .subscribe(([planets, allegiance]) => {
+        this.planets = planets;
+        this.allegiances = allegiance;
         this.syncHomeWorld();
         this.ready = true;
       },
       () => this.snackBar.open('Getting Planets and Allegiances failed', 'ERROR', this.configService.snackConfig),
-      () => this.snackBar.open('Getting Planets and Allegiances succeeded', 'HTTP', this.configService.snackConfig)
+      () => this.snackBar.open('Getting Planets and Allegiances succeeded', 'SUCCESS', this.configService.snackConfig)
       );
   }
 
