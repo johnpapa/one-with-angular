@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Http, Response } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/observable/forkJoin';
+import 'rxjs/add/observable/combineLatest';
 import 'rxjs/add/operator/delay';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/publishReplay';
@@ -11,57 +11,81 @@ import { Character } from '../core/models/character';
 import { Planet } from './models/planet';
 import { ConfigService } from './config.service';
 import { SummaryData } from './models/summary-data';
+import { Cacher } from './cacher';
 
 @Injectable()
 export class DataService {
-  private planets: Observable<Planet[]> = null;
-  private characters: Observable<Character[]> = null;
-  private allegiances: Observable<string[]> = null;
+  private api: string;
+  private characterCacher: Cacher<Character[]>;
+  private allegianceCacher: Cacher<string[]>;
+  private planetCacher: Cacher<Planet[]>;
 
-  constructor(private http: Http, private configService: ConfigService) { }
+  constructor(private http: Http, private configService: ConfigService) {
+    this.api = this.configService.apiUrl;
 
-  getCharacters() {
-    if (!this.characters) {
-      return <Observable<Character[]>>this.http.get(`${this.configService.apiUrl}people`)
-        .delay(this.configService.delay)
-        .map((response: Response) => response.json().results)
-        .map(characters => this.sortBy(characters, 'name'))
-        .publishReplay(1)
-        .refCount();
-    }
+    const characterSource = <Observable<Character[]>>this.http.get(`${this.api}people`)
+      // .delay(this.configService.delay)
+      .map((response: Response) => response.json().results)
+      .map(characters => this.sortBy(characters, 'name'));
+
+    const allegianceSource = <Observable<string[]>>this.http.get(`${this.api}allegiances`)
+      // .delay(this.configService.delay)
+      .map((response: Response) => response.json().results)
+      .map(allegiances => this.sort(allegiances));
+
+    const planetSource = <Observable<Planet[]>>this.http.get(`${this.api}planets`)
+      // .delay(this.configService.delay)
+      .map((response: Response) => response.json().results)
+      .map(planets => this.sortBy(planets, 'name'));
+
+    this.characterCacher = new Cacher<Character[]>(characterSource);
+    this.allegianceCacher = new Cacher<string[]>(allegianceSource);
+    this.planetCacher = new Cacher<Planet[]>(planetSource);
   }
 
-  getAllegiances() {
-    if (!this.allegiances) {
-      this.allegiances = <Observable<string[]>>this.http.get(`${this.configService.apiUrl}allegiances`)
-        .delay(this.configService.delay)
-        .map((response: Response) => response.json().results)
-        .map(allegiances => this.sort(allegiances))
-        .publishReplay(1)
-        .refCount();
-    }
-    return this.allegiances;
+  getCharacters(force = false) {
+    return this.characterCacher.get(force)
+      .filter(cr => !cr.fetching)
+      .map(cr => cr.data);
   }
 
-  getPlanets() {
-    if (!this.planets) {
-      this.planets = <Observable<Planet[]>>this.http.get(`${this.configService.apiUrl}planets`)
-        .delay(this.configService.delay)
-        .map((response: Response) => response.json().results)
-        .map(planets => this.sortBy(planets, 'name'))
-        .publishReplay(1)
-        .refCount();
-    }
-    return this.planets;
+  getCharacterById(id: number) {
+    return this.getCharacters()
+      .map(characters => characters.find(c => c.id === id));
+  }
+
+  getAllegiances(force = false) {
+    return this.allegianceCacher.get(force)
+      .filter(cr => !cr.fetching)
+      .map(cr => cr.data);
+  }
+
+  getPlanets(force = false) {
+    return this.planetCacher.get(force)
+      .filter(cr => !cr.fetching)
+      .map(cr => cr.data);
+  }
+
+  getPlanetById(id: number) {
+    return this.getPlanets()
+      .map(planets => planets.find(c => c.id === id));
   }
 
   getPlanetSummary() {
-    return Observable.forkJoin(this.getCharacters(), this.getPlanets(), this.projectCharactersOverPlanets)
+    return Observable.combineLatest(
+      this.getCharacters(),
+      this.getPlanets(),
+      this.projectCharactersOverPlanets
+    )
       .map(summary => summary.filter((item) => item.value > 1 && item.name !== 'unknown'));
   }
 
   getAllegianceSummary() {
-    return Observable.forkJoin(this.getCharacters(), this.getAllegiances(), this.projectCharactersOverAllegiances)
+    return Observable.combineLatest(
+      this.getCharacters(),
+      this.getAllegiances(),
+      this.projectCharactersOverAllegiances
+    )
       .map(summary => summary.filter((item) => item.value > 0));
   }
 
