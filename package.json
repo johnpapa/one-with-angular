@@ -4,8 +4,8 @@
   "license": "MIT",
   "scripts": {
     "ng": "ng",
-    // "start": "ng serve",
-    "start": "node index.js",
+    "start-ng": "ng serve",
+    "start": "node dist/index.js",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
