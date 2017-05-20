@@ -8,6 +8,7 @@ import { CoreModule } from './core/core.module';
 import { SharedModule } from './shared/shared.module';
 import { AppComponent } from './app.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { PageNotFoundComponent } from './page-not-found.component';
 
 @NgModule({
   imports: [
@@ -20,7 +21,8 @@ import { DashboardComponent } from './dashboard/dashboard.component';
   ],
   declarations: [
     AppComponent,
-    DashboardComponent
+    DashboardComponent,
+    PageNotFoundComponent
   ],
   providers: [],
   bootstrap: [AppComponent]
