@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { MdSnackBar, MdSnackBarConfig } from '@angular/material';
+import { Observable } from 'rxjs/Observable';
+import { Subscription } from 'rxjs/Subscription';
 import 'rxjs/add/observable/combineLatest';
 
 import { DataService, ChartOptions, ConfigService, SummaryData } from '../core';
@@ -10,11 +11,13 @@ import { DataService, ChartOptions, ConfigService, SummaryData } from '../core';
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss']
 })
-export class DashboardComponent implements OnInit {
+export class DashboardComponent implements OnDestroy, OnInit {
   planetChart = new ChartOptions();
   allegianceChart = new ChartOptions();
   planetSummary: SummaryData[];
   allegianceSummary: SummaryData[];
+
+  private subscription: Subscription;
 
   constructor(
     public snackBar: MdSnackBar,
@@ -28,10 +31,14 @@ export class DashboardComponent implements OnInit {
     this.allegianceChart.yAxisLabel = 'Characters';
   }
 
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
+  }
+
   ngOnInit() {
     this.setChartOptions();
 
-    Observable.combineLatest(
+    this.subscription = Observable.combineLatest(
       this.dataService.getPlanetSummary(),
       this.dataService.getAllegianceSummary()
     )

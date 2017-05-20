@@ -1,11 +1,7 @@
 <div class="animated slideInRight">
-  <ng-template #loading>
-    <md-progress-bar class="progress" color="accent" mode="indeterminate"></md-progress-bar>
-  </ng-template>
-
   <md-tab-group>
     <md-tab [label]="allegianceChart.xAxisLabel">
-      <div *ngIf="allegianceSummary;else loading">
+      <div *ngIf="allegianceSummary">
         <ngx-charts-advanced-pie-chart class="chart-fit"
           [results]="allegianceSummary"
           [view]="allegianceChart.view"
@@ -16,7 +12,7 @@
       </div>
     </md-tab>
     <md-tab [label]="planetChart.xAxisLabel">
-      <div *ngIf="planetSummary;else loading">
+      <div *ngIf="planetSummary">
         <ngx-charts-pie-chart class="chart-fit"
           [results]="planetSummary"
           [view]="planetChart.view"

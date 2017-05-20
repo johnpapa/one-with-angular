@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Http, Response } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
+import { combineLatest } from 'rxjs/observable/combineLatest';
 import 'rxjs/add/observable/combineLatest';
 import 'rxjs/add/operator/delay';
 import 'rxjs/add/operator/map';
@@ -12,6 +13,7 @@ import { Planet } from './models/planet';
 import { ConfigService } from './config.service';
 import { SummaryData } from './models/summary-data';
 import { Cacher } from './cacher';
+import { createOnDemandCache } from './caching-fns';
 
 @Injectable()
 export class DataService {
@@ -20,50 +22,61 @@ export class DataService {
   private allegianceCacher: Cacher<string[]>;
   private planetCacher: Cacher<Planet[]>;
 
+  /** Observable is true if any of the cached sources is fetching */
+  isFetching: Observable<boolean>;
+
   constructor(private http: Http, private configService: ConfigService) {
     this.api = this.configService.apiUrl;
+    Cacher.verbose = true; // So we can see console logs
 
-    const characterSource = <Observable<Character[]>>this.http.get(`${this.api}people`)
-      // .delay(this.configService.delay)
-      .map((response: Response) => response.json().results)
-      .map(characters => this.sortBy(characters, 'name'));
+    const characterSource: Observable<Character[]> =
+      this.http.get(`${this.api}people`)
+        .delay(this.configService.delay)
+        .map((response: Response) => response.json().results)
+        .map(characters => this.sortBy(characters, 'name'));
 
-    const allegianceSource = <Observable<string[]>>this.http.get(`${this.api}allegiances`)
-      // .delay(this.configService.delay)
-      .map((response: Response) => response.json().results)
-      .map(allegiances => this.sort(allegiances));
+    const allegianceSource: Observable<string[]> =
+      this.http.get(`${this.api}allegiances`)
+        .delay(this.configService.delay)
+        .map((response: Response) => response.json().results)
+        .map(allegiances => this.sort(allegiances));
 
-    const planetSource = <Observable<Planet[]>>this.http.get(`${this.api}planets`)
-      // .delay(this.configService.delay)
-      .map((response: Response) => response.json().results)
-      .map(planets => this.sortBy(planets, 'name'));
+    const planetSource: Observable<Planet[]> =
+      this.http.get(`${this.api}planets`)
+        .delay(this.configService.delay)
+        .map((response: Response) => response.json().results)
+        .map(planets => this.sortBy(planets, 'name'));
 
-    this.characterCacher = new Cacher<Character[]>(characterSource);
-    this.allegianceCacher = new Cacher<string[]>(allegianceSource);
-    this.planetCacher = new Cacher<Planet[]>(planetSource);
+    this.characterCacher = new Cacher(characterSource);
+    this.allegianceCacher = new Cacher(allegianceSource);
+    this.planetCacher = new Cacher(planetSource);
+
+    this.isFetching = combineLatest(
+      this.characterCacher.notifications,
+      this.allegianceCacher.notifications,
+      this.planetCacher.notifications,
+      (h, v) => h.type === 'fetching' || v.type === 'fetching'
+    );
   }
 
   getCharacters(force = false) {
-    return this.characterCacher.get(force)
-      .filter(cr => !cr.fetching)
-      .map(cr => cr.data);
+    this.characterCacher.update(force);
+    return this.characterCacher.cache;
   }
 
   getCharacterById(id: number) {
     return this.getCharacters()
-      .map(characters => characters.find(c => c.id === id));
+     .map(characters => characters.find(c => c.id === id));
   }
 
   getAllegiances(force = false) {
-    return this.allegianceCacher.get(force)
-      .filter(cr => !cr.fetching)
-      .map(cr => cr.data);
+    this.allegianceCacher.update(force);
+    return this.allegianceCacher.cache;
   }
 
   getPlanets(force = false) {
-    return this.planetCacher.get(force)
-      .filter(cr => !cr.fetching)
-      .map(cr => cr.data);
+    this.planetCacher.update(force);
+    return this.planetCacher.cache;
   }
 
   getPlanetById(id: number) {

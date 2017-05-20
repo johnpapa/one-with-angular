@@ -1,11 +1,7 @@
 <div class="animated slideInRight detail">
   <h2 md-header>Details</h2>
 
-  <ng-template #noPlanet>
-    <md-progress-spinner class="progress" color="accent" mode="indeterminate"></md-progress-spinner>
-  </ng-template>
-
-  <div class="detail" *ngIf="planet;else noPlanet">
+  <div class="detail" *ngIf="planet">
     <div><i></i></div>
     <p>
       <md-input-container>

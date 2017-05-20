@@ -6,7 +6,7 @@ export class ConfigService {
   snackConfig = new MdSnackBarConfig();
   apiUrl = 'http://www.starwars-api.com/api/';
   // httpCacheDuration = 2000; // 1 minute
-  delay = 200;
+  delay = 500;
 
   constructor() {
     this.snackConfig.duration = 2500;

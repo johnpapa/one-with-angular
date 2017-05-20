@@ -1,9 +1,11 @@
-import { Component, OnInit, Input, SimpleChanges } from '@angular/core';
+import { Component, OnInit, Input, SimpleChanges, OnDestroy } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { MdSnackBar } from '@angular/material';
 import { Observable } from 'rxjs/Observable';
+import { Subject } from 'rxjs/Subject';
 import 'rxjs/add/operator/switchMap';
+import 'rxjs/add/operator/takeUntil';
 
 import { Character, ConfigService, DataService, Planet } from '../../core';
 
@@ -12,13 +14,15 @@ import { Character, ConfigService, DataService, Planet } from '../../core';
   templateUrl: './character-detail.component.html',
   styleUrls: ['./character-detail.component.scss']
 })
-export class CharacterDetailComponent implements OnInit {
+export class CharacterDetailComponent implements OnDestroy, OnInit {
   character: Character;
   homeWorld: Planet;
   planets: Planet[];
   ready = false;
   allegiances: string[];
   revealModel = false;
+
+  private onDestroy = new Subject();
 
   constructor(
     private dataService: DataService,
@@ -27,9 +31,14 @@ export class CharacterDetailComponent implements OnInit {
     private route: ActivatedRoute,
   ) { }
 
+  ngOnDestroy() {
+    this.onDestroy.next();
+  }
+
   ngOnInit() {
     this.route.params.map(params => parseInt(params['id'], 10))
       .switchMap(id => this.dataService.getCharacterById(id))
+      .takeUntil(this.onDestroy)
       .subscribe(character => {
         this.character = character;
         this.getData();
@@ -39,6 +48,7 @@ export class CharacterDetailComponent implements OnInit {
   getData() {
     this.ready = false;
     Observable.combineLatest(this.dataService.getPlanets(), this.dataService.getAllegiances())
+      .takeUntil(this.onDestroy)
       .subscribe(([planets, allegiance]) => {
         this.planets = planets;
         this.allegiances = allegiance;

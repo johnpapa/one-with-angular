@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { MdSnackBar, MdSnackBarConfig } from '@angular/material';
+import { Subject } from 'rxjs/Subject';
+import 'rxjs/add/operator/takeUntil';
 
 import { Character, ConfigService, DataService } from '../../core';
 
@@ -9,10 +11,14 @@ import { Character, ConfigService, DataService } from '../../core';
   templateUrl: './character-list.component.html',
   styleUrls: ['./character-list.component.scss']
 })
-export class CharacterListComponent implements OnInit {
+export class CharacterListComponent implements OnDestroy, OnInit {
   title = 'Characters';
   characters: Character[];
   selectedCharacter: Character;
+
+  // Prevent memory leaks with the subject/takeUntil pattern
+  // This is best when the component has multiple subscribes
+  private onDestroy = new Subject();
 
   constructor(
     public snackBar: MdSnackBar,
@@ -21,8 +27,13 @@ export class CharacterListComponent implements OnInit {
     private router: Router,
   ) { }
 
+  ngOnDestroy() {
+    this.onDestroy.next();
+  }
+
   ngOnInit() {
     this.dataService.getCharacters()
+      .takeUntil(this.onDestroy)
       .subscribe(characters => {
         this.characters = characters;
         this.snackBar.open('Getting Characters data succeeded', 'SUCCESS', this.configService.snackConfig);

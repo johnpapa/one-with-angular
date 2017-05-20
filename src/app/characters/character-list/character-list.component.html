@@ -1,9 +1,5 @@
 <div class="animated slideInRight">
-  <ng-template #noCharacters>
-    <md-progress-bar class="progress" color="accent" mode="indeterminate"></md-progress-bar>
-  </ng-template>
-
-  <div *ngIf="characters;else noCharacters">
+  <div *ngIf="characters">
     <md-list>
       <h2 md-header>{{title}}</h2>
       <md-list-item *ngFor="let character of characters" [class.selected]="selectedCharacter === character" (click)="selectCharacter(character)">
