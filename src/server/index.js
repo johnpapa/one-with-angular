@@ -12,6 +12,6 @@ app.use(staticFileMiddleware)
 //   res.render(path.join(__dirname + '/index.html'))
 // })
 
-app.listen(8080, function () {
-  console.log( 'Express serving on 8080!' )
+app.listen(4200, function () {
+  console.log( 'Express serving on 4200!' )
 })
