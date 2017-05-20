@@ -1,17 +1,36 @@
-const express = require('express')
-const path = require('path')
-const history = require('connect-history-api-fallback')
+var express = require('express'),
+  path = require('path'),
+  fs = require('fs');
 
-const app = express()
-const staticFileMiddleware = express.static(path.join(__dirname))
+var app = express();
+var staticRoot = __dirname + '/';
 
-app.use(history())
-app.use(staticFileMiddleware)
+app.set('port', (process.env.PORT || 8080));
 
-// app.get('/', function (req, res) {
-//   res.render(path.join(__dirname + '/index.html'))
-// })
+app.use(express.static(staticRoot));
 
-app.listen(4200, function () {
-  console.log( 'Express serving on 4200!' )
-})
+app.use(function (req, res, next) {
+
+  // if the request is not html then move along
+  var accept = req.accepts('html', 'json', 'xml');
+  if (accept !== 'html') {
+    return next();
+  }
+
+  // if the request has a '.' assume that it's for a file, move along
+  var ext = path.extname(req.path);
+  if (ext !== '') {
+    return next();
+  }
+
+  fs.createReadStream(staticRoot + 'index.html').pipe(res);
+
+});
+
+//app.all('/*', function(req, res, next) {
+//    res.sendFile('index.html', { root: __dirname + '/' });
+//});
+
+app.listen(app.get('port'), function () {
+  console.log('app running on port', app.get('port'));
+});
