@@ -71,7 +71,7 @@ pre {
 md-list {
   float: left;
   margin: 0 0 2em 0;
-  width: 12em;
+  width: 9em;
   border-right: 1px solid #CCC;
   cursor: pointer;
   height: 600px;
@@ -112,6 +112,12 @@ md-list-item.mat-list-item span {
 .pull-right {
   position:fixed !important;
   right: 8px;
+}
+
+@media (max-width: 414px) {
+  .pull-right {
+    display: none !important;
+  }
 }
 
 /*article.template {
