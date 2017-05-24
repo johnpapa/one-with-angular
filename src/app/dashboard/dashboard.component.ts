@@ -48,7 +48,10 @@ export class DashboardComponent implements OnDestroy, OnInit {
           this.allegianceSummary = allegianceSummary;
           this.snackBar.open('Dashboard loaded', 'SUCCESS', this.configService.snackConfig);
         },
-        () => this.snackBar.open('Dashboard failed', 'ERROR', this.configService.snackConfig)
+        (err) => {
+          this.snackBar.open('Dashboard failed', 'ERROR', this.configService.snackConfig);
+          console.log(err);
+        }
       );
   }
 }
