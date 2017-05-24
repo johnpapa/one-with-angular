@@ -14,7 +14,8 @@
           "glob": "index.js",
           "input": "./server/",
           "output": "./"
-        }
+        },
+        "manifest.json"
       ],
       "index": "index.html",
       "main": "main.ts",
