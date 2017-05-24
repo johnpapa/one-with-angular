@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Http, Response } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import { combineLatest } from 'rxjs/observable/combineLatest';
+import { of } from 'rxjs/observable/of';
 import 'rxjs/add/observable/combineLatest';
 import 'rxjs/add/operator/delay';
 import 'rxjs/add/operator/map';
@@ -103,6 +104,10 @@ export class DataService {
   }
 
   private projectCharactersOverAllegiances(characters, allegiances) {
+    if (!characters || !allegiances) {
+      return of([]);
+    }
+
     return allegiances.map(allegiance => (
       new SummaryData(
         allegiance, characters.reduce((acc, character) => acc += character.allegiance === allegiance ? 1 : 0, 0)
@@ -111,6 +116,10 @@ export class DataService {
   }
 
   private projectCharactersOverPlanets(characters, planets) {
+    if (!characters || !planets) {
+      return of([]);
+    }
+
     return planets.map(planet => (
       new SummaryData(
         planet.name,
