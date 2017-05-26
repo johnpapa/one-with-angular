@@ -1,9 +1,10 @@
 {
+  "$schema": "http://json.schemastore.org/web-manifest",
   "short_name": "Star Wars API",
-  "name": "Star Wars API",
+  "name": "Star Wars API by John Papa",
   "icons": [
     {
-      "src": "assets/launcher-icon-2x.png",
+      "src": "assets/launcher-icon-2x.jpg",
       "sizes": "96x96",
       "type": "image/jpg"
     },
@@ -18,7 +19,9 @@
       "type": "image/jpg"
     }
   ],
+  "background_color": "#1565c0",
+  "theme_color": "#1565c0",
   "start_url": "/index.html",
   "display": "standalone",
-  "orientation": "landscape"
+  "orientation": "any"
 }
