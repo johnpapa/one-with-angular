@@ -32,25 +32,26 @@ export class DataService {
 
     const characterSource: Observable<Character[]> =
       this.http.get(`${this.api}people`)
-        .delay(this.configService.delay)
+        .delay(this.configService.httpDelay)
         .map((response: Response) => response.json().results)
         .map(characters => this.sortBy(characters, 'name'));
 
     const allegianceSource: Observable<string[]> =
       this.http.get(`${this.api}allegiances`)
-        .delay(this.configService.delay)
+        .delay(this.configService.httpDelay)
         .map((response: Response) => response.json().results)
         .map(allegiances => this.sort(allegiances));
 
     const planetSource: Observable<Planet[]> =
       this.http.get(`${this.api}planets`)
-        .delay(this.configService.delay)
+        .delay(this.configService.httpDelay)
         .map((response: Response) => response.json().results)
         .map(planets => this.sortBy(planets, 'name'));
 
-    this.characterCacher = new Cacher(characterSource);
-    this.allegianceCacher = new Cacher(allegianceSource);
-    this.planetCacher = new Cacher(planetSource);
+    const duration = this.configService.httpCacheDuration;
+    this.characterCacher = new Cacher(characterSource, duration);
+    this.allegianceCacher = new Cacher(allegianceSource, duration);
+    this.planetCacher = new Cacher(planetSource, duration);
 
     this.isFetching = combineLatest(
       this.characterCacher.notifications,
@@ -67,7 +68,7 @@ export class DataService {
 
   getCharacterById(id: number) {
     return this.getCharacters()
-     .map(characters => characters.find(c => c.id === id));
+      .map(characters => characters.find(c => c.id === id));
   }
 
   getAllegiances(force = false) {
