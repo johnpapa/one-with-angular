@@ -3,10 +3,10 @@
 var CACHE_NAME = 'starwars-api-site-cache-v1';
 var urlsToCache = [
   '/',
-  'https://www.starwars-api.com/api/allegiances',
-  'https://www.starwars-api.com/api/films',
-  'https://www.starwars-api.com/api/people',
-  'https://www.starwars-api.com/api/planets',
+  // 'https://www.starwars-api.com/api/allegiances',
+  // 'https://www.starwars-api.com/api/films',
+  // 'https://www.starwars-api.com/api/people',
+  // 'https://www.starwars-api.com/api/planets',
   '/styles.194a8b4c81c77d8a133b.bundle.css',
   '/inline.6dfc39ce36701b31d0a0.bundle.js',
   '/polyfills.5234c463f49595bd0e73.bundle.js',
