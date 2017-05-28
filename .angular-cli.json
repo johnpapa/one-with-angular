@@ -15,7 +15,8 @@
           "input": "./server/",
           "output": "./"
         },
-        "manifest.json"
+        "manifest.json",
+        "sw.js"
       ],
       "index": "index.html",
       "main": "main.ts",

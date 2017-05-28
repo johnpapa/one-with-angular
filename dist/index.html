@@ -1,5 +1,6 @@
 <!doctype html>
 <html>
+
 <head>
   <meta charset="utf-8">
   <meta name="theme-color" content="#1565c0">
@@ -10,7 +11,28 @@
   <link rel="icon" type="image/x-icon" href="favicon.ico">
   <link rel="manifest" href="/manifest.json">
 <link href="styles.194a8b4c81c77d8a133b.bundle.css" rel="stylesheet"/></head>
+
 <body>
   <ro-root>Loading...</ro-root>
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', load);
+    }
+
+    function load() {
+      navigator.serviceWorker.register('/sw.js').then(success, fail);
+    }
+
+    function success(registration) {
+      // Registration was successful
+      console.log('ServiceWorker registration successful with scope: ', registration.scope);
+    }
+
+    function fail(err) {
+      // registration failed :(
+      console.log('ServiceWorker registration failed: ', err);
+    }
+  </script>
 <script type="text/javascript" src="inline.6dfc39ce36701b31d0a0.bundle.js"></script><script type="text/javascript" src="polyfills.5234c463f49595bd0e73.bundle.js"></script><script type="text/javascript" src="vendor.cbca6b150f70bce15684.bundle.js"></script><script type="text/javascript" src="main.b56529c9d488fa3f3b41.bundle.js"></script></body>
+
 </html>
