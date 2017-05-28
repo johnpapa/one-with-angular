@@ -26,8 +26,6 @@
   "display": "standalone",
   "orientation": "any",
   "serviceworker": {
-    "src": "sw.js",
-    "scope": "/",
-    "use_cache": false
+    "src": "sw.js"
   }
 }
