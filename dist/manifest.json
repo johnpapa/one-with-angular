@@ -27,7 +27,7 @@
   "orientation": "any",
   "serviceworker": {
     "src": "sw.js",
-    "scope": "/foo",
-    "use_cache": false
+    "scope": "/",
+    "use_cache": true
   }
 }
