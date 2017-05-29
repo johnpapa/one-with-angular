@@ -28,6 +28,6 @@
   "serviceworker": {
     "src": "sw.js",
     "scope": "/",
-    "use_cache": true
+    "use_cache": false
   }
 }
