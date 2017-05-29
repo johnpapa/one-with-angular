@@ -16,7 +16,7 @@
           "output": "./"
         },
         "manifest.json",
-        "sw.js"
+        "service-worker.js"
       ],
       "index": "index.html",
       "main": "main.ts",
