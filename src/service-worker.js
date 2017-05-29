@@ -6,10 +6,10 @@ var urlsToCache = [
   '/0.bac6cc38409906f9a24e.chunk.js',
   '/1.456bd0a5460ac77408a4.chunk.js',
   '/styles.4c7ab0dd4ee5b77dd25f.bundle.css',
-  '/inline.d2c6b21d4f4c12ee5070.bundle.js',
+  '/inline.d38b0e44c2ec275519f3.bundle.js',
   '/polyfills.5234c463f49595bd0e73.bundle.js',
   '/vendor.0547a2874d54e60fc392.bundle.js',
-  '/main.27c351f1a735cc2c3d5b.bundle.js'
+  '/main.c5f9f92838bc4f7e4a11.bundle.js'
 ];
 
 self.addEventListener('install', function (event) {

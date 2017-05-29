@@ -8,53 +8,56 @@ if (environment.production) {
   enableProdMode();
 }
 
-platformBrowserDynamic().bootstrapModule(AppModule); //.then(() => registerServiceWorker());
+platformBrowserDynamic().bootstrapModule(AppModule).then(() => registerServiceWorker());
 
-// function registerServiceWorker2() {
-//   if ('serviceWorker' in navigator) {
-//     navigator.serviceWorker.register('service-worker.js').then(function (reg) {
-//       reg.onupdatefound = function () {
-//         const installingWorker = reg.installing;
+function registerServiceWorker() {
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('service-worker.js').then(function (registration) {
+      
+      console.log('Registration successful', registration.scope);
 
-//         installingWorker.onstatechange = function () {
-//           switch (installingWorker.state) {
-//             case 'installed':
-//               if (navigator.serviceWorker.controller) {
-//                 console.log('New or updated content is available.');
-//               } else {
-//                 console.log('Content is now available offline!');
-//               }
-//               break;
+      registration.onupdatefound = function () {
+        const installingWorker = registration.installing;
 
-//             case 'redundant':
-//               console.error('The installing service worker became redundant.');
-//               break;
-//           }
-//         };
-//       };
-//     }).catch(function (e) {
-//       console.error('Error during service worker registration:', e);
-//     });
-//   }
-// }
+        installingWorker.onstatechange = function () {
+          switch (installingWorker.state) {
+            case 'installed':
+              if (navigator.serviceWorker.controller) {
+                console.log('New or updated content is available.');
+              } else {
+                console.log('Content is now available offline!');
+              }
+              break;
 
-// function registerServiceWorker() {
+            case 'redundant':
+              console.error('The installing service worker became redundant.');
+              break;
+          }
+        };
+      };
+    }).catch(function (e) {
+      console.error('Error during service worker registration:', e);
+    });
+  }
+}
 
-//   if ('serviceWorker' in navigator) {
-//     window.addEventListener('load', load);
-//   }
+function registerServiceWorkerSimple() {
 
-//   function load() {
-//     navigator.serviceWorker.register('/service-worker.js').then(success, fail);
-//   }
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', load);
+  }
 
-//   function success(registration) {
-//     // Registration was successful
-//     console.log('ServiceWorker registration successful with scope: ', registration.scope);
-//   }
+  function load() {
+    navigator.serviceWorker.register('/service-worker.js').then(success, fail);
+  }
 
-//   function fail(err) {
-//     // registration failed :(
-//     console.log('ServiceWorker registration failed: ', err);
-//   }
-// }
+  function success(registration) {
+    // Registration was successful
+    console.log('ServiceWorker registration successful with scope: ', registration.scope);
+  }
+
+  function fail(err) {
+    // registration failed :(
+    console.log('ServiceWorker registration failed: ', err);
+  }
+}
