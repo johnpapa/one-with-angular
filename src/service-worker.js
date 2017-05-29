@@ -3,11 +3,13 @@
 var CACHE_NAME = 'starwars-api-site-cache-v1';
 var urlsToCache = [
   '/',
-  '/styles.194a8b4c81c77d8a133b.bundle.css',
-  '/inline.6dfc39ce36701b31d0a0.bundle.js',
-  '/polyfills.5234c463f49595bd0e73.bundle.js',
-  '/vendor.cbca6b150f70bce15684.bundle.js',
-  '/main.b56529c9d488fa3f3b41.bundle.js'
+  '/styles.*.bundle.css',
+  '/inline.*.bundle.js',
+//   '/styles.194a8b4c81c77d8a133b.bundle.css',
+//   '/inline.6dfc39ce36701b31d0a0.bundle.js',
+//   '/polyfills.5234c463f49595bd0e73.bundle.js',
+//   '/vendor.cbca6b150f70bce15684.bundle.js',
+//   '/main.b56529c9d488fa3f3b41.bundle.js'
 ];
 
 self.addEventListener('install', function (event) {
