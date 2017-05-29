@@ -19,8 +19,8 @@ function registerServiceWorker() {
       registration.onupdatefound = function () {
         const installingWorker = registration.installing;
 
-        console.log('Service worker update found, now checking the statechange ...');
-        
+        console.log('Service worker update found, now checking the statechange ...', installingWorker.state);
+
         installingWorker.onstatechange = function () {
           switch (installingWorker.state) {
             case 'installed':
