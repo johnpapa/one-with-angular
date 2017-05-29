@@ -15,29 +15,10 @@
 
 <body>
   <ro-root>Loading...</ro-root>
-  <script>
-    if ('serviceWorker' in navigator) {
-      window.addEventListener('load', load);
-    }
-
-    function load() {
-      navigator.serviceWorker.register('/service-worker.js').then(success, fail);
-    }
-
-    function success(registration) {
-      // Registration was successful
-      console.log('ServiceWorker registration successful with scope: ', registration.scope);
-    }
-
-    function fail(err) {
-      // registration failed :(
-      console.log('ServiceWorker registration failed: ', err);
-    }
-  </script>
-  <script type="text/javascript" src="inline.21493e6fe70dd4fbf281.bundle.js"></script>
+  <script type="text/javascript" src="inline.b1ced0e355ae7913f5d4.bundle.js"></script>
   <script type="text/javascript" src="polyfills.5234c463f49595bd0e73.bundle.js"></script>
   <script type="text/javascript" src="vendor.0547a2874d54e60fc392.bundle.js"></script>
-  <script type="text/javascript" src="main.272ed2c7d004ccb069d1.bundle.js"></script>
+  <script type="text/javascript" src="main.87c6f37a5cffc4f38d85.bundle.js"></script>
 </body>
 
 </html>
