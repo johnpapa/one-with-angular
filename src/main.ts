@@ -14,11 +14,13 @@ function registerServiceWorker() {
   if ('serviceWorker' in navigator) {
     navigator.serviceWorker.register('service-worker.js').then(function (registration) {
       
-      console.log('Registration successful', registration.scope);
+      console.log('Registration successful', registration);
 
       registration.onupdatefound = function () {
         const installingWorker = registration.installing;
 
+        console.log('Service worker update found, now checking the statechange ...');
+        
         installingWorker.onstatechange = function () {
           switch (installingWorker.state) {
             case 'installed':
