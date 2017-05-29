@@ -10,7 +10,7 @@ if (environment.production) {
 
 platformBrowserDynamic().bootstrapModule(AppModule).then(() => registerServiceWorker());
 
-function registerServiceWorker() {
+function registerServiceWorker2() {
   if ('serviceWorker' in navigator) {
     navigator.serviceWorker.register('service-worker.js').then(function (reg) {
       reg.onupdatefound = function () {
@@ -37,23 +37,24 @@ function registerServiceWorker() {
     });
   }
 }
-  // function registerServiceWorker() {
 
-  //   if ('serviceWorker' in navigator) {
-  //     window.addEventListener('load', load);
-  //   }
+function registerServiceWorker() {
 
-  //   function load() {
-  //     navigator.serviceWorker.register('/service-worker.js').then(success, fail);
-  //   }
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', load);
+  }
 
-  //   function success(registration) {
-  //     // Registration was successful
-  //     console.log('ServiceWorker registration successful with scope: ', registration.scope);
-  //   }
+  function load() {
+    navigator.serviceWorker.register('/service-worker.js').then(success, fail);
+  }
 
-  //   function fail(err) {
-  //     // registration failed :(
-  //     console.log('ServiceWorker registration failed: ', err);
-  //   }
-  // }
+  function success(registration) {
+    // Registration was successful
+    console.log('ServiceWorker registration successful with scope: ', registration.scope);
+  }
+
+  function fail(err) {
+    // registration failed :(
+    console.log('ServiceWorker registration failed: ', err);
+  }
+}
