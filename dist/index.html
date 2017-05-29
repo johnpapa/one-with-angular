@@ -10,7 +10,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
   <link rel="manifest" href="/manifest.json">
-<link href="styles.4c7ab0dd4ee5b77dd25f.bundle.css" rel="stylesheet"/></head>
+  <link href="styles.4c7ab0dd4ee5b77dd25f.bundle.css" rel="stylesheet" />
+</head>
 
 <body>
   <ro-root>Loading...</ro-root>
@@ -20,7 +21,7 @@
     }
 
     function load() {
-      navigator.serviceWorker.register('/sw.js').then(success, fail);
+      navigator.serviceWorker.register('/service-worker.js').then(success, fail);
     }
 
     function success(registration) {
@@ -33,6 +34,10 @@
       console.log('ServiceWorker registration failed: ', err);
     }
   </script>
-<script type="text/javascript" src="inline.21493e6fe70dd4fbf281.bundle.js"></script><script type="text/javascript" src="polyfills.5234c463f49595bd0e73.bundle.js"></script><script type="text/javascript" src="vendor.0547a2874d54e60fc392.bundle.js"></script><script type="text/javascript" src="main.272ed2c7d004ccb069d1.bundle.js"></script></body>
+  <script type="text/javascript" src="inline.21493e6fe70dd4fbf281.bundle.js"></script>
+  <script type="text/javascript" src="polyfills.5234c463f49595bd0e73.bundle.js"></script>
+  <script type="text/javascript" src="vendor.0547a2874d54e60fc392.bundle.js"></script>
+  <script type="text/javascript" src="main.272ed2c7d004ccb069d1.bundle.js"></script>
+</body>
 
 </html>

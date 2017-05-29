@@ -20,7 +20,7 @@
     }
 
     function load() {
-      navigator.serviceWorker.register('/sw.js').then(success, fail);
+      navigator.serviceWorker.register('/service-worker.js').then(success, fail);
     }
 
     function success(registration) {

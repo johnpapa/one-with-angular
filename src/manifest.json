@@ -24,10 +24,5 @@
   "theme_color": "#1565c0",
   "start_url": "./?utm_source=web_app_manifest",
   "display": "standalone",
-  "orientation": "any",
-  "serviceworker": {
-    "src": "service-worker.js",
-    "scope": "/",
-    "use_cache": false
-  }
+  "orientation": "any"
 }
