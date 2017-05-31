@@ -5,7 +5,7 @@ var urlsToCache = [
   '/',
   '/0.bac6cc38409906f9a24e.chunk.js',
   '/1.456bd0a5460ac77408a4.chunk.js',
-  '/styles.4c7ab0dd4ee5b77dd25f.bundle.css',
+  '/styles.d4538f005330a3786c32.bundle.css',
   '/inline.7e382a9407884c2f96c6.bundle.js',
   '/polyfills.5234c463f49595bd0e73.bundle.js',
   '/vendor.0547a2874d54e60fc392.bundle.js',

@@ -50,9 +50,8 @@ html, body {
 pre {
   background-color: map-get($accent, 100);
   padding: 1em;
-  font-size: 16px;
-  line-height: 2em;
-  width: 400px;
+  font-size: 12px;
+  max-width: 260px;
 }
 
 // Characters and Planets
@@ -63,7 +62,6 @@ pre {
 .detail {
   float: left;
   margin: 0.5em 0 0 2em;
-  // width: 17em;
 }
 .selected {
   @include selected-style;
@@ -117,6 +115,10 @@ md-list-item.mat-list-item span {
 @media (max-width: 414px) {
   .pull-right {
     display: none !important;
+  }
+
+  .detail {
+    max-width: 200px;
   }
 }
 
