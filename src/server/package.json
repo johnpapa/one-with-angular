@@ -1,0 +1,11 @@
+{
+  "name": "one-with-angular",
+  "version": "0.0.0",
+  "license": "MIT",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "express": "^4.15.3"
+  }
+}

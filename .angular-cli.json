@@ -15,6 +15,11 @@
           "input": "./server/",
           "output": "./"
         },
+        {
+          "glob": "package.json",
+          "input": "./server/",
+          "output": "./"
+        },
         "manifest.json",
         "service-worker.js"
       ],

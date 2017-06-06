@@ -68,7 +68,9 @@ export class DataService {
 
   getCharacterById(id: number) {
     return this.getCharacters()
-      .map(characters => characters.find(c => c.id === id));
+      .map(characters => {
+        return characters && characters.find ? characters.find(c => c.id === id) : undefined;
+      });
   }
 
   getAllegiances(force = false) {
@@ -83,7 +85,9 @@ export class DataService {
 
   getPlanetById(id: number) {
     return this.getPlanets()
-      .map(planets => planets.find(c => c.id === id));
+      .map(planets => {
+        return planets && planets.find ? planets.find(c => c.id === id) : undefined;
+      });
   }
 
   getPlanetSummary() {
