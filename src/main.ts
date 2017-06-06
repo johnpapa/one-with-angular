@@ -12,7 +12,7 @@ platformBrowserDynamic().bootstrapModule(AppModule).then(() => registerServiceWo
 
 function registerServiceWorker() {
   if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('service-worker.js').then(function (registration) {
+    navigator.serviceWorker.register('sw.js').then(function (registration) {
 
       console.log('Registration successful', registration);
 
