@@ -10,16 +10,6 @@
       "assets": [
         "assets",
         "favicon.ico",
-        {
-          "glob": "index.js",
-          "input": "./server/",
-          "output": "./"
-        },
-        {
-          "glob": "package.json",
-          "input": "./server/",
-          "output": "./"
-        },
         "manifest.json",
         "sw.js"
       ],
@@ -55,13 +45,13 @@
   },
   "lint": [
     {
-      "project": "src/tsconfig.app.json"
+      "project": "src/client/tsconfig.app.json"
     },
     {
-      "project": "src/tsconfig.spec.json"
+      "project": "src/client/tsconfig.spec.json"
     },
     {
-      "project": "e2e/tsconfig.e2e.json"
+      "project": "e2e/client/tsconfig.e2e.json"
     }
   ],
   "test": {
