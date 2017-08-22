@@ -10,6 +10,11 @@
       "assets": [
         "assets",
         "favicon.ico",
+        {
+          "glob": "index.js",
+          "input": "../server/",
+          "output": "./"
+        },
         "manifest.json",
         "sw.js"
       ],
@@ -20,15 +25,9 @@
       "tsconfig": "tsconfig.app.json",
       "testTsconfig": "tsconfig.spec.json",
       "prefix": "ro",
-      "styles": [
-        "styles/theme.scss",
-        "styles/mixin.scss",
-        "styles/styles.scss"
-      ],
+      "styles": ["styles/theme.scss", "styles/mixin.scss", "styles/styles.scss"],
       "stylePreprocessorOptions": {
-        "includePaths": [
-          "styles"
-        ]
+        "includePaths": ["styles"]
       },
       "scripts": [],
       "environmentSource": "environments/environment.ts",
