@@ -3,7 +3,7 @@ const path = require('path');
 const bodyParser = require('body-parser');
 // const routes = require('./routes');
 
-const root = './';
+const root = './public';
 const public = process.env.PUBLIC || `${root}`;
 const app = express();
 
