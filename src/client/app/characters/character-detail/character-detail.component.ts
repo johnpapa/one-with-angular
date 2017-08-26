@@ -70,7 +70,7 @@ export class CharacterDetailComponent implements OnDestroy, OnInit {
   }
 
   syncHomeWorld() {
-    if (this.character) {
+    if (this.character && this.planets) {
       const homeWorld = this.planets.find((planet => this.character.homeWorldId === planet.id));
       this.character.homeWorld = homeWorld;
     }
