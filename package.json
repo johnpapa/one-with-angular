@@ -26,7 +26,6 @@
     "@angular/platform-browser-dynamic": "^4.2.4",
     "@angular/router": "^4.2.4",
     "@swimlane/ngx-charts": "^5.3.1",
-    "body-parser": "^1.17.2",
     "core-js": "^2.4.1",
     "d3": "^4.8.0",
     "d3-array": "^1.2.0",
@@ -39,7 +38,6 @@
     "d3-scale": "^1.0.5",
     "d3-selection": "^1.0.5",
     "d3-shape": "^1.0.6",
-    "express": "^4.15.3",
     "rxjs": "^5.4.2",
     "zone.js": "^0.8.14"
   },
