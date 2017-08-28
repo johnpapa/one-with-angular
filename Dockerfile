@@ -1,16 +1,17 @@
 #APP ========================================
-FROM node:6.11.2-alpine as builder
+FROM node:6.11.2-alpine as angular-app
 
-LABEL authors="Shayne Boyer"
+LABEL authors="Shayne Boyer, John Papa"
 
+#Linux setup
 RUN apk update \
   && apk add --update alpine-sdk \
-  && npm install -g @angular/cli \
-  && ng set --global packageManager=npm \
   && apk del alpine-sdk \
   && rm -rf /tmp/* /var/cache/apk/* *.tar.gz ~/.npm \
   && npm cache clear \
   && sed -i -e "s/bin\/ash/bin\/sh/" /etc/passwd
+
+RUN npm install -g @angular/cli
 
 WORKDIR /app
 COPY package.json /app
@@ -32,7 +33,7 @@ RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app
 
 COPY --from=server /app /usr/src/app
-COPY --from=builder /app/dist /usr/src/app
+COPY --from=angular-app /app/dist /usr/src/app
 ENV PORT 80
 
 CMD [ "node", "index.js" ]
