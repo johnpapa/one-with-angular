@@ -1,13 +1,13 @@
 const express = require('express');
 const path = require('path');
-const bodyParser = require('body-parser');
+// const bodyParser = require('body-parser');
 
 const root = './public';
 const public = process.env.PUBLIC || `${root}`;
 const app = express();
 
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+// app.use(bodyParser.json());
+// app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(public));
 console.log(`serving ${public}`);
 app.get('*', (req, res) => {
