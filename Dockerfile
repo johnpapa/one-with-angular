@@ -1,7 +1,7 @@
-LABEL authors="Shayne Boyer, John Papa"
-
 #Angular App ========================================
 FROM node:6.11-alpine as angular-app
+
+LABEL authors="Shayne Boyer, John Papa"
 
 #Linux setup
 RUN apk update \
