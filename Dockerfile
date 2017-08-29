@@ -1,7 +1,7 @@
 LABEL authors="Shayne Boyer, John Papa"
 
 #Angular App ========================================
-FROM node:6.11.2-alpine as angular-app
+FROM node:6.11-alpine as angular-app
 
 #Linux setup
 RUN apk update \
@@ -20,13 +20,13 @@ COPY . /app
 RUN ng build --prod
 
 #Express server =======================================
-FROM node:6-alpine as express-server
+FROM node:6.11-alpine as express-server
 WORKDIR /app
 COPY /src/server /app
-RUN npm install
+RUN npm install --production --silent
 
 #Final image ========================================
-FROM node:6-alpine
+FROM node:6.11-alpine
 RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app
 
