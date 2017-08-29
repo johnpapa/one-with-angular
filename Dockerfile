@@ -1,7 +1,7 @@
-#APP ========================================
-FROM node:6.11.2-alpine as angular-app
-
 LABEL authors="Shayne Boyer, John Papa"
+
+#Angular App ========================================
+FROM node:6.11.2-alpine as angular-app
 
 #Linux setup
 RUN apk update \
@@ -11,28 +11,26 @@ RUN apk update \
   && npm cache clear \
   && sed -i -e "s/bin\/ash/bin\/sh/" /etc/passwd
 
+# Copy and install the Angular app
 RUN npm install -g @angular/cli
-
 WORKDIR /app
 COPY package.json /app
 RUN npm install
-
 COPY . /app
-
 RUN ng build --prod
 
-#SERVER =======================================
-FROM node:6-alpine as server
+#Express server =======================================
+FROM node:6-alpine as express-server
 WORKDIR /app
 COPY /src/server /app
 RUN npm install
 
-#FINAL ========================================
+#Final image ========================================
 FROM node:6-alpine
 RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app
 
-COPY --from=server /app /usr/src/app
+COPY --from=express-server /app /usr/src/app
 COPY --from=angular-app /app/dist /usr/src/app
 ENV PORT 80
 
