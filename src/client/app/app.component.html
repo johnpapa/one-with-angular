@@ -1,5 +1,5 @@
 <div>
-  <md-progress-bar *ngIf="isFetching | async" color="accent" mode="indeterminate"></md-progress-bar>
+  <md-progress-bar [hidden]="!isFetching | async" color="accent" mode="indeterminate"></md-progress-bar>
   <ro-nav></ro-nav>
   <div class="content">
     <router-outlet></router-outlet>

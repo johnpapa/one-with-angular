@@ -1,4 +1,4 @@
-#Angular App ========================================
+# Angular App ========================================
 FROM johnpapa/angular-cli as angular-app
 LABEL authors="Shayne Boyer, John Papa"
 # Copy and install the Angular app
