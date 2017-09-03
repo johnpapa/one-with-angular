@@ -9,8 +9,8 @@ import { AuthService } from './auth.service';
 import { ConfigService } from './config.service';
 import { DataService } from './data.service';
 import { throwIfAlreadyLoaded } from './module-import-guard';
-import { AuthInterceptor } from './auth.interceptor';
-import { LogInterceptor } from './log-interceptor';
+import { HeaderInterceptor } from './header.interceptor';
+import { LogInterceptor } from './log.interceptor';
 
 @NgModule({
   imports: [
@@ -24,7 +24,7 @@ import { LogInterceptor } from './log-interceptor';
     AuthService,
     ConfigService,
     DataService,
-    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: HeaderInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: LogInterceptor, multi: true },
   ]
 })
