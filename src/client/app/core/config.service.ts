@@ -5,8 +5,8 @@ import { MdSnackBarConfig, MdSnackBar } from '@angular/material';
 export class ConfigService {
   snackConfig = new MdSnackBarConfig();
   apiUrl = 'https://www.starwars-api.com/api/';
-  httpCacheDuration = 10000; // 10 seconds
-  httpDelay = 100; // http delay
+  httpCacheDuration = 1000; // 1 seconds
+  httpDelay = 10; // http delay
 
   constructor() {
     this.snackConfig.duration = 2500;

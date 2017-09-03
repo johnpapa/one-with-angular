@@ -22,7 +22,8 @@ export class DashboardComponent implements OnDestroy, OnInit {
   constructor(
     public snackBar: MdSnackBar,
     private configService: ConfigService,
-    private dataService: DataService) { }
+    private dataService: DataService
+  ) {}
 
   setChartOptions() {
     this.planetChart.xAxisLabel = 'Planets';
@@ -41,17 +42,16 @@ export class DashboardComponent implements OnDestroy, OnInit {
     this.subscription = Observable.combineLatest(
       this.dataService.getPlanetSummary(),
       this.dataService.getAllegianceSummary()
-    )
-      .subscribe(
-        ([planetSummary, allegianceSummary]) => {
-          this.planetSummary = planetSummary;
-          this.allegianceSummary = allegianceSummary;
-          this.snackBar.open('Dashboard loaded', 'SUCCESS', this.configService.snackConfig);
-        },
-        (err) => {
-          this.snackBar.open('Dashboard failed', 'ERROR', this.configService.snackConfig);
-          console.log(err);
-        }
-      );
+    ).subscribe(
+      ([planetSummary, allegianceSummary]) => {
+        this.planetSummary = planetSummary;
+        this.allegianceSummary = allegianceSummary;
+        // TODO: fix this this.snackBar.open('Dashboard loaded', 'SUCCESS', this.configService.snackConfig);
+      },
+      err => {
+        // TODO: fix this this.snackBar.open('Dashboard failed', 'ERROR', this.configService.snackConfig);
+        console.log(err);
+      }
+    );
   }
 }

@@ -23,21 +23,19 @@ export class PlanetListComponent implements OnDestroy, OnInit {
     public snackBar: MdSnackBar,
     private configService: ConfigService,
     private dataService: DataService,
-    private router: Router,
-  ) { }
+    private router: Router
+  ) {}
 
   ngOnDestroy() {
     this.subscription.unsubscribe();
   }
 
   ngOnInit() {
-    this.subscription = this.dataService.getPlanets()
-      .subscribe(planets => {
-        this.planets = planets;
-        this.snackBar.open('Getting Planets data succeeded', 'SUCCESS', this.configService.snackConfig);
-      },
-      () => this.snackBar.open('Getting Planets data failed', 'ERROR', this.configService.snackConfig)
-      );
+    this.subscription = this.dataService.getPlanets().subscribe(planets => {
+      this.planets = planets;
+      // TODO: fix this this.snackBar.open('Getting Planets data succeeded', 'SUCCESS', this.configService.snackConfig);
+    });
+    // TODO: fix this () => this.snackBar.open('Getting Planets data failed', 'ERROR', this.configService.snackConfig)
   }
 
   selectPlanet(planet: Planet) {

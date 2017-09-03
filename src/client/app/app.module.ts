@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
-import { HttpModule, RequestOptions } from '@angular/http';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { CoreModule } from './core/core.module';
@@ -14,21 +14,13 @@ import { PageNotFoundComponent } from './page-not-found.component';
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    HttpModule,
+    HttpClientModule,
     AppRoutingModule,
     CoreModule,
-    SharedModule,
+    SharedModule
   ],
-  declarations: [
-    AppComponent,
-    DashboardComponent,
-    PageNotFoundComponent
-  ],
+  declarations: [AppComponent, DashboardComponent, PageNotFoundComponent],
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule {
-  constructor(requestOptions: RequestOptions) {
-    requestOptions.headers.set('Content-Type', 'application/json');
-  }
-}
+export class AppModule {}

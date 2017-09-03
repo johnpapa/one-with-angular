@@ -51,14 +51,13 @@ export class CharacterDetailComponent implements OnDestroy, OnInit {
     Observable.combineLatest(this.dataService.getPlanets(), this.dataService.getAllegiances())
       .takeUntil(this.onDestroy)
       .subscribe(([planets, allegiance]) => {
-        this.planets = planets;
-        this.allegiances = allegiance;
-        this.syncHomeWorld();
-        this.ready = true;
-      },
-      () => this.snackBar.open('Getting Planets and Allegiances failed', 'ERROR', this.configService.snackConfig),
-      () => this.snackBar.open('Getting Planets and Allegiances succeeded', 'SUCCESS', this.configService.snackConfig)
-      );
+          this.planets = planets;
+          this.allegiances = allegiance;
+          this.syncHomeWorld();
+          this.ready = true;
+        });
+        // TODO: fix this () => this.snackBar.open('Getting Planets and Allegiances failed', 'ERROR', this.configService.snackConfig),
+        // TODO: fix this () => this.snackBar.open('Getting Planets and Allegiances succeeded', 'SUCCESS', this.configService.snackConfig)
   }
 
   get icon() {

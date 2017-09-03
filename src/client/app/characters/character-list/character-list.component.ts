@@ -24,22 +24,22 @@ export class CharacterListComponent implements OnDestroy, OnInit {
     public snackBar: MdSnackBar,
     private configService: ConfigService,
     private dataService: DataService,
-    private router: Router,
-  ) { }
+    private router: Router
+  ) {}
 
   ngOnDestroy() {
     this.onDestroy.next();
   }
 
   ngOnInit() {
-    this.dataService.getCharacters()
+    this.dataService
+      .getCharacters()
       .takeUntil(this.onDestroy)
       .subscribe(characters => {
         this.characters = characters;
-        this.snackBar.open('Getting Characters data succeeded', 'SUCCESS', this.configService.snackConfig);
-      },
-      () => this.snackBar.open('Getting Characters data failed', 'ERROR', this.configService.snackConfig),
-    );
+        // TODO: fix this this.snackBar.open('Getting Characters data succeeded', 'SUCCESS', this.configService.snackConfig);
+      });
+    // TODO: fix this () => this.snackBar.open('Getting Characters data failed', 'ERROR', this.configService.snackConfig),
   }
 
   selectCharacter(character: Character) {
