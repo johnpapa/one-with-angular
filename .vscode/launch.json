@@ -2,6 +2,17 @@
   "version": "0.2.0",
   "configurations": [
     {
+      "name": "Docker: Attach to Node",
+      "type": "node",
+      "request": "attach",
+      "port": 9229,
+      "address": "localhost",
+      "restart": true,
+      "sourceMaps": false,
+      "localRoot": "${workspaceRoot}/src/server",
+      "remoteRoot": "."
+    },
+    {
       "name": "Launch Chrome",
       "type": "chrome",
       "request": "launch",

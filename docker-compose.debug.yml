@@ -1,0 +1,12 @@
+version: '2.1'
+
+services:
+  one-with-angular:
+    image: one-with-angular
+    build: .
+    environment:
+      PUBLICWEB: ./publicweb
+    ports:
+      - 4200:3000
+      - 9229:9229
+    command: node --inspect index.js

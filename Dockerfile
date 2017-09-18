@@ -20,5 +20,6 @@ RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app
 COPY --from=express-server /app /usr/src/app
 COPY --from=angular-app /app/dist /usr/src/app
-ENV PORT 80
+
+EXPOSE 3000
 CMD [ "node", "index.js" ]

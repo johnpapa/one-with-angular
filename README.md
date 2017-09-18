@@ -13,6 +13,40 @@ rm -rf .git  # OS/X (bash)
 rd .git /S/Q # windows
 ```
 
+## Docker
+
+- Install and run [Docker](https://www.docker.com/community-edition)
+
+### Docker Compose
+
+- Create the Docker image and run it locally
+
+```bash
+docker-compose up -d --build
+open http://localhost:4200
+```
+
+### Docker Compose with Debugging
+
+- Create the Docker image and run it locally
+
+```bash
+docker-compose -f docker-compose.debug.yml up -d --build
+open http://localhost:4200
+```
+
+Open VS Code, launch the `Docker: Attach to Node` debugging profile
+
+### Docker Run
+
+```bash
+dockerImage=one-with-angular
+port=4200
+
+docker build -t $dockerImage .
+docker run -d -p $port:3000 $dockerImage
+```
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
