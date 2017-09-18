@@ -1,14 +1,16 @@
 # One With Angular
+
 Find the [Azure Functions Serverless API for this app located here](https://github.com/johnpapa/one-with-angular-api).
 
-```
+```bash
 git clone git@github.com:johnpapa/one-with-angular.git one
 cd one
 npm install
 ```
 
 Discard the `.git` folder
-```
+
+```bash
 rm -rf .git  # OS/X (bash)
 rd .git /S/Q # windows
 ```
